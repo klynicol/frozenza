@@ -10,14 +10,12 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('from_user_id');
-            $table->uuid('to_user_id');
             $table->text('message');
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
 
-            $table->foreign('from_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('to_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignUuid('from_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignUuid('to_user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

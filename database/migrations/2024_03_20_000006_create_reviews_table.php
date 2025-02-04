@@ -10,16 +10,14 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('pizza_id');
-            $table->uuid('user_id');
             $table->decimal('rating', 2, 1);
             $table->text('review');
             $table->string('purchase_location');
             $table->date('purchase_date');
             $table->timestamps();
 
-            $table->foreign('pizza_id')->references('id')->on('pizzas')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignUuid('pizza_id')->references('id')->on('pizzas')->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

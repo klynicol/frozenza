@@ -10,8 +10,6 @@ return new class extends Migration
     {
         Schema::create('pizzas', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('brand_id');
-            $table->uuid('style_id');
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description');
@@ -23,8 +21,8 @@ return new class extends Migration
             $table->string('image_url')->nullable();
             $table->timestamps();
 
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
-            $table->foreign('style_id')->references('id')->on('styles')->onDelete('cascade');
+            $table->foreignUuid('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->foreignUuid('style_id')->references('id')->on('styles')->onDelete('cascade');
         });
     }
 

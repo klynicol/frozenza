@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 use Carbon\Carbon;
+use App\Traits\HasUuid;
 
 class Brand extends Model implements Sitemapable
 {
+    use HasUuid;
+
     protected $fillable = ['name', 'slug', 'description', 'website'];
 
     public function pizzas(): HasMany

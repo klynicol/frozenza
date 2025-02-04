@@ -46,14 +46,19 @@ class Pizza extends Model implements Sitemapable
         return $this->belongsTo(Style::class);
     }
 
-    public function categories(): BelongsToMany
+    public function categories(): HasMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->hasMany(Category::class);
     }
 
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
     public function toSitemapTag(): Url

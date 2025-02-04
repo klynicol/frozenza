@@ -10,10 +10,12 @@ class PizzaController extends Controller
 {
     public function index()
     {
+        info('what');
         $pizzas = Pizza::with(['brand', 'style', 'categories'])
             ->orderBy('average_rating', 'desc')
             ->paginate(12);
 
+        info($pizzas);
         return Inertia::render('Pizzas/Index', [
             'pizzas' => $pizzas,
             'meta' => [

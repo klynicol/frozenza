@@ -9,13 +9,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pizza_category', function (Blueprint $table) {
-            $table->uuid('pizza_id');
-            $table->uuid('category_id');
             $table->timestamps();
-
-            $table->primary(['pizza_id', 'category_id']);
-            $table->foreign('pizza_id')->references('id')->on('pizzas')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreignUuid('pizza_id')->references('id')->on('pizzas')->onDelete('cascade');
+            $table->foreignUuid('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

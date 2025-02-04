@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 use Carbon\Carbon;
+use App\Traits\HasUuid;
 
 class Style extends Model implements Sitemapable
 {
+    use HasUuid;
+
     protected $fillable = ['name', 'slug', 'description'];
 
     public function pizzas(): HasMany
@@ -24,4 +27,4 @@ class Style extends Model implements Sitemapable
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
             ->setPriority(0.8);
     }
-} 
+}

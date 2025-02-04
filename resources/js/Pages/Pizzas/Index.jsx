@@ -1,18 +1,16 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
-import type { Pizza } from '@/types/models';
-import type { PizzaListProps } from '@/types/props';
 
-export default function PizzasIndex({ pizzas, meta, auth }: PizzaListProps) {
+export default function PizzasIndex({ pizzas, meta, auth }) {
     return (
         <MainLayout meta={meta} auth={auth}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {pizzas.map((pizza) => (
                     <div key={pizza.id} className="bg-white rounded-lg shadow-md overflow-hidden">
                         {pizza.image_url && (
-                            <img 
-                                src={pizza.image_url} 
+                            <img
+                                src={pizza.image_url}
                                 alt={pizza.name}
                                 className="w-full h-48 object-cover"
                             />
