@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('pizza_category', function (Blueprint $table) {
+        Schema::create('category_pizza', function (Blueprint $table) {
             $table->timestamps();
             $table->foreignUuid('pizza_id')->references('id')->on('pizzas')->onDelete('cascade');
             $table->foreignUuid('category_id')->references('id')->on('categories')->onDelete('cascade');
@@ -17,6 +17,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('pizza_category');
+        Schema::dropIfExists('category_pizza');
     }
 }; 

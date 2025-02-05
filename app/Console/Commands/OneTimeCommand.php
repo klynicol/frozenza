@@ -26,8 +26,8 @@ class OneTimeCommand extends Command
      */
     public function handle()
     {
-        $country = Models\Country::find(1);
+        $category = Models\Category::first();
 
-        $this->info($country->cities);
+        $this->info($category->pizzas);
     }
 }

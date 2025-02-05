@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Pizza;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PizzaController extends Controller
 {
-    public function index()
-    {
-        info('what');
-        $pizzas = Pizza::with(['brand', 'style', 'categories'])
-            ->orderBy('average_rating', 'desc')
-            ->paginate(12);
 
-        info($pizzas);
+    const PIZZAS_PER_PAGE = 12;
+
+    public function index(): InertiaResponse
+    {
         return Inertia::render('Pizzas/Index', [
-            'pizzas' => $pizzas,
+            'pizzasFirstPage' => $this->list(),
             'meta' => [
                 'title' => 'Frozen Pizza Reviews - Find the Best Frozen Pizzas',
                 'description' => 'Discover and review the best frozen pizzas. Read honest reviews, ratings, and find where to buy your favorite frozen pizzas.',
@@ -25,10 +25,19 @@ class PizzaController extends Controller
         ]);
     }
 
+    public function list(Request|null $request = null): LengthAwarePaginator
+    {
+        $page = $request?->input('page', 1) ?? 1;
+        $pizzas = Pizza::with(['brand', 'style', 'categories'])
+            ->orderBy('average_rating', 'desc')
+            ->paginate(self::PIZZAS_PER_PAGE, ['*'], 'page', $page);
+        return $pizzas;
+    }
+
     public function show(Pizza $pizza)
     {
         $pizza->load(['brand', 'style', 'categories', 'reviews.user']);
-        
+
         return Inertia::render('Pizzas/Show', [
             'pizza' => $pizza,
             'meta' => [
@@ -38,7 +47,7 @@ class PizzaController extends Controller
         ]);
     }
 
-    public function topRated()
+    public function topRated(): InertiaResponse
     {
         $pizzas = Pizza::with(['brand', 'style', 'categories'])
             ->where('average_rating', '>=', 4.0)
@@ -54,4 +63,4 @@ class PizzaController extends Controller
             ]
         ]);
     }
-} 
+}
