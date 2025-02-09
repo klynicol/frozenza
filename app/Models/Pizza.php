@@ -53,6 +53,8 @@ use App\Traits\HasUuid;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereTags($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereTotalReviews($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereUpdatedAt($value)
+ * @property string $image_id
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereImageId($value)
  * @mixin \Eloquent
  */
 class Pizza extends Model implements Sitemapable
@@ -60,8 +62,6 @@ class Pizza extends Model implements Sitemapable
     use HasUuid;
 
     protected $fillable = [
-        'brand_id',
-        'style_id',
         'name',
         'slug',
         'description',
@@ -69,7 +69,8 @@ class Pizza extends Model implements Sitemapable
         'nutritional_info',
         'average_rating',
         'total_reviews',
-        'tags',
+        'brand_id',
+        'style_id',
         'image_url'
     ];
 

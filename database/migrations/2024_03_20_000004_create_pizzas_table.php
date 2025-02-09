@@ -18,11 +18,11 @@ return new class extends Migration
             $table->decimal('average_rating', 3, 2)->default(0);
             $table->integer('total_reviews')->default(0);
             $table->json('tags')->nullable();
-            $table->string('image_url')->nullable();
             $table->timestamps();
-
             $table->foreignUuid('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->foreignUuid('style_id')->references('id')->on('styles')->onDelete('cascade');
+            $table->foreignUuid('image_id')->references('id')->on('images')->onDelete('cascade');
+            $table->string('website')->nullable();
         });
     }
 
