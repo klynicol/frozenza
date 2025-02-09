@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * 
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\City> $cities
+ * @property-read int|null $cities_count
+ * @property-read \App\Models\Country|null $country
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|State newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|State newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|State query()
+ * @mixin \Eloquent
+ */
 class State extends Model
 {
     protected $fillable = [

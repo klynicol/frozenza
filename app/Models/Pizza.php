@@ -11,6 +11,50 @@ use Spatie\Sitemap\Tags\Url;
 use Carbon\Carbon;
 use App\Traits\HasUuid;
 
+/**
+ * 
+ *
+ * @property string $id
+ * @property string $name
+ * @property string $slug
+ * @property string $description
+ * @property array<array-key, mixed> $ingredients
+ * @property array<array-key, mixed> $nutritional_info
+ * @property float $average_rating
+ * @property int $total_reviews
+ * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
+ * @property string|null $image_url
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $brand_id
+ * @property string $style_id
+ * @property-read \App\Models\Brand $brand
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category> $categories
+ * @property-read int|null $categories_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Review> $reviews
+ * @property-read int|null $reviews_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Style> $style
+ * @property-read int|null $style_count
+ * @property-read int|null $tags_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereAverageRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereBrandId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereImageUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereIngredients($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereNutritionalInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereStyleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereTags($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereTotalReviews($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Pizza extends Model implements Sitemapable
 {
     use HasUuid;

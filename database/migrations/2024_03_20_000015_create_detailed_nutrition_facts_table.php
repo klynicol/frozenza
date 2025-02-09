@@ -8,28 +8,36 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('detailed_nutrition_facts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('pizza_id')->constrained('pizzas')->onDelete('cascade');
-            $table->integer('serving_size')->nullable();
+        Schema::create('nutrition_facts', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('pizza_id')->constrained('pizzas')->onDelete('cascade');
+            $table->unsignedSmallInteger('serving_size')->nullable();
             $table->string('serving_unit', 50)->nullable();
-            $table->integer('calories');
-            $table->integer('total_fat');
-            $table->integer('saturated_fat')->nullable();
-            $table->integer('trans_fat')->nullable();
-            $table->integer('cholesterol')->nullable();
-            $table->integer('sodium')->nullable();
-            $table->integer('total_carbohydrate');
-            $table->integer('dietary_fiber')->nullable();
-            $table->integer('total_sugars')->nullable();
-            $table->integer('added_sugars')->nullable();
-            $table->integer('protein');
+            $table->unsignedSmallInteger('calories');
+            $table->unsignedSmallInteger('total_fat');
+            $table->unsignedTinyInteger('saturated_fat')->nullable();
+            $table->unsignedTinyInteger('trans_fat')->nullable();
+            $table->unsignedSmallInteger('cholesterol')->nullable();
+            $table->unsignedSmallInteger('sodium')->nullable();
+            $table->unsignedSmallInteger('total_carbohydrate');
+            $table->unsignedTinyInteger('dietary_fiber')->nullable();
+            $table->unsignedTinyInteger('total_sugars')->nullable();
+            $table->unsignedTinyInteger('added_sugars')->nullable();
+            $table->unsignedSmallInteger('protein');
+            $table->unsignedTinyInteger('vitamin_d')->nullable();
+            $table->unsignedTinyInteger('calcium')->nullable();
+            $table->unsignedTinyInteger('iron')->nullable();
+            $table->unsignedTinyInteger('potassium')->nullable();
+            $table->unsignedTinyInteger('monounsaturated_fat')->nullable();
+            $table->unsignedTinyInteger('polyunsaturated_fat')->nullable();
+            $table->unsignedTinyInteger('vitamin_a')->nullable();
+            $table->unsignedTinyInteger('vitamin_c')->nullable();
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('detailed_nutrition_facts');
+        Schema::dropIfExists('nutrition_facts');
     }
 }; 
