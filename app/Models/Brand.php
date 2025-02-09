@@ -17,6 +17,7 @@ use App\Traits\HasUuid;
  * @property string $slug
  * @property string $description
  * @property string|null $website
+ * @property string|null $image_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Pizza> $pizzas
@@ -27,6 +28,7 @@ use App\Traits\HasUuid;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereImageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereUpdatedAt($value)
@@ -37,7 +39,13 @@ class Brand extends Model implements Sitemapable
 {
     use HasUuid;
 
-    protected $fillable = ['name', 'slug', 'description', 'website'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'website',
+        'image_id',
+    ];
 
     public function pizzas(): HasMany
     {

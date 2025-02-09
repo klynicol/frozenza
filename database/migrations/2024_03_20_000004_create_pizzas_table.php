@@ -14,15 +14,15 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description');
             $table->json('ingredients');
-            $table->json('nutritional_info');
             $table->decimal('average_rating', 3, 2)->default(0);
             $table->integer('total_reviews')->default(0);
             $table->json('tags')->nullable();
             $table->timestamps();
             $table->foreignUuid('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->foreignUuid('style_id')->references('id')->on('styles')->onDelete('cascade');
-            $table->foreignUuid('image_id')->references('id')->on('images')->onDelete('cascade');
+            $table->foreignUuid('image_id')->nullable()->references('id')->on('images')->onDelete('cascade');
             $table->string('website')->nullable();
+            $table->string('allergens')->nullable();
         });
     }
 

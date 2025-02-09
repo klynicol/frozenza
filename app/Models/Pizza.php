@@ -19,15 +19,16 @@ use App\Traits\HasUuid;
  * @property string $slug
  * @property string $description
  * @property array<array-key, mixed> $ingredients
- * @property array<array-key, mixed> $nutritional_info
  * @property float $average_rating
  * @property int $total_reviews
  * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
- * @property string|null $image_url
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $brand_id
  * @property string $style_id
+ * @property string $image_id
+ * @property string|null $website
+ * @property string|null $allergens
  * @property-read \App\Models\Brand $brand
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category> $categories
  * @property-read int|null $categories_count
@@ -39,22 +40,21 @@ use App\Traits\HasUuid;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereAllergens($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereAverageRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereBrandId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereImageUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereImageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereIngredients($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereNutritionalInfo($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereStyleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereTags($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereTotalReviews($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereUpdatedAt($value)
- * @property string $image_id
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereImageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereWebsite($value)
  * @mixin \Eloquent
  */
 class Pizza extends Model implements Sitemapable

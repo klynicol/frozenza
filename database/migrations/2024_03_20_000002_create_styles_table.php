@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description');
+            $table->foreignUuid('image_id')->nullable()->constrained('images');
             $table->timestamps();
         });
     }

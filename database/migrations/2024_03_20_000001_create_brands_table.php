@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description');
             $table->string('website')->nullable();
+            $table->foreignUuid('image_id')->nullable()->constrained('images');
             $table->timestamps();
         });
     }

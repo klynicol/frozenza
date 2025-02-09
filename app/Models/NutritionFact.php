@@ -4,33 +4,35 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 /**
  * 
  *
  * @property int $id
  * @property string $pizza_id
- * @property int|null $serving_size
- * @property string|null $serving_unit
+ * @property string $serving_per_container
+ * @property string $serving_size
  * @property int $calories
- * @property int $total_fat
- * @property int|null $saturated_fat
- * @property int|null $trans_fat
- * @property int|null $cholesterol
- * @property int|null $sodium
- * @property int $total_carbohydrate
- * @property int|null $dietary_fiber
- * @property int|null $total_sugars
- * @property int|null $added_sugars
- * @property int $protein
- * @property int|null $vitamin_d
- * @property int|null $calcium
- * @property int|null $iron
- * @property int|null $potassium
- * @property int|null $monounsaturated_fat
- * @property int|null $polyunsaturated_fat
- * @property int|null $vitamin_a
- * @property int|null $vitamin_c
+ * @property string $total_fat
+ * @property string|null $saturated_fat
+ * @property string|null $trans_fat
+ * @property string|null $cholesterol
+ * @property string|null $sodium
+ * @property string $total_carbohydrate
+ * @property string|null $dietary_fiber
+ * @property string|null $total_sugars
+ * @property string|null $added_sugars
+ * @property string $protein
+ * @property string|null $vitamin_d
+ * @property string|null $calcium
+ * @property string|null $iron
+ * @property string|null $potassium
+ * @property string|null $monounsaturated_fat
+ * @property string|null $polyunsaturated_fat
+ * @property string|null $vitamin_a
+ * @property string|null $vitamin_c
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Pizza $pizza
@@ -51,8 +53,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact wherePotassium($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereProtein($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereSaturatedFat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereServingPerContainer($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereServingSize($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereServingUnit($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereSodium($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereTotalCarbohydrate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereTotalFat($value)
@@ -66,6 +68,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class NutritionFact extends Model
 {
+    use HasFactory, HasUuids;
+    
     protected $fillable = [
         'pizza_id',
         'serving_size',
@@ -89,6 +93,10 @@ class NutritionFact extends Model
         'polyunsaturated_fat',
         'vitamin_a',
         'vitamin_c',
+    ];
+
+    protected $casts = [
+        'tags' => 'array',
     ];
 
     public function pizza(): BelongsTo
