@@ -25,14 +25,37 @@ class PizzaSeeder extends Seeder
 He created the American Flatbread concept in 1985 while working in the kitchen at Tucker Hill Restaurant, where a personal passion for cooking with wood led him to build an outdoor oven. Tuesday nights became Flatbread Nights, and the bread was baked under the stars.
 
 With help, he expanded the concept in 1988 to include a wholesale component as well as a retail outlet, which provided the basis for the current model. George continues to develop his vision for the food at American Flatbread and is very involved in daily operations while becoming increasingly influential in his community and that of the culinary world.'],
-            // ['name' => 'DiGiorno', 'slug' => 'digiorno', 'image_name' => 'Digiorno.png', 'description' => 'DiGiorno is known for its rising crust pizzas.'],
-            // ['name' => 'Tombstone', 'slug' => 'tombstone', 'image_name' => 'Tombstone.png', 'description' => 'Tombstone offers a variety of classic frozen pizzas.'],
-            // ['name' => 'Red Baron', 'slug' => 'red-baron', 'image_name' => 'RedBaron.png', 'description' => 'Red Baron is famous for its classic crust pizzas.'],
-            // ['name' => 'Jack\'s', 'slug' => 'jacks', 'image_name' => 'Jacks.png', 'description' => 'Jack\'s is known for its thin crust pizzas.', 'website' => 'https://www.goodnes.com/jacks/'],
+            ['name' => 'Amy\'s', 'slug' => 'amys', 'image_name' => 'Amys.png', 'website' => 'https://www.amys.com/', 'description' => 'Amy’s Kitchen is a family-owned company that makes delicious organic and non-GMO convenience foods.'],
+            ['name' => 'California Pizza Kitchen', 'slug' => 'california-pizza-kitchen', 'image_name' => 'CaliforniaPizzaKitchen.png', 'website' => 'https://www.cpk.com/', 'description' => 'California Pizza Kitchen is a casual dining restaurant chain that specializes in California-style pizza.'],
+            ['name' => 'Digiorno', 'slug' => 'digiorno', 'image_name' => 'Digiorno.png', 'website' => 'https://www.digiorno.com/', 'description' => 'Digiorno is known for its rising crust pizzas.'],
+            ['name' => 'Red Baron', 'slug' => 'red-baron', 'image_name' => 'RedBaron.png', 'website' => 'https://www.redbaron.com/', 'description' => 'Red Baron is famous for its classic crust pizzas.'],
+            ['name' => 'Tombstone', 'slug' => 'tombstone', 'image_name' => 'Tombstone.png', 'website' => 'https://www.tombstonepizza.com/', 'description' => 'Tombstone offers a variety of classic frozen pizzas.'],
+            ['name' => 'Tony\'s', 'slug' => 'tonys', 'image_name' => 'Tonys.png', 'website' => 'https://www.tonyspizza.com/', 'description' => 'Tony’s is known for its delicious frozen pizzas.'],
+            ['name' => 'Udi\'s', 'slug' => 'udis', 'image_name' => 'Udis.png', 'website' => 'https://udisglutenfree.com/', 'description' => 'Udi’s offers gluten-free pizzas and other products.'],
+            ['name' => 'Whole Foods', 'slug' => 'whole-foods', 'image_name' => 'WholeFoods.png', 'website' => 'https://www.wholefoodsmarket.com/', 'description' => 'Whole Foods Market is known for its organic and natural foods, including frozen pizzas.'],
+            ['name' => 'Bellatoria', 'slug' => 'bellatoria', 'image_name' => 'Bellatoria.png', 'website' => 'https://www.bellatoria.com/', 'description' => 'Bellatoria offers a variety of frozen pizzas with gourmet toppings.'],
+            ['name' => 'BOLD', 'slug' => 'bold', 'image_name' => 'BOLD.png', 'website' => 'https://www.boldpizzas.com/', 'description' => 'BOLD offers unique and flavorful frozen pizzas.'],
+            ['name' => 'Caulipower', 'slug' => 'caulipower', 'image_name' => 'Caulipower.png', 'website' => 'https://www.caulipowerpizza.com/', 'description' => 'Caulipower specializes in cauliflower-based pizzas.'],
+            ['name' => 'Celeste', 'slug' => 'celeste', 'image_name' => 'Celeste.png', 'website' => 'https://www.celestepizza.com/', 'description' => 'Celeste offers a variety of frozen pizzas at affordable prices.'],
+            ['name' => 'Chopsies', 'slug' => 'chopsies', 'image_name' => 'Chopsies.png', 'website' => 'https://www.chopsies.com/', 'description' => 'Chopsies offers a variety of frozen pizzas with fresh ingredients.'],
+            ['name' => 'Freschetta', 'slug' => 'freschetta', 'image_name' => 'Freschetta.png', 'website' => 'https://www.freschetta.com/', 'description' => 'Freschetta offers a variety of frozen pizzas with fresh ingredients.'],
+            ['name' => 'Delissio', 'slug' => 'delissio', 'image_name' => 'Delissio.png', 'website' => 'https://www.delissio.com/', 'description' => 'Delissio offers a variety of frozen pizzas with unique flavors.'],
+            ['name' => 'Gluseppe', 'slug' => 'gluseppe', 'image_name' => 'Gluseppe.png', 'website' => 'https://www.gluseppe.com/', 'description' => 'Gluseppe specializes in gourmet frozen pizzas.'],
+            ['name' => 'Glutino', 'slug' => 'glutino', 'image_name' => 'Glutino.png', 'website' => 'https://www.glutino.com/', 'description' => 'Glutino offers gluten-free frozen pizza options.'],
+            ['name' => 'GoodFellas', 'slug' => 'goodfellas', 'image_name' => 'GoodFellas.png', 'website' => 'https://www.goodfellas.com/', 'description' => 'GoodFellas is known for its authentic Italian frozen pizzas.'],
+            ['name' => 'Home Run Inn', 'slug' => 'home-run-inn', 'image_name' => 'HomeRunInn.png', 'website' => 'https://www.homeruninn.com/', 'description' => 'Home Run Inn offers a variety of frozen pizzas inspired by their restaurant recipes.'],
+            ['name' => 'Jacks', 'slug' => 'jacks', 'image_name' => 'Jacks.png', 'website' => 'https://www.jackspizza.com/', 'description' => 'Jack’s is known for its affordable and delicious frozen pizzas.'],
+            ['name' => 'Jenos Pizza', 'slug' => 'jenos-pizza', 'image_name' => 'JenosPizza.png', 'website' => 'https://www.jenospizza.com/', 'description' => 'Jenos Pizza offers a variety of frozen pizza options.'],
+            ['name' => 'Kashi', 'slug' => 'kashi', 'image_name' => 'Kashi.png', 'website' => 'https://www.kashi.com/', 'description' => 'Kashi provides healthy frozen pizza options made with wholesome ingredients.'],
+            ['name' => 'Newmans', 'slug' => 'newmans', 'image_name' => 'Newmans.png', 'website' => 'https://www.newmansown.com/', 'description' => 'Newmans offers frozen pizzas made with organic ingredients.'],
+            ['name' => 'Palermos', 'slug' => 'palermos', 'image_name' => 'Palermos.png', 'website' => 'https://www.palermos.com/', 'description' => 'Palermos specializes in authentic Italian frozen pizzas.'],
+            ['name' => 'Sbarro', 'slug' => 'sbarro', 'image_name' => 'Sbarro.png', 'website' => 'https://www.sbarro.com/', 'description' => 'Sbarro is known for its New York-style frozen pizzas.'],
+            ['name' => 'Screamin Sicilian', 'slug' => 'screamin-sicilian', 'image_name' => 'ScreaminSicilian.png', 'website' => 'https://www.screamin-sicilian.com/', 'description' => 'Screamin Sicilian offers bold and flavorful frozen pizzas.'],
+            ['name' => 'The Take Away', 'slug' => 'the-take-away', 'image_name' => 'TheTakeAway.png', 'website' => 'https://www.thetakeaway.com/', 'description' => 'The Take Away provides a variety of frozen pizza options for quick meals.'],
         ];
 
         foreach ($brands as $brandData) {
-            $image = ImageHandler::createFromExistingFile('local', "pchron_photos/logos/frozen/{$brandData['image_name']}");
+            $image = ImageHandler::createFromExistingFile('public', "images/logos/frozen/{$brandData['image_name']}");
             unset($brandData['image_name']);
             $brandData['image_id'] = $image->id;
             Brand::create($brandData);
@@ -67,7 +90,7 @@ With help, he expanded the concept in 1988 to include a wholesale component as w
         ];
 
         foreach ($styles as $styleData) {
-            $image = ImageHandler::createFromExistingFile('local', "pchron_photos/styles/{$styleData['slug']}.png");
+            $image = ImageHandler::createFromExistingFile('public', "images/styles/{$styleData['slug']}.png");
             $styleData['image_id'] = $image->id;
             Style::create($styleData);
         }
@@ -111,6 +134,7 @@ With help, he expanded the concept in 1988 to include a wholesale component as w
             ['name' => 'Wood Fired', 'slug' => 'wood-fired'],
             ['name' => 'Thin', 'slug' => 'thin'],
             ['name' => 'Crispy', 'slug' => 'crispy'],
+            ['name' => 'Rising Crust', 'slug' => 'rising-crust'],
         ];
 
         foreach ($tags as $tagData) {
@@ -122,8 +146,8 @@ With help, he expanded the concept in 1988 to include a wholesale component as w
         $pizzas = [
             // American Flatbread
             [
-                'name' => 'American Flatbread Cheese & Herb',
-                'slug' => 'american-flatbread-cheese-herb',
+                'name' => 'Cheese & Herb',
+                'slug' => 'cheese-herb',
                 'description' => $americanFlatbreadDescription,
                 'brand_id' => Brand::where('slug', 'american-flatbread')->first()->id,
                 'style_id' => Style::where('slug', 'hand-tossed')->first()->id,

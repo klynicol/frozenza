@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 /**
  * 
  *
- * @property int $id
+ * @property string $id
  * @property string $pizza_id
  * @property string $serving_per_container
  * @property string $serving_size

@@ -26,8 +26,8 @@ class OneTimeCommand extends Command
      */
     public function handle()
     {
-        $category = Models\Category::first();
+        $pizza = Models\Pizza::first();
 
-        $this->info($category->pizzas);
+        $this->info($pizza->brand->name);
     }
 }

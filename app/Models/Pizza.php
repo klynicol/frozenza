@@ -10,6 +10,7 @@ use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 use Carbon\Carbon;
 use App\Traits\HasUuid;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * 
@@ -18,7 +19,7 @@ use App\Traits\HasUuid;
  * @property string $name
  * @property string $slug
  * @property string $description
- * @property array<array-key, mixed> $ingredients
+ * @property string $ingredients
  * @property float $average_rating
  * @property int $total_reviews
  * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
@@ -26,16 +27,16 @@ use App\Traits\HasUuid;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $brand_id
  * @property string $style_id
- * @property string $image_id
+ * @property string|null $image_id
  * @property string|null $website
  * @property string|null $allergens
  * @property-read \App\Models\Brand $brand
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category> $categories
  * @property-read int|null $categories_count
+ * @property-read \App\Models\NutritionFact|null $nutritionFact
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Review> $reviews
  * @property-read int|null $reviews_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Style> $style
- * @property-read int|null $style_count
+ * @property-read \App\Models\Style $style
  * @property-read int|null $tags_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza newQuery()
@@ -66,7 +67,6 @@ class Pizza extends Model implements Sitemapable
         'slug',
         'description',
         'ingredients',
-        'nutritional_info',
         'average_rating',
         'total_reviews',
         'brand_id',
@@ -75,8 +75,6 @@ class Pizza extends Model implements Sitemapable
     ];
 
     protected $casts = [
-        'ingredients' => 'array',
-        'nutritional_info' => 'array',
         'tags' => 'array',
         'average_rating' => 'float',
     ];
@@ -86,9 +84,14 @@ class Pizza extends Model implements Sitemapable
         return $this->belongsTo(Brand::class);
     }
 
-    public function style(): BelongsToMany
+    public function style(): BelongsTo
     {
-        return $this->belongsToMany(Style::class);
+        return $this->belongsTo(Style::class);
+    }
+
+    public function nutritionFact(): HasOne
+    {
+        return $this->hasOne(NutritionFact::class);
     }
 
     public function categories(): BelongsToMany
@@ -108,7 +111,7 @@ class Pizza extends Model implements Sitemapable
 
     public function toSitemapTag(): Url
     {
-        return Url::create("/pizzas/{$this->slug}")
+        return Url::create("/pizzas/{$this->brand->slug}/{$this->slug}")
             ->setLastModificationDate(Carbon::parse($this->updated_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
             ->setPriority(0.7);

@@ -8,7 +8,7 @@ use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 use Carbon\Carbon;
 use App\Traits\HasUuid;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * 
  *
@@ -20,6 +20,7 @@ use App\Traits\HasUuid;
  * @property string|null $image_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Image|null $image
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Pizza> $pizzas
  * @property-read int|null $pizzas_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand newModelQuery()
@@ -50,6 +51,11 @@ class Brand extends Model implements Sitemapable
     public function pizzas(): HasMany
     {
         return $this->hasMany(Pizza::class);
+    }
+
+    public function image(): BelongsTo
+    {
+        return $this->belongsTo(Image::class);
     }
 
     public function toSitemapTag(): Url

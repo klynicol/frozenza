@@ -37,7 +37,12 @@ class Style extends Model implements Sitemapable
 {
     use HasUuid;
 
-    protected $fillable = ['name', 'slug', 'description'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'image_id'
+    ];
 
     public function pizzas(): HasMany
     {

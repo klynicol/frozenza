@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Pizza;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,6 +15,11 @@ class PizzaController extends Controller
 
     const PIZZAS_PER_PAGE = 12;
 
+    /**
+     * Display a listing of the resource.
+     * 
+     *@api {get} /pizzas Get all pizzas
+     */
     public function index(): InertiaResponse
     {
         return Inertia::render('Pizzas/Index', [
@@ -25,28 +31,44 @@ class PizzaController extends Controller
         ]);
     }
 
+    /**
+     * Get all pizzas
+     * 
+     *@api {get} /pizzas/list Get all pizzas
+     */
     public function list(Request|null $request = null): LengthAwarePaginator
     {
         $page = $request?->input('page', 1) ?? 1;
-        $pizzas = Pizza::with(['brand', 'style', 'categories'])
+        $pizzas = Pizza::with(['brand', 'style'])
             ->orderBy('average_rating', 'desc')
             ->paginate(self::PIZZAS_PER_PAGE, ['*'], 'page', $page);
         return $pizzas;
     }
 
-    public function show(Pizza $pizza)
+    /**
+     * Display the specified pizza.
+     * 
+     *@api {get} /pizzas/{pizza:slug} Get a pizza
+     */
+    public function show(Brand $brand, Pizza $pizza)
     {
-        $pizza->load(['brand', 'style', 'categories', 'reviews.user']);
-
+        $pizza->load(['brand', 'style', 'reviews.user', 'nutritionFact']);
+        $brandName = $pizza?->brand?->name ?? 'Unknown Brand';
+        $styleName = $pizza?->style?->name ?? 'Unknown Style';
         return Inertia::render('Pizzas/Show', [
             'pizza' => $pizza,
             'meta' => [
-                'title' => "{$pizza->name} by {$pizza->brand->name} - Frozen Pizza Review",
-                'description' => "Read reviews and ratings for {$pizza->name} frozen pizza by {$pizza->brand->name}. Find out where to buy and what others think about this {$pizza->style->name} pizza.",
+                'title' => "{$pizza->name} by {$brandName} - Frozen Pizza Review",
+                'description' => "Read reviews and ratings for {$pizza->name} frozen pizza by {$brandName}. Find out where to buy and what others think about this {$styleName} pizza.",
             ]
         ]);
     }
 
+    /**
+     * Get the top rated pizzas
+     * 
+     *@api {get} /pizzas/top-rated Get the top rated pizzas
+     */
     public function topRated(): InertiaResponse
     {
         $pizzas = Pizza::with(['brand', 'style', 'categories'])

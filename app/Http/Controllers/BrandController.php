@@ -11,8 +11,9 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::withCount('pizzas')
+            ->with('image')
             ->orderBy('name')
-            ->paginate(24);
+            ->get();
 
         return Inertia::render('Brands/Index', [
             'brands' => $brands,

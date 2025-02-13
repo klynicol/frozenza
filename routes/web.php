@@ -19,7 +19,7 @@ Route::get('/top-rated', [PizzaController::class, 'topRated'])->name('pizzas.top
 
 // Pizza routes
 Route::get('/pizzas', [PizzaController::class, 'index'])->name('pizzas.index');
-Route::get('/pizzas/{pizza:slug}', [PizzaController::class, 'show'])->name('pizzas.show');
+Route::get('/pizzas/{brand:slug}/{pizza:slug}', [PizzaController::class, 'show'])->name('pizzas.show');
 Route::get('/pizzas/list', [PizzaController::class, 'list'])->name('pizzas.list');
 
 // Brand routes
