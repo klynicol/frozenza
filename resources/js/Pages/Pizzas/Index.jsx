@@ -28,6 +28,7 @@ export default function PizzasIndex({ pizzasFirstPage, meta, auth }) {
 
     return (
         <MainLayout meta={meta} auth={auth}>
+            <h1 className="text-2xl font-bold mb-4">All Pizzas</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {pizzas.data.map((pizza) => (
                     <Link href={`/pizzas/${pizza.brand.slug}/${pizza.slug}`} key={pizza.id} className="bg-white rounded-lg shadow-md overflow-hidden">

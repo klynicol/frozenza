@@ -26,26 +26,6 @@ export default function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div>
-                        <h3 className="text-lg font-bold mb-4">Categories</h3>
-                        <ul className="space-y-2">
-                            <li>
-                                <Link href="/categories/vegetarian" className="hover:text-gray-300">
-                                    Vegetarian
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/categories/meat-lovers" className="hover:text-gray-300">
-                                    Meat Lovers
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/categories/gluten-free" className="hover:text-gray-300">
-                                    Gluten Free
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
                 <div className="mt-8 pt-8 border-t border-gray-700 text-center">
                     <p>&copy; {new Date().getFullYear()} FrozenPizzaReviews. All rights reserved.</p>

@@ -9,13 +9,13 @@ export default function Navbar({ auth }) {
             <div className="container mx-auto px-4">
                 <div className="flex justify-between h-16">
                     <div className="flex">
-                        <Link href="/" className="flex items-center">
+                        <div className="flex items-center">
                             <span className="text-xl font-bold text-gray-800">
                                 <Link href="/">
                                     <ApplicationLogo className="h-10 w-10 fill-current text-gray-500" />
                                 </Link>
                             </span>
-                        </Link>
+                        </div>
                         <div className="ml-10 flex items-center space-x-4 w-full">
                             <Link
                                 href="/top-rated"

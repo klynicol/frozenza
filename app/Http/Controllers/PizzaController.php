@@ -71,8 +71,7 @@ class PizzaController extends Controller
      */
     public function topRated(): InertiaResponse
     {
-        $pizzas = Pizza::with(['brand', 'style', 'categories'])
-            ->where('average_rating', '>=', 4.0)
+        $pizzas = Pizza::with(['brand', 'style'])
             ->orderBy('average_rating', 'desc')
             ->take(10)
             ->get();
