@@ -37,7 +37,7 @@ export default function MainLayout({ children, meta, auth }) {
         <>
             <MetaTags {...meta} />
             <div className="min-h-screen bg-gray-100">
-                <Navbar />
+                <Navbar auth={auth} />
                 <main className="container mx-auto px-4 py-8">
                     {children}
                 </main>

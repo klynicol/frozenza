@@ -5,6 +5,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -95,6 +96,21 @@ export default function Login({ status, canResetPassword }) {
                     </PrimaryButton>
                 </div>
             </form>
+
+            <div className="mt-4 flex items-center justify-center">
+                <button
+                    onClick={() => router.visit(route('social.login', 'facebook'))}
+                    className="btn btn-facebook"
+                >
+                    Login with Facebook
+                </button>
+                <button
+                    onClick={() => router.visit(route('social.login', 'google'))}
+                    className="btn btn-google"
+                >
+                    Login with Google
+                </button>
+            </div>
         </GuestLayout>
     );
 }

@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     CategoryController,
     ReviewController,
     MessageController,
-    BlogPostController
+    BlogPostController,
+    Auth\SocialAuthController
 };
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
