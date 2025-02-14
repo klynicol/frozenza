@@ -11,27 +11,27 @@ export default function MainLayout({ children, meta, auth }) {
         isVisible: false,
     });
 
-    useEffect(() => {
-        if (auth.user) {
-            const channel = window.Echo.private(`messages.${auth.user.id}`);
+    // useEffect(() => {
+    //     if (auth.user) {
+    //         const channel = window.Echo.private(`messages.${auth.user.id}`);
             
-            channel.listen('MessageSent', (e) => {
-                setNotification({
-                    message: e.message.message,
-                    sender: e.message.from_user.name,
-                    isVisible: true,
-                });
+    //         channel.listen('MessageSent', (e) => {
+    //             setNotification({
+    //                 message: e.message.message,
+    //                 sender: e.message.from_user.name,
+    //                 isVisible: true,
+    //             });
 
-                setTimeout(() => {
-                    setNotification(prev => ({ ...prev, isVisible: false }));
-                }, 5000);
-            });
+    //             setTimeout(() => {
+    //                 setNotification(prev => ({ ...prev, isVisible: false }));
+    //             }, 5000);
+    //         });
 
-            return () => {
-                channel.stopListening('MessageSent');
-            };
-        }
-    }, [auth.user]);
+    //         return () => {
+    //             channel.stopListening('MessageSent');
+    //         };
+    //     }
+    // }, [auth.user]);
 
     return (
         <>

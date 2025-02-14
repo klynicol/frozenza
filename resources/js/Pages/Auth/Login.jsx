@@ -6,6 +6,7 @@ import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
+import { FacebookIcon, GoogleIcon } from '@/Components/Icons';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -81,7 +82,7 @@ export default function Login({ status, canResetPassword }) {
                     </label>
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
+                <div className="mt-4 flex items-center justify-between">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
@@ -91,25 +92,48 @@ export default function Login({ status, canResetPassword }) {
                         </Link>
                     )}
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
+                    <div className="flex items-center gap-3">
+                        <PrimaryButton disabled={processing}>
+                            Log in
+                        </PrimaryButton>
+                        <span className="text-gray-500">or</span>
+                        <Link
+                            href={route('register')}
+                            className="rounded-md text-sm font-semibold text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            Register now
+                        </Link>
+                    </div>
                 </div>
             </form>
 
-            <div className="mt-4 flex items-center justify-center">
-                <button
-                    onClick={() => router.visit(route('social.login', 'facebook'))}
-                    className="btn btn-facebook"
-                >
-                    Login with Facebook
-                </button>
-                <button
-                    onClick={() => router.visit(route('social.login', 'google'))}
-                    className="btn btn-google"
-                >
-                    Login with Google
-                </button>
+            <div className="mt-6">
+                <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                        <span className="bg-white px-2 text-gray-500">Or continue with</span>
+                    </div>
+                </div>
+
+                <div className="flex py-4">
+                    {/* <button
+                        onClick={() => router.visit(route('social.login', 'facebook'))}
+                        className="flex w-full items-center justify-center gap-3 rounded-md bg-[#1877F2] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1877F2]"
+                    >
+                        <FacebookIcon className="h-5 w-5" />
+                        <span className="text-sm font-semibold leading-6">Facebook</span>
+                    </button> */}
+
+                    <button
+                        onClick={() => router.visit(route('social.login', 'google'))}
+                        className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-1.5 text-gray-900 border border-gray-200 hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4285F4]"
+                    >
+                        <GoogleIcon className="h-5 w-5" />
+                        <span className="text-sm font-semibold leading-6">Google</span>
+                    </button>
+                </div>
             </div>
         </GuestLayout>
     );
