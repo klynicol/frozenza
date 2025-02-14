@@ -163,7 +163,7 @@ class LuigesSeeder extends Seeder
                 "brand_id" => $brand->id,
                 "description" => "Loaded with double Sausage, double Pepperoni, and Mozzarella Cheese",
                 "tags" => ["sausage", "pepperoni"],
-                "image_url" => "/files/BD%20Double%20Sausage%20Double%20Pepp.jpg"
+                "image_url" => "/files/BD%20Double%20SausageDouble%20Pepp.jpg"
             ],
             [
                 "name" => "Big Daddy Pub Style 2x Sausage & Mushroom",

@@ -23,7 +23,7 @@ export default function BrandShow({ brand, meta, auth }) {
                 </div>
             </div>
 
-            <h2 className="text-2xl font-bold mb-4">Pizzas by {brand.name}</h2>
+            <h2 className="text-2xl font-bold mb-4">Pizzas by {brand.name} ({brand.pizzas.length})</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {brand.pizzas.length > 0 ? (
                     brand.pizzas.map((pizza) => (
