@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pizza;
 use App\Models\Review;
+use App\Handlers\ImageHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -20,12 +21,29 @@ class ReviewController extends Controller
             'review' => 'required|string|min:10',
             'purchase_location' => 'required|string|max:255',
             'purchase_date' => 'required|date|before_or_equal:today',
+            'images' => 'nullable|array',
+            'images.*.file' => 'required|image|max:5120', // Max 5MB per image
+            'images.*.type' => 'required|string|in:' . implode(',', Review::imageTypes()),
         ]);
 
         $review = $pizza->reviews()->create([
             'user_id' => Auth::id(),
-            ...$validated
+            'rating' => $validated['rating'],
+            'review' => $validated['review'],
+            'purchase_location' => $validated['purchase_location'],
+            'purchase_date' => $validated['purchase_date'],
         ]);
+
+        if (isset($validated['images'])) {
+            $order = 0;
+            foreach ($validated['images'] as $imageData) {
+                $uploadedImage = ImageHandler::upload($imageData['file']);
+                $review->images()->attach($uploadedImage->id, [
+                    'order' => $order++,
+                    'type' => $imageData['type']
+                ]);
+            }
+        }
 
         $pizza->updateAverageRating();
 
@@ -41,9 +59,37 @@ class ReviewController extends Controller
             'review' => 'required|string|min:10',
             'purchase_location' => 'required|string|max:255',
             'purchase_date' => 'required|date|before_or_equal:today',
+            'images' => 'nullable|array',
+            'images.*.file' => 'required|image|max:5120', // Max 5MB per image
+            'images.*.type' => 'required|string|in:' . implode(',', Review::imageTypes()),
+            'remove_images' => 'nullable|array',
+            'remove_images.*' => 'exists:images,id'
         ]);
 
-        $review->update($validated);
+        $review->update([
+            'rating' => $validated['rating'],
+            'review' => $validated['review'],
+            'purchase_location' => $validated['purchase_location'],
+            'purchase_date' => $validated['purchase_date'],
+        ]);
+
+        // Remove images if requested
+        if ($request->has('remove_images')) {
+            $review->images()->detach($request->remove_images);
+        }
+
+        // Add new images
+        if (isset($validated['images'])) {
+            $order = $review->images()->max('order') + 1;
+            foreach ($validated['images'] as $imageData) {
+                $uploadedImage = ImageHandler::upload($imageData['file']);
+                $review->images()->attach($uploadedImage->id, [
+                    'order' => $order++,
+                    'type' => $imageData['type']
+                ]);
+            }
+        }
+
         $review->pizza->updateAverageRating();
 
         return back()->with('success', 'Review updated successfully!');
@@ -54,7 +100,10 @@ class ReviewController extends Controller
         $this->authorize('delete', $review);
         
         $pizza = $review->pizza;
+        
+        // Images will be automatically detached due to cascade delete
         $review->delete();
+        
         $pizza->updateAverageRating();
 
         return back()->with('success', 'Review deleted successfully!');

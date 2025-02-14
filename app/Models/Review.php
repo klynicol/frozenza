@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 
 /**
  * 
@@ -61,4 +63,25 @@ class Review extends Model
     {
         return $this->belongsTo(User::class);
     }
-} 
+
+    public function images(): BelongsToMany
+    {
+        return $this->belongsToMany(Image::class, 'review_images')
+            ->withPivot('order')
+            ->orderBy('order');
+    }
+
+    public static function imageTypes(): array
+    {
+        return [
+            'front' => 'Front of Box',
+            'back' => 'Back of Box',
+            'side' => 'Side of Box',
+            'cooked' => 'Cooked Pizza',
+            'slice' => 'Slice of Pizza',
+            'ingredients' => 'Ingredients',
+            'nutrition_facts' => 'Nutrition Facts',
+            'other' => 'Other',
+        ];
+    }
+}
