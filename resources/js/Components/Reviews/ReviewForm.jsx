@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from '@inertiajs/react';
 
-export default function ReviewForm({ pizzaId }) {
+export default function ReviewForm({ pizzaId, onSuccess }) {
     const { data, setData, post, processing, errors } = useForm({
         rating: 5,
         review: '',
@@ -12,6 +12,10 @@ export default function ReviewForm({ pizzaId }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         post(`/pizzas/${pizzaId}/reviews`);
+        
+        if (onSuccess) {
+            onSuccess();
+        }
     };
 
     return (

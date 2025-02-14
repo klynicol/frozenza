@@ -7,10 +7,12 @@ import NutritionFact from '@/Components/Common/NutritionFact';
 import { Link } from '@inertiajs/react';
 import { PlusIcon, MinusIcon } from '@/Components/Icons';
 import { getImageUrl } from '@/utils/image';
+import Modal from '@/Components/Modal';
 
 export default function PizzaShow({ pizza, meta, auth }) {
     const [isIngredientsOpen, setIngredientsOpen] = useState(false);
     const [isNutritionOpen, setNutritionOpen] = useState(false);
+    const [isReviewModalOpen, setReviewModalOpen] = useState(false);
 
     const toggleAccordion = (setOpen) => {
         setOpen(prevState => !prevState);
@@ -18,8 +20,14 @@ export default function PizzaShow({ pizza, meta, auth }) {
 
     return (
         <MainLayout meta={meta} auth={auth}>
+            <Modal show={isReviewModalOpen} onClose={() => setReviewModalOpen(false)}>
+                <div className="p-6">
+                    <h3 className="text-lg font-semibold mb-4">Write a Review</h3>
+                    <ReviewForm pizzaId={pizza.id} onSuccess={() => setReviewModalOpen(false)} />
+                </div>
+            </Modal>
             <SchemaMarkup type="Pizza" data={pizza} />
-            
+
             {/* Main content container */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
@@ -42,9 +50,9 @@ export default function PizzaShow({ pizza, meta, auth }) {
                             <h1 className="text-3xl font-bold text-gray-900 mb-2">
                                 {pizza.name}
                             </h1>
-                            
+
                             <div className="text-sm text-gray-600 mb-4">
-                                <Link 
+                                <Link
                                     href={route('brands.show', pizza.brand.slug)}
                                     className="hover:text-indigo-600"
                                 >
@@ -53,7 +61,7 @@ export default function PizzaShow({ pizza, meta, auth }) {
                                 {pizza?.style && (
                                     <>
                                         <span className="mx-2">•</span>
-                                        <Link 
+                                        <Link
                                             href={route('styles.show', pizza?.style?.slug)}
                                             className="hover:text-indigo-600"
                                         >
@@ -111,9 +119,16 @@ export default function PizzaShow({ pizza, meta, auth }) {
                     </div>
 
                     {auth.user ? (
-                        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-                            <ReviewForm pizzaId={pizza.id} />
-                        </div>
+                        <>
+                            <div className="mb-8">
+                                <button
+                                    onClick={() => setReviewModalOpen(true)}
+                                    className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
+                                >
+                                    Write a Review
+                                </button>
+                            </div>
+                        </>
                     ) : (
                         <div className="bg-gray-50 rounded-lg p-6 mb-8 text-center">
                             <p className="text-gray-600">
