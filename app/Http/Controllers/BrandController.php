@@ -8,6 +8,10 @@ use Inertia\Inertia;
 
 class BrandController extends Controller
 {
+    /**
+     * Show the brands page
+     * @api {get} /brands Show the brands page
+     */
     public function index()
     {
         $brands = Brand::withCount('pizzas')
@@ -24,12 +28,16 @@ class BrandController extends Controller
         ]);
     }
 
+    /**
+     * Show the brand page
+     * @api {get} /brands/{brand:slug} Show the brand page
+     */
     public function show(Brand $brand)
     {
         $brand->load(['pizzas' => function ($query) {
             $query->with(['style', 'brand', 'image'])
                 ->orderBy('average_rating', 'desc');
-        }]);
+        }, 'image']);
 
         return Inertia::render('Brands/Show', [
             'brand' => $brand,

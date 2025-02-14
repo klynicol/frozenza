@@ -29,12 +29,12 @@ export default function Navbar({ auth }) {
                             >
                                 Brands
                             </Link>
-                            <Link
+                            {/* <Link
                                 href="/styles"
                                 className="text-gray-600 hover:text-gray-900"
                             >
                                 Styles
-                            </Link>
+                            </Link> */}
                             {/**Search bar */}
                             {/* <div className="relative">
                                 <input

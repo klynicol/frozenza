@@ -1,34 +1,39 @@
 import { Link } from '@inertiajs/react';
 import { getImageUrl } from '@/utils/image';
 
-
 export default function PizzaListItem({ pizza }) {
-   console.log(pizza);
-   return (
-      <Link href={`/pizzas/${pizza.brand.slug}/${pizza.slug}`} key={pizza.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-         <div key={pizza.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-            {pizza?.image && (
-               <img
-                  src={getImageUrl(pizza.image)}
-                  alt={`Primary image for ${pizza.name} from ${pizza.brand.name}`}
-                  className="max-w-[300px] m-auto object-cover p-6"
-               />
-            )}
-            <div className="p-4">
-               <h2 className="text-xl font-bold mb-2">{pizza?.name || 'No name'}</h2>
-               <p className="text-gray-600 mb-2">{pizza?.brand?.name || 'No brand'}</p>
-               <p className="text-sm text-gray-500 mb-4">{pizza?.style?.name || 'No style'}</p>
-               <div className="flex justify-between items-center">
-                  <div className="flex items-center">
-                     <span className="text-yellow-400">★</span>
-                     <span className="ml-1">{pizza?.average_rating?.toFixed(1) || 'No rating'}</span>
-                     <span className="text-gray-500 text-sm ml-2">
-                        ({pizza?.total_reviews || 'No reviews'} reviews)
-                     </span>
-                  </div>
-               </div>
+    return (
+        <Link href={route('pizzas.show', { brand: pizza.brand.slug, pizza: pizza.slug })} className="block">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="relative aspect-square">
+                    <img
+                        src={pizza?.image ? getImageUrl(pizza.image) : 'https://via.placeholder.com/150'}
+                        alt={pizza.name}
+                        className="w-full h-full object-cover p-3"
+                    />
+                </div>
+                <div className="p-4">
+                    <h3 className="font-semibold text-lg mb-2">{pizza.name}</h3>
+                    <div className="flex items-center justify-end mb-2">
+                        <div className="flex items-center">
+                            <span className="text-yellow-400">★</span>
+                            <span className="ml-1">{pizza.rating || 'No reviews'}</span>
+                        </div>
+                    </div>
+                    {pizza.tags && pizza.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mt-2">
+                            {pizza.tags.map((tag, index) => (
+                                <span
+                                    key={index}
+                                    className="px-2 py-1 bg-gray-100 text-sm rounded-full text-gray-600"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
-         </div>
-      </Link>
-   );
+        </Link>
+    );
 }

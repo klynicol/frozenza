@@ -19,11 +19,11 @@ export default function Footer() {
                                     Browse Brands
                                 </Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <Link href="/styles" className="hover:text-gray-300">
                                     Pizza Styles
                                 </Link>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>
