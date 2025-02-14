@@ -52,6 +52,11 @@ With help, he expanded the concept in 1988 to include a wholesale component as w
             ['name' => 'Sbarro', 'slug' => 'sbarro', 'image_name' => 'Sbarro.png', 'website' => 'https://www.sbarro.com/', 'description' => 'Sbarro is known for its New York-style frozen pizzas.'],
             ['name' => 'Screamin Sicilian', 'slug' => 'screamin-sicilian', 'image_name' => 'ScreaminSicilian.png', 'website' => 'https://www.screamin-sicilian.com/', 'description' => 'Screamin Sicilian offers bold and flavorful frozen pizzas.'],
             ['name' => 'The Take Away', 'slug' => 'the-take-away', 'image_name' => 'TheTakeAway.png', 'website' => 'https://www.thetakeaway.com/', 'description' => 'The Take Away provides a variety of frozen pizza options for quick meals.'],
+            ['name' => 'Luiges', 'slug' => 'luiges', 'image_name' => 'Luiges.jpg', 'website' => 'https://www.luigespizza.com/', 'description' => 'Luige’s frozen pizza originated in 1952. After 30 years of making fresh pizzas, the group decided to move into the frozen category. In the local Turner halls people could eat free pizza every Tuesday and
+Thursday. What the Luige’s people were doing was developing a taste profile. You could grab a slice of
+pizza, but you would always have to vote if you liked it, and this went on for years. The end game was a
+great tasting product, but also a product that was developed at a lower cost.
+    During the 70s and 80s Luige’s was primarily a fundraising pizza and in the 90s, Luige’s moved into the tavern delivery business. Luige’s was wildly successful, and to this day is the premier brand in Wisconsin. In 2011 Luige’s launched retail distribution in the upper Midwest and was once again very successful. In a meeting in Chicago with some of the largest players in the US, the comment was made Wisconsin has Luige’s and a lot of companies that want to be like them.'],
         ];
 
         foreach ($brands as $brandData) {
@@ -135,6 +140,10 @@ With help, he expanded the concept in 1988 to include a wholesale component as w
             ['name' => 'Thin', 'slug' => 'thin'],
             ['name' => 'Crispy', 'slug' => 'crispy'],
             ['name' => 'Rising Crust', 'slug' => 'rising-crust'],
+            ['name' => 'Deluxe', 'slug' => 'deluxe'],
+            ['name' => 'Supreme', 'slug' => 'supreme'],
+            ['name' => 'Pub Style', 'slug' => 'pub-style'],
+            ['name' => 'Homestyle', 'slug' => 'homestyle'],
         ];
 
         foreach ($tags as $tagData) {

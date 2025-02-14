@@ -39,7 +39,7 @@ class PizzaController extends Controller
     public function list(Request|null $request = null): LengthAwarePaginator
     {
         $page = $request?->input('page', 1) ?? 1;
-        $pizzas = Pizza::with(['brand', 'style'])
+        $pizzas = Pizza::with(['brand', 'style', 'image'])
             ->orderBy('average_rating', 'desc')
             ->paginate(self::PIZZAS_PER_PAGE, ['*'], 'page', $page);
         return $pizzas;
@@ -52,7 +52,7 @@ class PizzaController extends Controller
      */
     public function show(Brand $brand, Pizza $pizza)
     {
-        $pizza->load(['brand', 'style', 'reviews.user', 'nutritionFact']);
+        $pizza->load(['brand', 'style', 'reviews.user', 'nutritionFact', 'image']);
         $brandName = $pizza?->brand?->name ?? 'Unknown Brand';
         $styleName = $pizza?->style?->name ?? 'Unknown Style';
         return Inertia::render('Pizzas/Show', [

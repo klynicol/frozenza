@@ -40,14 +40,16 @@ class ImageHandler
    /**
     * Create an image from an existing file on the given disk
     */
-   public static function createFromExistingFile(string $disk, string $filePath): Image
+   public static function createFromExistingFile(string $disk, string $filePath, array $details = []): Image
    {
       if (!Storage::disk($disk)->exists($filePath)) {
          throw new \Exception("File does not exist at path: {$filePath}");
       }
 
-      $fileContent = Storage::disk($disk)->get($filePath);
-      $details = self::getDetailsFromBinaryImage($fileContent);
+      if (empty($details)) {
+         $fileContent = Storage::disk($disk)->get($filePath);
+         $details = self::getDetailsFromBinaryImage($fileContent);
+      }
 
       $imageUpload = new Image();
       $imageUpload->disk = $disk;
@@ -61,6 +63,31 @@ class ImageHandler
       $imageUpload->save();
 
       return $imageUpload;
+   }
+
+   /**
+    * Download an image from a URL and save it to the given disk
+    */
+   public static function createFromUrl(string $url, string $disk, string $path, string $newFileName = null): Image|null
+   {
+      $image = file_get_contents($url);
+      if (!$image) {
+         return null;
+      }
+
+      $details = self::getDetailsFromBinaryImage($image);
+      
+      if ($newFileName) {
+         $filename = $newFileName . '.' . $details['extension'];
+      } else {
+         $filename = basename($url);
+      }
+
+      $filePath = trim($path, '/') . '/' . $filename;
+      
+      Storage::disk($disk)->put($filePath, $image);
+      
+      return self::createFromExistingFile($disk, $filePath, $details);
    }
 
    /**

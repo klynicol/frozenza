@@ -26,8 +26,13 @@ class OneTimeCommand extends Command
      */
     public function handle()
     {
-        $pizza = Models\Pizza::first();
+        $image = \App\Handlers\ImageHandler::createFromUrl(
+            'https://www.luigespizza.com/files/V20.jpg',
+            'public',
+            'images/pizzas/frozen',
+            'something-something'
+        );
 
-        $this->info($pizza->brand->name);
+        $this->info($image->id);
     }
 }

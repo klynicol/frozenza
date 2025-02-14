@@ -37,9 +37,11 @@ export default function PizzaShow({ pizza, meta, auth }) {
                         <div className="text-sm text-gray-600 mb-4">
                             <span><Link href={route('brands.show', pizza.brand.slug)}>By {pizza.brand.name}</Link></span>
                             <span className="mx-2">•</span>
-                            <span><Link href={route('styles.show', pizza.style.slug)}>{pizza.style.name}</Link></span>
+                            {pizza?.style &&
+                                <span><Link href={route('styles.show', pizza?.style?.slug)}>{pizza?.style?.name}</Link></span>
+                            }
                         </div>
-                        <p className="text-gray-700 mb-6">{pizza.description}</p>
+                        <p className="text-gray-700 mb-6">{pizza?.description}</p>
 
 
                     </div>

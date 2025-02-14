@@ -27,7 +27,7 @@ class BrandController extends Controller
     public function show(Brand $brand)
     {
         $brand->load(['pizzas' => function ($query) {
-            $query->with(['style', 'brand'])
+            $query->with(['style', 'brand', 'image'])
                 ->orderBy('average_rating', 'desc');
         }]);
 

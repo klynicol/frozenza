@@ -11,15 +11,17 @@ return new class extends Migration
         Schema::create('pizzas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->text('description');
-            $table->text('ingredients');
+            $table->text('ingredients')->nullable();
             $table->decimal('average_rating', 3, 2)->default(0);
             $table->integer('total_reviews')->default(0);
             $table->json('tags')->nullable();
             $table->timestamps();
             $table->foreignUuid('brand_id')->references('id')->on('brands')->onDelete('cascade');
-            $table->foreignUuid('style_id')->references('id')->on('styles')->onDelete('cascade');
+            // unique constraint on slug and brand_id
+            $table->unique(['slug', 'brand_id']);
+            $table->foreignUuid('style_id')->nullable()->references('id')->on('styles')->onDelete('cascade');
             $table->foreignUuid('image_id')->nullable()->references('id')->on('images')->onDelete('cascade');
             $table->string('website')->nullable();
             $table->string('allergens')->nullable();
@@ -30,4 +32,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('pizzas');
     }
-}; 
+};

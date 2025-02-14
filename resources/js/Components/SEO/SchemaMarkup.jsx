@@ -14,14 +14,14 @@ export default function SchemaMarkup({ type, data }) {
         },
         style: {
             '@type': 'ProductModel',
-            name: pizza.style.name,
+            name: pizza?.style?.name || undefined,
         },
         aggregateRating: pizza.total_reviews > 0 ? {
             '@type': 'AggregateRating',
             ratingValue: pizza.average_rating,
             reviewCount: pizza.total_reviews,
         } : undefined,
-        nutrition: {
+        nutrition: pizza?.nutrition_fact ? {
             '@type': 'NutritionInformation',
             calories: `${pizza.nutrition_fact.calories} calories`,
             proteinContent: pizza.nutrition_fact.protein,
@@ -42,7 +42,7 @@ export default function SchemaMarkup({ type, data }) {
             polyunsaturatedFatContent: pizza.nutrition_fact.polyunsaturated_fat || undefined,
             vitaminAContent: pizza.nutrition_fact.vitamin_a || undefined,
             vitaminCContent: pizza.nutrition_fact.vitamin_c || undefined,
-        },
+        } : undefined,
     });
 
     const generateBrandSchema = (brand) => ({

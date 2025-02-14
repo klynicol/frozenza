@@ -3,21 +3,15 @@ import './NutritionFact.css'; // Import the CSS file for styling
 
 export default function NutritionFact({ nutritionFact }) {
 
-   // Helper function to calculate the % Daily Value
-   // from the string such that 1g would translate to 2%
-   //based on teh following chart
-   /**
-    * Nutrient	DV	%DV	Goal
-Saturated Fat	20g	=100% DV	Less than
-Sodium	2,300mg	=100% DV	Less than
-Dietary Fiber	28g	=100% DV	At least
-Added Sugars	50g	=100% DV	Less than
-Vitamin D	20mcg	=100% DV	At least
-Calcium	1,300mg	=100% DV	At least
-Iron	18mg	=100% DV	At least
-Potassium	4,700mg	=100% DV	At least
-    */
+   if (!nutritionFact) {
+      return (
+         <div>
+            <p>No nutrition facts available</p>
+         </div>
+      )
+   }
 
+   // Helper function to calculate the % Daily Value
    const calculateDailyValue = (value, nutrient) => {
       // strip the mg, g, mcg, etc. from the value
       const valueNumber = parseFloat(value.replace(/[mgc]/g, ''));
