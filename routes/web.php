@@ -13,6 +13,20 @@ use App\Http\Controllers\{
 };
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models;
+use Illuminate\Support\Facades\Auth;
+
+Route::get('/local-login/{user_email}', function ($user_email) {
+    if(config('app.env') !== 'local') {
+        return redirect()->route('login');
+    }
+    $user = Models\User::where('email', $user_email)->first();
+    if (!$user) {
+        return redirect()->route('login')->with('message', 'User not found');
+    }
+    Auth::login($user);
+    return redirect()->route('dashboard');
+})->name('local-login');
 
 // Public routes
 Route::get('/', [PizzaController::class, 'index'])->name('home');

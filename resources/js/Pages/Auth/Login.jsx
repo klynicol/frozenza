@@ -33,6 +33,12 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             )}
 
+            {import.meta.env.VITE_APP_ENV === 'local' && (
+                <div className="mb-4 underline">
+                    <Link href={route('local-login', { user_email: 'superadmin@vendvibe.co' })}>Login as Super Admin</Link>
+                </div>
+            )}
+
             <form onSubmit={submit}>
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
