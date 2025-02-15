@@ -27,9 +27,22 @@ export default function ReviewCard({ review }) {
                         </p>
                     </div>
                 </div>
-                <div className="flex items-center">
-                    <span className="text-yellow-400 mr-1">★</span>
-                    <span className="text-gray-900">{review.rating.toFixed(1)}</span>
+                <div className="flex flex-col items-end space-y-1">
+                    <div className="flex items-center">
+                        <span className="text-sm text-gray-600 mr-2">Appearance:</span>
+                        <span className="text-yellow-400 mr-1">★</span>
+                        <span className="text-gray-900">{review.appearance_rating.toFixed(1)}</span>
+                    </div>
+                    <div className="flex items-center">
+                        <span className="text-sm text-gray-600 mr-2">Texture:</span>
+                        <span className="text-yellow-400 mr-1">★</span>
+                        <span className="text-gray-900">{review.texture_rating.toFixed(1)}</span>
+                    </div>
+                    <div className="flex items-center">
+                        <span className="text-sm text-gray-600 mr-2">Flavor:</span>
+                        <span className="text-yellow-400 mr-1">★</span>
+                        <span className="text-gray-900">{review.flavor_rating.toFixed(1)}</span>
+                    </div>
                 </div>
             </div>
             <p className="text-gray-700">{review.review}</p>
@@ -46,7 +59,7 @@ export default function ReviewCard({ review }) {
                                 {images.map((image) => (
                                     <div key={image.id} className="relative">
                                         <img
-                                            src={`/storage/${image.path}/${image.name}`}
+                                            src={`/storage/images/${image.name}`}
                                             alt={`${imageTypes[type]} image`}
                                             className="h-24 w-full object-cover rounded-lg cursor-pointer hover:opacity-75 transition-opacity"
                                             onClick={() => setSelectedImage(image)}
@@ -77,7 +90,7 @@ export default function ReviewCard({ review }) {
                             <XMarkIcon className="h-6 w-6" />
                         </button>
                         <img
-                            src={`/storage/${selectedImage.path}/${selectedImage.name}`}
+                            src={`/storage/images/${selectedImage.name}`}
                             alt={`${imageTypes[selectedImage.pivot.type]} image`}
                             className="max-w-full max-h-[80vh] object-contain"
                         />

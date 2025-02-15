@@ -23,7 +23,10 @@ export default function PizzaShow({ pizza, meta, auth }) {
             <Modal show={isReviewModalOpen} onClose={() => setReviewModalOpen(false)}>
                 <div className="p-6">
                     <h3 className="text-lg font-semibold mb-4">Write a Review</h3>
-                    <ReviewForm pizzaId={pizza.id} onSuccess={() => setReviewModalOpen(false)} />
+                    <ReviewForm 
+                        pizzaId={pizza.id} 
+                        onSuccess={() => setReviewModalOpen(false)}
+                    />
                 </div>
             </Modal>
             <SchemaMarkup type="Pizza" data={pizza} />

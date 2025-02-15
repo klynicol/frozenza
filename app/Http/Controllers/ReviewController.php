@@ -23,7 +23,7 @@ class ReviewController extends Controller
             'purchase_date' => 'required|date|before_or_equal:today',
             'images' => 'nullable|array',
             'images.*.file' => 'required|image|max:5120', // Max 5MB per image
-            'images.*.type' => 'required|string|in:' . implode(',', Review::imageTypes()),
+            'images.*.type' => 'required|string|in:' . implode(',', array_keys(Review::imageTypes())),
         ]);
 
         $review = $pizza->reviews()->create([
@@ -61,7 +61,7 @@ class ReviewController extends Controller
             'purchase_date' => 'required|date|before_or_equal:today',
             'images' => 'nullable|array',
             'images.*.file' => 'required|image|max:5120', // Max 5MB per image
-            'images.*.type' => 'required|string|in:' . implode(',', Review::imageTypes()),
+            'images.*.type' => 'required|string|in:' . implode(',', array_keys(Review::imageTypes())),
             'remove_images' => 'nullable|array',
             'remove_images.*' => 'exists:images,id'
         ]);

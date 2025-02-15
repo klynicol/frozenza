@@ -43,7 +43,9 @@ class Review extends Model
     protected $fillable = [
         'pizza_id',
         'user_id',
-        'rating',
+        'appearance_rating',
+        'texture_rating',
+        'flavor_rating',
         'review',
         'purchase_location',
         'purchase_date'
