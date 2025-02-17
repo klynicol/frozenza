@@ -25,7 +25,7 @@ Route::get('/local-login/{user_email}', function ($user_email) {
         return redirect()->route('login')->with('message', 'User not found');
     }
     Auth::login($user);
-    return redirect()->route('dashboard');
+    return redirect()->route('home');
 })->name('local-login');
 
 // Public routes

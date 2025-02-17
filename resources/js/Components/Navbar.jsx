@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from '@inertiajs/react';
 import { SearchIcon } from './Icons';
 import ApplicationLogo from './ApplicationLogo';
+import { router } from '@inertiajs/react';
 
 export default function Navbar({ auth }) {
     return (
@@ -50,12 +51,15 @@ export default function Navbar({ auth }) {
                     </div>
                     <div className="flex items-center">
                         {auth.user ? (
-                            <Link
-                                href="/logout"
-                                className="text-gray-600 hover:text-gray-900"
-                            >
-                                Logout
-                            </Link>
+                                <button
+                                    type="submit"
+                                    className="text-gray-600 hover:text-gray-900"
+                                    onClick={() => {
+                                        router.post('/logout');
+                                    }}
+                                >
+                                    Logout
+                                </button>
                         ) : (
                             <Link
                                 href="/login"
