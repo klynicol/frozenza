@@ -3,7 +3,6 @@ import MainLayout from '@/Layouts/MainLayout';
 import { Link } from '@inertiajs/react';
 import { PizzaIcon, ExternalLinkIcon } from '@/Components/Icons';
 export default function BrandsIndex({ brands, meta, auth }) {
-    console.log(brands);
     return (
         <MainLayout meta={meta} auth={auth}>
             <h1 className="text-2xl font-bold mb-4">All Brands</h1>

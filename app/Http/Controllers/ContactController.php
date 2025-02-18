@@ -21,6 +21,7 @@ class ContactController extends Controller
             'email' => 'required|email|max:255',
             'subject' => 'required|string|max:255',
             'message' => 'required|string|max:5000',
+            'user_id' => 'nullable|exists:users,id',
         ]);
 
         $contactFeedback = ContactFeedback::create([
@@ -28,6 +29,7 @@ class ContactController extends Controller
             'email' => $validated['email'],
             'subject' => $validated['subject'],
             'message' => $validated['message'],
+            'user_id' => $validated['user_id'] ?? null,
         ]);
 
         // Here you would typically send an email or store the message

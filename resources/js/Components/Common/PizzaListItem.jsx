@@ -17,7 +17,7 @@ export default function PizzaListItem({ pizza }) {
                     <div className="flex items-center justify-end mb-2">
                         <div className="flex items-center">
                             <span className="text-yellow-400">★</span>
-                            <span className="ml-1">{pizza.rating || 'No reviews'}</span>
+                            <span className="ml-1">{pizza.average_rating || 'No reviews'}</span>
                         </div>
                     </div>
                     {pizza.tags && pizza.tags.length > 0 && (
