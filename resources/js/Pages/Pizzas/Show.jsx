@@ -74,6 +74,17 @@ export default function PizzaShow({ pizza, meta, auth }) {
                                 )}
                             </div>
 
+                            {/* Review Statistics */}
+                            <div className="flex items-center mb-4">
+                                <div className="flex items-center bg-yellow-50 px-3 py-1 rounded-lg">
+                                    <span className="text-yellow-400 text-xl mr-1">★</span>
+                                    <span className="font-semibold text-lg">{pizza.average_rating ? pizza.average_rating.toFixed(1) : 'No ratings'}</span>
+                                </div>
+                                <div className="ml-4 text-gray-600">
+                                    <span>{pizza.total_reviews} {pizza.total_reviews === 1 ? 'Review' : 'Reviews'}</span>
+                                </div>
+                            </div>
+
                             <p className="text-gray-700 mb-8">{pizza?.description}</p>
 
                             {/* Ingredients Accordion */}
@@ -120,6 +131,45 @@ export default function PizzaShow({ pizza, meta, auth }) {
                     <div className="border-b border-gray-200 mb-8">
                         <h2 className="text-2xl font-bold pb-4">Reviews</h2>
                     </div>
+
+                    {/* Rating Breakdown */}
+                    {pizza.total_reviews > 0 && (
+                        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="flex items-center justify-center">
+                                    <div className="text-center">
+                                        <div className="text-5xl font-bold text-gray-900 mb-2">
+                                            {pizza.average_rating.toFixed(1)}
+                                        </div>
+                                        <div className="text-yellow-400 text-2xl mb-1">★★★★★</div>
+                                        <div className="text-gray-600">
+                                            {pizza.total_reviews} {pizza.total_reviews === 1 ? 'Review' : 'Reviews'}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="space-y-2">
+                                        {[5, 4, 3, 2, 1].map((rating) => {
+                                            const count = pizza.rating_breakdown?.[rating] || 0;
+                                            const percentage = (count / pizza.total_reviews) * 100 || 0;
+                                            return (
+                                                <div key={rating} className="flex items-center">
+                                                    <div className="w-12 text-sm text-gray-600">{rating} stars</div>
+                                                    <div className="flex-1 mx-4 h-4 bg-gray-100 rounded-full overflow-hidden">
+                                                        <div 
+                                                            className="h-full bg-yellow-400 rounded-full"
+                                                            style={{ width: `${percentage}%` }}
+                                                        ></div>
+                                                    </div>
+                                                    <div className="w-12 text-sm text-gray-600">{count}</div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
                     {auth.user ? (
                         <>
