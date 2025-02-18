@@ -1,6 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import {
+    StarOutlineIcon,
+    StarFilledIcon
+} from '@/Components/Icons';
 
 export default function ReviewForm({ pizzaId, onSuccess, initialData }) {
     const { imageTypes } = usePage().props;
@@ -8,10 +12,11 @@ export default function ReviewForm({ pizzaId, onSuccess, initialData }) {
     const [previews, setPreviews] = useState([]);
     
     const { data, setData, post, processing, errors, reset } = useForm({
-        rating: initialData?.rating ?? 5,
+        appearance_rating: initialData?.appearance_rating ?? 0,
+        texture_rating: initialData?.texture_rating ?? 0,
+        flavor_rating: initialData?.flavor_rating ?? 0,
         review: initialData?.review ?? '',
         purchase_location: initialData?.purchase_location ?? '',
-        purchase_date: initialData?.purchase_date ?? new Date().toISOString().split('T')[0],
         images: [],
         remove_images: []
     });
@@ -21,10 +26,11 @@ export default function ReviewForm({ pizzaId, onSuccess, initialData }) {
         
         // Create FormData and append all fields
         const formData = new FormData();
-        formData.append('rating', data.rating);
+        formData.append('appearance_rating', data.appearance_rating);
+        formData.append('texture_rating', data.texture_rating);
+        formData.append('flavor_rating', data.flavor_rating);
         formData.append('review', data.review);
         formData.append('purchase_location', data.purchase_location);
-        formData.append('purchase_date', data.purchase_date);
         
         // Append images with their types
         data.images.forEach((image, index) => {
@@ -92,22 +98,69 @@ export default function ReviewForm({ pizzaId, onSuccess, initialData }) {
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6">
             <h3 className="text-lg font-semibold mb-4">Write a Review</h3>
             
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Rating</label>
-                <select
-                    value={data.rating}
-                    onChange={e => setData('rating', Number(e.target.value))}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                >
-                    {[5, 4, 3, 2, 1, 0].map(rating => (
-                        <option key={rating} value={rating}>
-                            {rating} {rating === 1 ? 'Pizza' : 'Pizzas'}
-                        </option>
-                    ))}
-                </select>
-                {errors.rating && (
-                    <p className="mt-1 text-sm text-red-600">{errors.rating}</p>
-                )}
+            <div className="space-y-4 mb-4">
+                {/* Appearance Rating */}
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Appearance Rating</label>
+                    <div className="flex space-x-1">
+                        {[1, 2, 3, 4, 5].map((rating) => (
+                            <button
+                                key={rating}
+                                type="button"
+                                onClick={() => setData('appearance_rating', rating)}
+                                className="focus:outline-none"
+                            >
+                                {rating <= data.appearance_rating ? (
+                                    <StarFilledIcon className="w-8 h-8 text-yellow-400" />
+                                ) : (
+                                    <StarOutlineIcon className="w-8 h-8 text-gray-300 hover:text-yellow-400" />
+                                )}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Texture Rating */}
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Texture Rating</label>
+                    <div className="flex space-x-1">
+                        {[1, 2, 3, 4, 5].map((rating) => (
+                            <button
+                                key={rating}
+                                type="button"
+                                onClick={() => setData('texture_rating', rating)}
+                                className="focus:outline-none"
+                            >
+                                {rating <= data.texture_rating ? (
+                                    <StarFilledIcon className="w-8 h-8 text-yellow-400" />
+                                ) : (
+                                    <StarOutlineIcon className="w-8 h-8 text-gray-300 hover:text-yellow-400" />
+                                )}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Flavor Rating */}
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Flavor Rating</label>
+                    <div className="flex space-x-1">
+                        {[1, 2, 3, 4, 5].map((rating) => (
+                            <button
+                                key={rating}
+                                type="button"
+                                onClick={() => setData('flavor_rating', rating)}
+                                className="focus:outline-none"
+                            >
+                                {rating <= data.flavor_rating ? (
+                                    <StarFilledIcon className="w-8 h-8 text-yellow-400" />
+                                ) : (
+                                    <StarOutlineIcon className="w-8 h-8 text-gray-300 hover:text-yellow-400" />
+                                )}
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             <div className="mb-4">
@@ -137,21 +190,7 @@ export default function ReviewForm({ pizzaId, onSuccess, initialData }) {
                     <p className="mt-1 text-sm text-red-600">{errors.purchase_location}</p>
                 )}
             </div>
-
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Purchase Date</label>
-                <input
-                    type="date"
-                    value={data.purchase_date}
-                    onChange={e => setData('purchase_date', e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                    max={new Date().toISOString().split('T')[0]}
-                />
-                {errors.purchase_date && (
-                    <p className="mt-1 text-sm text-red-600">{errors.purchase_date}</p>
-                )}
-            </div>
-
+            
             <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700">Images</label>
                 <input

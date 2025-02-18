@@ -2,8 +2,12 @@ import ReviewCard from './ReviewCard';
 
 export default function ReviewList({ reviews }) {
     return (
-        <div>
-            {reviews.map(review => <ReviewCard key={review.id} review={review} />)}
+        <div className="space-y-6">
+            {reviews.map((review) => (
+                <div key={review.id}>
+                    <ReviewCard review={review} />
+                </div>
+            ))}
         </div>
     );
 }

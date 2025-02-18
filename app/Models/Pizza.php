@@ -124,8 +124,31 @@ class Pizza extends Model implements Sitemapable
 
     public function updateAverageRating(): void
     {
-        $this->average_rating = $this->reviews()->avg('rating') ?? 0;
+        $this->average_appearance_rating = $this->calculateAverageRating('appearance_rating');
+        $this->average_texture_rating = $this->calculateAverageRating('texture_rating');
+        $this->average_flavor_rating = $this->calculateAverageRating('flavor_rating');
+        $this->average_rating =
+            ($this->average_appearance_rating +
+                $this->average_texture_rating +
+                $this->average_flavor_rating) / 3;
         $this->total_reviews = $this->reviews()->count();
         $this->save();
     }
-} 
+
+    private function calculateAverageRating(string $ratingType): float
+    {
+        $reviews = $this->reviews()->whereNotNull($ratingType)
+            ->whereNull('average_rating_date')
+            ->get();
+        if ($reviews->isEmpty()) {
+            return 0;
+        }
+        $totalRating = 0;
+        $count = 0;
+        foreach ($reviews as $review) {
+            $totalRating += $review->$ratingType;
+            $count++;
+        }
+        return $totalRating / $count;
+    }
+}

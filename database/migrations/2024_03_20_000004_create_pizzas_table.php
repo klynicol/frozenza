@@ -15,6 +15,9 @@ return new class extends Migration
             $table->text('description');
             $table->text('ingredients')->nullable();
             $table->decimal('average_rating', 3, 2)->default(0);
+            $table->decimal('average_appearance_rating', 3, 2)->default(0);
+            $table->decimal('average_texture_rating', 3, 2)->default(0);
+            $table->decimal('average_flavor_rating', 3, 2)->default(0);
             $table->integer('total_reviews')->default(0);
             $table->json('tags')->nullable();
             $table->timestamps();

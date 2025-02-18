@@ -17,21 +17,24 @@ class ReviewController extends Controller
     public function store(Request $request, Pizza $pizza)
     {
         $validated = $request->validate([
-            'rating' => 'required|numeric|min:0|max:5',
-            'review' => 'required|string|min:10',
-            'purchase_location' => 'required|string|max:255',
-            'purchase_date' => 'required|date|before_or_equal:today',
+            'review' => 'nullable|string|min:10',
+            'purchase_location' => 'nullable|string|max:255',
+            'purchase_date' => 'nullable|date|before_or_equal:today',
             'images' => 'nullable|array',
             'images.*.file' => 'required|image|max:5120', // Max 5MB per image
             'images.*.type' => 'required|string|in:' . implode(',', array_keys(Review::imageTypes())),
+            'appearance_rating' => 'nullable|numeric|min:0|max:5',
+            'texture_rating' => 'nullable|numeric|min:0|max:5',
+            'flavor_rating' => 'nullable|numeric|min:0|max:5',
         ]);
 
         $review = $pizza->reviews()->create([
             'user_id' => Auth::id(),
-            'rating' => $validated['rating'],
             'review' => $validated['review'],
             'purchase_location' => $validated['purchase_location'],
-            'purchase_date' => $validated['purchase_date'],
+            'appearance_rating' => $validated['appearance_rating'],
+            'texture_rating' => $validated['texture_rating'],
+            'flavor_rating' => $validated['flavor_rating'],
         ]);
 
         if (isset($validated['images'])) {

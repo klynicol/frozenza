@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 
 class PizzaController extends Controller
 {
@@ -52,11 +53,20 @@ class PizzaController extends Controller
      */
     public function show(Brand $brand, Pizza $pizza)
     {
-        $pizza->load(['brand', 'style', 'reviews.user', 'nutritionFact', 'image']);
+        $pizza->load(['brand', 'style', 'reviews' => function($query) {
+            $query->with(['user', 'images']);
+        }, 'nutritionFact', 'image']);
         $brandName = $pizza?->brand?->name ?? 'Unknown Brand';
         $styleName = $pizza?->style?->name ?? 'Unknown Style';
+
+        // Add hasUserReviewed property
+        $hasUserReviewed = false;
+        if (Auth::check()) {
+            $hasUserReviewed = $pizza->reviews()->where('user_id', Auth::id())->exists();
+        }
+
         return Inertia::render('Pizzas/Show', [
-            'pizza' => $pizza,
+            'pizza' => array_merge($pizza->toArray(), ['hasUserReviewed' => $hasUserReviewed]),
             'meta' => [
                 'title' => "{$pizza->name} by {$brandName} - Frozen Pizza Review",
                 'description' => "Read reviews and ratings for {$pizza->name} frozen pizza by {$brandName}. Find out where to buy and what others think about this {$styleName} pizza.",

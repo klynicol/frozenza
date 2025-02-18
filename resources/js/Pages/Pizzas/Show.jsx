@@ -123,14 +123,20 @@ export default function PizzaShow({ pizza, meta, auth }) {
 
                     {auth.user ? (
                         <>
-                            <div className="mb-8">
-                                <button
-                                    onClick={() => setReviewModalOpen(true)}
-                                    className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
-                                >
-                                    Write a Review
-                                </button>
-                            </div>
+                            {!pizza.hasUserReviewed ? (
+                                <div className="mb-8">
+                                    <button
+                                        onClick={() => setReviewModalOpen(true)}
+                                        className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
+                                    >
+                                        Write a Review
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="mb-8">
+                                    <p className="text-gray-600">You have already reviewed this pizza.</p>
+                                </div>
+                            )}
                         </>
                     ) : (
                         <div className="bg-gray-50 rounded-lg p-6 mb-8 text-center">

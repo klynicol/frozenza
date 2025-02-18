@@ -11,9 +11,8 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->decimal('rating', 2, 1);
-            $table->text('review');
-            $table->string('purchase_location');
-            $table->date('purchase_date');
+            $table->text('review')->nullable();
+            $table->string('purchase_location')->nullable();
             $table->timestamps();
 
             $table->foreignUuid('pizza_id')->references('id')->on('pizzas')->onDelete('cascade');
