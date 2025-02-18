@@ -57,7 +57,7 @@ export default function PizzaShow({ pizza, meta, auth }) {
                             <div className="text-sm text-gray-600 mb-4">
                                 <Link
                                     href={route('brands.show', pizza.brand.slug)}
-                                    className="hover:text-indigo-600"
+                                    className="text-indigo-700 hover:underline text-lg text-bold"
                                 >
                                     By {pizza.brand.name}
                                 </Link>

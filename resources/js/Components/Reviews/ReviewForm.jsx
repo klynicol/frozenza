@@ -51,7 +51,7 @@ export default function ReviewForm({ pizzaId, onSuccess, initialData }) {
                 reset();
                 setPreviews([]);
                 if (onSuccess) onSuccess();
-            }
+            },
         });
     };
 
