@@ -32,6 +32,7 @@ class Init extends Command
         $this->call('migrate:fresh');
         $this->call('db:seed', ['--class' => 'DatabaseSeeder']);
         $this->call('db:seed', ['--class' => 'LuigesSeeder']);
+        $this->call('db:seed', ['--class' => 'AmericanFlatbreadSeeder']);
 
         User::create([
             'name' => 'Super Admin',

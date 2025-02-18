@@ -87,6 +87,13 @@ export default function PizzaShow({ pizza, meta, auth }) {
 
                             <p className="text-gray-700 mb-8">{pizza?.description}</p>
 
+                            {/* Disclaimer */}
+                            <div className="bg-gray-50 p-4 rounded-lg mb-8">
+                                <p className="text-sm text-gray-600 italic">
+                                    Product information or packaging displayed may not be current or complete. 
+                                    Always refer to the physical product for the most accurate information and warnings.</p>
+                            </div>
+
                             {/* Ingredients Accordion */}
                             <div className="border-t border-gray-200 py-4">
                                 <button

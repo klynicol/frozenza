@@ -149,58 +149,5 @@ great tasting product, but also a product that was developed at a lower cost.
         foreach ($tags as $tagData) {
             Tag::create($tagData);
         }
-
-        $jacksDescription = "Pizza gimmicks will come and go. Pepperoni Pizza will never fade away. You can't do much better than crispy thin crust pizza with real cheese and scrumptious pepperoni.";
-        $americanFlatbreadDescription = "Food remembers the acts of the hands and heart. American Flatbread is a return to bread’s roots, an endeavor to explore the possibilty of how good bread can be. Here, from the union of fire, rock, and the finest all natural ingredients, comes a carefully prepared handmade food that is nutritious, light, crisp, flavorful, and wonderfully convenient. Pizza with integrity.";
-        $pizzas = [
-            // American Flatbread
-            [
-                'name' => 'Cheese & Herb',
-                'slug' => 'cheese-herb',
-                'description' => $americanFlatbreadDescription,
-                'brand_id' => Brand::where('slug', 'american-flatbread')->first()->id,
-                'style_id' => Style::where('slug', 'hand-tossed')->first()->id,
-                'ingredients' => "Crust: 100% Organically Grown Wheat, Good Mountain Water, Organic Wheat Bran, Kosher Slat, Fresh Yeast. Toppings: Mozzarella Cheese (Whole Milk, Vegetable Rennet, Salt), Vermont's Blythedale Farm Padano Cheese (Whole Milk from Jersey Cows, Vegetable Rennet, Salt), Parmesan Cheese (Cultured Milk, Vegetable Rennet, Salt), Garlic Oil (Extra Virgin Olive Oil, Canola Oil, Fresh Garlic), Fresh Parsley, Herbs, Kosher Salt.",
-                'allergens' => "Mile & Dairy, Wheat",
-                'tags' => ['handmade', 'wood-fired', 'thin', 'crispy'],
-                'nutritional_facts' => [
-                    'serving_per_container' => '3 servings per container',
-                    'serving_size' => '0.333 pizza (130 g)',
-                    'calories' => 370,
-                    'total_fat' => '15g',
-                    'saturated_fat' => '8g',
-                    'trans_fat' => '0g',
-                    'cholesterol' => '45mg',
-                    'sodium' => '850mg',
-                    'total_carbohydrate' => '41g',
-                    'dietary_fiber' => '2g',
-                    'total_sugars' => '1g',
-                    'added_sugars' => '0g',
-                    'protein' => '19g',
-                    'vitamin_d' => '1.5mcg',
-                    'potassium' => '180mg',
-                    'iron' => '2.2mg',
-                    'calcium' => '390mg',
-                ],
-            ],
-            // [
-            //     'name' => 'Jack\'s Original Thin Pepperoni',
-            //     'slug' => 'jacks-original-thin-pepperoni',
-            //     'description' => $jacksDescription,
-            //     'brand_id' => Brand::where('slug', 'jack-s')->first()->id,
-            //     'style_id' => Style::where('slug', 'thin-crust')->first()->id,
-            //     'ingredients' => "WATER, ENRICHED WHEAT FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, AND FOLIC ACID), LOW-MOISTURE PART-SKIM MOZZARELLA CHEESE (PART-SKIM MILK, CHEESE CULTURE, SALT, ENZYMES), PEPPERONI MADE WITH PORK, CHICKEN AND BEEF (PORK, MECHANICALLY SEPARATED CHICKEN, BEEF, SALT, CONTAINS 2% OR LESS OF SPICES, DEXTROSE, PORK STOCK, LACTIC ACID STARTER CULTURE, OLEORESIN OF PAPRIKA, FLAVORING, SODIUM NITRITE, SODIUM ASCORBATE, PAPRIKA, PROCESSED WITH NATURAL SMOKE FLAVOR, BHA, BHT, CITRIC ACID TO HELP PROTECT FLAVOR), TOMATO PASTE, 2% OR LESS OF VEGETABLE OIL (SOYBEAN OIL AND/OR CORN OIL), SEASONING (MODIFIED CORN STARCH, SALT, SUGAR, SPICES, DRIED GARLIC, CITRIC ACID), SUGAR, CELLULOSE POWDER, SALT, YEAST, L-CYSTEINE.",
-            //     'tags' => ['spicy', 'cheesy'],
-            //     'website' => 'https://www.goodnes.com/jacks/products/original-thin-pepperoni-pizza/',
-            // ],
-        ];
-
-
-        foreach ($pizzas as $pizzaData) {
-            $nutritionalFacts = $pizzaData['nutritional_facts'];
-            unset($pizzaData['nutritional_facts']);
-            $pizza = Pizza::create($pizzaData);
-            NutritionFact::create([...$nutritionalFacts, 'pizza_id' => $pizza->id]);
-        }
     }
 }
