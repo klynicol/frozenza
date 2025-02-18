@@ -72,7 +72,7 @@ export default function BrandsIndex({ brands, meta, auth }) {
                                                 <img 
                                                     src={`/${brand.image.path}/${brand.image.name}`} 
                                                     alt={brand.name} 
-                                                    className="w-24 h-24 object-contain flex-shrink-0"
+                                                    className="w-64 h-64 object-contain flex-shrink-0"
                                                 />
                                             )}
                                             <div>
@@ -93,7 +93,7 @@ export default function BrandsIndex({ brands, meta, auth }) {
                                                 <div className="flex flex-wrap gap-2">
                                                     <Link 
                                                         href={`/brands/${brand.slug}`}
-                                                        className="text-blue-600 hover:underline flex items-center"
+                                                        className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                                                     >
                                                         <PizzaIcon className="mr-2 w-5 h-5" />
                                                         View {brand.pizzas_count} Pizzas
@@ -103,7 +103,7 @@ export default function BrandsIndex({ brands, meta, auth }) {
                                                             href={brand.website}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="text-blue-600 hover:underline flex items-center"
+                                                            className="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
                                                         >
                                                             <ExternalLinkIcon className="mr-2 w-5 h-5" />
                                                             Website
@@ -145,7 +145,7 @@ export default function BrandsIndex({ brands, meta, auth }) {
                                     <div className="flex flex-wrap gap-2">
                                         <Link 
                                             href={`/brands/${brand.slug}`}
-                                            className="text-blue-600 hover:underline flex items-center"
+                                            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                                         >
                                             <PizzaIcon className="mr-2 w-5 h-5" />
                                             View {brand.pizzas_count} Pizzas
@@ -155,7 +155,7 @@ export default function BrandsIndex({ brands, meta, auth }) {
                                                 href={brand.website}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-blue-600 hover:underline flex items-center"
+                                                className="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
                                             >
                                                 <ExternalLinkIcon className="mr-2 w-5 h-5" />
                                                 Website

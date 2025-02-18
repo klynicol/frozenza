@@ -38,7 +38,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="mt-8 pt-8 border-t border-gray-700 text-center">
-                    <p>&copy; {new Date().getFullYear()} FrozenZa.com. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} PizzaKraken.com. All rights reserved.</p>
                 </div>
             </div>
         </footer>
