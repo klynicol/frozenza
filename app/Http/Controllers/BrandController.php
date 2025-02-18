@@ -39,11 +39,23 @@ class BrandController extends Controller
                 ->orderBy('average_rating', 'desc');
         }, 'image']);
 
+        // Get the brand's schema markup
+        $schemaMarkup = $brand->getSchemaMarkup();
+
         return Inertia::render('Brands/Show', [
-            'brand' => $brand,
+            'brand' => array_merge($brand->toArray(), [
+                'schema_markup' => $schemaMarkup,
+                'seo_title' => $brand->getMetaTitle(),
+                'seo_description' => $brand->getMetaDescription(),
+                'seo_faq_questions' => $brand->getFAQQuestions(),
+                'seo_about_content' => $brand->getAboutContent(),
+            ]),
             'meta' => [
-                'title' => "{$brand->name} Frozen Pizzas - Reviews and Ratings",
-                'description' => "Browse and review all frozen pizzas from {$brand->name}. Find the best rated {$brand->name} pizzas and where to buy them.",
+                'title' => $brand->getMetaTitle(),
+                'description' => $brand->getMetaDescription(),
+                'keywords' => $brand->seo_keywords,
+                'canonicalUrl' => "/brands/{$brand->slug}",
+                'imageUrl' => $brand->image ? url($brand->image->path . '/' . $brand->image->name) : null,
             ]
         ]);
     }

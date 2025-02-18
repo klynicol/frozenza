@@ -16,6 +16,57 @@ class AmericanFlatbreadSeeder extends Seeder
     {
         $brand = Brand::where('slug', 'american-flatbread')->first();
 
+        // Update brand with SEO data
+        $brand->update([
+            'seo_title' => 'American Flatbread Frozen Pizzas | Authentic Wood-Fired Pizza Reviews',
+            'seo_description' => 'Discover American Flatbread\'s authentic wood-fired frozen pizzas. Read honest reviews, nutritional information, and find your favorite varieties of these artisanal, handmade frozen pizzas.',
+            'seo_keywords' => [
+                'American Flatbread pizzas',
+                'wood-fired frozen pizza',
+                'organic frozen pizza',
+                'artisanal frozen pizza',
+                'handmade frozen pizza',
+                'authentic frozen pizza',
+                'best frozen pizza',
+                'American Flatbread reviews',
+                'American Flatbread nutrition',
+                'American Flatbread ingredients'
+            ],
+            'seo_about_content' => "American Flatbread is renowned for their authentic wood-fired frozen pizzas, crafted with organic ingredients and traditional methods. Each pizza is handmade and baked in wood-fired ovens, capturing the essence of artisanal pizza-making. Their commitment to quality ingredients and traditional baking methods sets them apart in the frozen pizza market.",
+            'seo_faq_questions' => [
+                [
+                    'question' => 'What makes American Flatbread pizzas unique?',
+                    'answer' => 'American Flatbread pizzas are handmade, wood-fired frozen pizzas known for their thin, crispy crust and high-quality, organic ingredients. Each pizza is crafted with traditional methods and baked in wood-fired ovens.'
+                ],
+                [
+                    'question' => 'Where can I buy American Flatbread frozen pizzas?',
+                    'answer' => 'American Flatbread frozen pizzas are available at many major grocery stores, natural food stores, and specialty markets across the United States. You can also find them at retailers like Whole Foods Market and other premium grocery chains.'
+                ],
+                [
+                    'question' => 'Are American Flatbread pizzas organic?',
+                    'answer' => 'American Flatbread uses many organic ingredients, including 100% organically grown wheat in their crusts. While not all ingredients are organic, they prioritize high-quality, natural ingredients without artificial preservatives.'
+                ],
+                [
+                    'question' => 'How should I cook American Flatbread frozen pizza?',
+                    'answer' => 'For best results, preheat your oven to 425°F (218°C) and place the frozen pizza directly on the oven rack. Cook for approximately 15-20 minutes or until the cheese is melted and the crust is crispy. Cooking times may vary by oven.'
+                ],
+                [
+                    'question' => 'What varieties of American Flatbread pizzas are available?',
+                    'answer' => 'American Flatbread offers a variety of pizzas including classics like Cheese & Herb, as well as unique combinations featuring organic and locally-sourced ingredients. Each variety maintains their commitment to quality and traditional preparation methods.'
+                ]
+            ],
+            'cooking_instructions' => "For the perfect American Flatbread pizza experience:\n\n1. Preheat your oven to 425°F (218°C)\n2. Remove pizza from box and plastic wrap\n3. Place frozen pizza directly on your oven rack\n4. Cook for 15-20 minutes or until cheese is melted and crust is crispy\n5. Let cool for 2-3 minutes before slicing\n\nNote: Cooking times may vary by oven. Watch carefully to avoid overcooking.",
+            'unique_selling_points' => "• Authentic wood-fired frozen pizzas\n• Handmade with organic and natural ingredients\n• No artificial preservatives or additives\n• Traditional baking methods\n• Thin, crispy crust\n• Premium, locally-sourced ingredients when possible\n• Commitment to quality and authenticity",
+            'brand_story' => "American Flatbread began with a simple mission: to create authentic, wood-fired pizzas that maintain their artisanal quality even when frozen. Founded on the principles of traditional pizza-making and a commitment to organic, high-quality ingredients, American Flatbread has revolutionized the frozen pizza category by proving that convenience doesn't have to compromise quality.\n\nEach pizza is handmade, featuring a thin, crispy crust made from 100% organically grown wheat, and topped with carefully selected ingredients. The pizzas are baked in wood-fired ovens, giving them their distinctive flavor and texture that sets them apart from conventional frozen pizzas.",
+            'founded_year' => '1990',
+            'headquarters_location' => 'Waitsfield, Vermont',
+            'social_media_handles' => [
+                'Facebook' => 'https://www.facebook.com/AmericanFlatbreadFrozenPizzas',
+                'Instagram' => 'https://www.instagram.com/americanflatbread',
+                'Twitter' => 'https://twitter.com/AmFlatbread'
+            ]
+        ]);
+
         $pizzas = [
             // American Flatbread
             [
