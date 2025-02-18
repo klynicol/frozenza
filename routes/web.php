@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     ReviewController,
     MessageController,
     BlogPostController,
+    ContactController,
     Auth\SocialAuthController
 };
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,11 @@ Route::get('/local-login/{user_email}', function ($user_email) {
 // Public routes
 Route::get('/', [PizzaController::class, 'index'])->name('home');
 Route::get('/top-rated', [PizzaController::class, 'topRated'])->name('pizzas.top-rated');
+Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/privacy', function() {
+    return Inertia::render('Privacy');
+})->name('privacy');
 
 // Pizza routes
 Route::get('/pizzas', [PizzaController::class, 'index'])->name('pizzas.index');

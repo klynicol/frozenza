@@ -19,6 +19,16 @@ export default function Footer() {
                                     Browse Brands
                                 </Link>
                             </li>
+                            <li>
+                                <Link href="/contact" className="hover:text-gray-300">
+                                    Contact Us
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/privacy" className="hover:text-gray-300">
+                                    Privacy Policy
+                                </Link>
+                            </li>
                             {/* <li>
                                 <Link href="/styles" className="hover:text-gray-300">
                                     Pizza Styles

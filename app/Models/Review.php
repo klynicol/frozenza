@@ -12,26 +12,32 @@ use Illuminate\Support\Facades\DB;
  * 
  *
  * @property string $id
- * @property float $rating
- * @property string $review
- * @property string $purchase_location
- * @property \Illuminate\Support\Carbon $purchase_date
+ * @property string|null $review
+ * @property string|null $purchase_location
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $pizza_id
  * @property string $user_id
+ * @property string|null $appearance_rating
+ * @property string|null $texture_rating
+ * @property string|null $flavor_rating
+ * @property string|null $average_rating_date Date when this review was used to calculate the average rating
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Image> $images
+ * @property-read int|null $images_count
  * @property-read \App\Models\Pizza $pizza
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereAppearanceRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereAverageRatingDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereFlavorRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review wherePizzaId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Review wherePurchaseDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review wherePurchaseLocation($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereReview($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereTextureRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereUserId($value)
  * @mixin \Eloquent

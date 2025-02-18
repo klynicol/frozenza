@@ -19,7 +19,11 @@ export default function BrandsIndex({ brands, meta, auth }) {
                                 className="w-full h-48 object-cover mb-4"
                             />
                             <h2 className="text-xl font-bold mb-2">{brand.name}</h2>
-                            <p className="text-gray-600 mb-4">{brand.description}</p>
+                            <p className="text-gray-600 mb-4">
+                                {brand.description.length > 150
+                                    ? `${brand.description.substring(0, 150)}...`
+                                    : brand.description}
+                            </p>
                             <Link 
                                 href={`/brands/${brand.slug}`}
                                 className="text-blue-600 hover:underline mt-2 block flex items-center"

@@ -19,30 +19,37 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $name
  * @property string $slug
  * @property string $description
- * @property string $ingredients
+ * @property string|null $ingredients
  * @property float $average_rating
+ * @property string $average_appearance_rating
+ * @property string $average_texture_rating
+ * @property string $average_flavor_rating
  * @property int $total_reviews
  * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $brand_id
- * @property string $style_id
+ * @property string|null $style_id
  * @property string|null $image_id
  * @property string|null $website
  * @property string|null $allergens
  * @property-read \App\Models\Brand $brand
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category> $categories
  * @property-read int|null $categories_count
+ * @property-read \App\Models\Image|null $image
  * @property-read \App\Models\NutritionFact|null $nutritionFact
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Review> $reviews
  * @property-read int|null $reviews_count
- * @property-read \App\Models\Style $style
+ * @property-read \App\Models\Style|null $style
  * @property-read int|null $tags_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereAllergens($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereAverageAppearanceRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereAverageFlavorRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereAverageRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereAverageTextureRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereBrandId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereDescription($value)
