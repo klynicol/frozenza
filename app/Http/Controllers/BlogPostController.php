@@ -21,12 +21,13 @@ class BlogPostController extends Controller
             ->orderBy('published_at', 'desc')
             ->paginate(12);
 
+        Inertia::share('meta', [
+            'title' => 'Frozen Pizza Blog - Tips, Reviews & News',
+            'description' => 'Read the latest blog posts about frozen pizzas, cooking tips, reviews, and more.',
+        ]);
+
         return Inertia::render('Blog/Index', [
-            'posts' => $posts,
-            'meta' => [
-                'title' => 'Frozen Pizza Blog - Reviews, Tips & News',
-                'description' => 'Read the latest blog posts about frozen pizzas, cooking tips, reviews, and more.',
-            ]
+            'posts' => $posts
         ]);
     }
 
@@ -34,24 +35,28 @@ class BlogPostController extends Controller
     {
         $post->load('author');
 
+        // Ensure title is under 65 characters
+        $title = Str::limit($post->title, 60) . ' - Pizza Kraken';
+        
+        Inertia::share('meta', [
+            'title' => $title,
+            'description' => Str::limit(strip_tags($post->content), 160),
+            'imageUrl' => $post->featured_image,
+        ]);
+
         return Inertia::render('Blog/Show', [
-            'post' => $post,
-            'meta' => [
-                'title' => $post->title,
-                'description' => Str::limit(strip_tags($post->content), 160),
-                'imageUrl' => $post->featured_image,
-            ]
+            'post' => $post
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Blog/Create', [
-            'meta' => [
-                'title' => 'Create New Blog Post',
-                'description' => 'Write a new blog post about frozen pizzas.',
-            ]
+        Inertia::share('meta', [
+            'title' => 'Write a New Blog Post - Pizza Kraken',
+            'description' => 'Create a new blog post about frozen pizzas, reviews, and cooking tips.',
         ]);
+
+        return Inertia::render('Blog/Create');
     }
 
     public function store(Request $request)
@@ -79,12 +84,13 @@ class BlogPostController extends Controller
     {
         $this->authorize('update', $post);
 
+        Inertia::share('meta', [
+            'title' => 'Edit Post: ' . Str::limit($post->title, 45),
+            'description' => 'Edit your blog post content, images, and settings.',
+        ]);
+
         return Inertia::render('Blog/Edit', [
-            'post' => $post,
-            'meta' => [
-                'title' => "Edit: {$post->title}",
-                'description' => 'Edit your blog post.',
-            ]
+            'post' => $post
         ]);
     }
 

@@ -23,12 +23,13 @@ class PizzaController extends Controller
      */
     public function index(): InertiaResponse
     {
+        Inertia::share('meta', [
+            'title' => "Pizza Kraken - The Frozen Pizza Directory",
+            'description' => 'Discover and review the best frozen pizzas. Read honest reviews, ratings, and find where to buy your favorite frozen pizzas.',
+        ]);
+
         return Inertia::render('Pizzas/Index', [
             'pizzasFirstPage' => $this->list(),
-            'meta' => [
-                'title' => 'Frozen Pizza Reviews - Find the Best Frozen Pizzas',
-                'description' => 'Discover and review the best frozen pizzas. Read honest reviews, ratings, and find where to buy your favorite frozen pizzas.',
-            ]
         ]);
     }
 
@@ -65,12 +66,14 @@ class PizzaController extends Controller
             $hasUserReviewed = $pizza->reviews()->where('user_id', Auth::id())->exists();
         }
 
+        $tags = implode(', ', $pizza->tags ?? []);
+        Inertia::share('meta', [
+            'title' => "{$pizza->name} by {$brandName} - Frozen Pizza Review",
+            'description' => "Read reviews and ratings for {$pizza->name} frozen pizza by {$brandName}. Find out where to buy and what others think about this {$tags} pizza.",
+        ]);
+
         return Inertia::render('Pizzas/Show', [
             'pizza' => array_merge($pizza->toArray(), ['hasUserReviewed' => $hasUserReviewed]),
-            'meta' => [
-                'title' => "{$pizza->name} by {$brandName} - Frozen Pizza Review",
-                'description' => "Read reviews and ratings for {$pizza->name} frozen pizza by {$brandName}. Find out where to buy and what others think about this {$styleName} pizza.",
-            ]
         ]);
     }
 
@@ -86,12 +89,13 @@ class PizzaController extends Controller
             ->take(10)
             ->get();
 
+        Inertia::share('meta', [
+            'title' => 'Top 10 Best Rated Frozen Pizzas',
+            'description' => 'Discover the highest-rated frozen pizzas according to our community. See reviews, ratings, and where to buy these top-rated frozen pizzas.',
+        ]);
+
         return Inertia::render('Pizzas/TopRated', [
             'pizzas' => $pizzas,
-            'meta' => [
-                'title' => 'Top 10 Best Rated Frozen Pizzas - Community Favorites',
-                'description' => 'Discover the highest-rated frozen pizzas according to our community. See reviews, ratings, and where to buy these top-rated frozen pizzas.',
-            ]
         ]);
     }
 }

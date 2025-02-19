@@ -4,12 +4,26 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <meta name="description" content="{{ $page['props']['meta']['description'] }}" />
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <meta property="og:title" content="{{ $page['props']['meta']['title'] }}" />
+        <meta property="og:description" content="{{ $page['props']['meta']['description'] }}" />
+        <meta property="og:image" content="https://pizzakraken.com/assets/og_image.png" />
+        <meta property="og:type" content="website" />
 
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="{{ $page['props']['meta']['title'] }}" />
+        <meta name="twitter:description" content="{{ $page['props']['meta']['description'] }}" />
+        <meta name="twitter:image" content="https://pizzakraken.com/assets/og_image.png" />
+
+        <title inertia>
+        @if(isset($page['props']['meta']['title']))
+            {{ $page['props']['meta']['title'] }}
+        @else
+            {{ config('app.name', 'Laravel') }}
+        @endif
+        </title>
+   
         <!-- Scripts -->
         @routes
         @viteReactRefresh

@@ -1,20 +1,9 @@
 import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
-import { Head } from '@inertiajs/react';
 
 export default function Privacy({ auth }) {
     return (
-        <MainLayout
-            meta={{
-                title: "Privacy Policy - Luige's Pizza",
-                description: "Our commitment to protecting your privacy at Luige's Pizza"
-            }}
-            auth={auth}
-        >
-            <Head>
-                <title>Privacy Policy - Luige's Pizza</title>
-            </Head>
-
+        <MainLayout auth={auth}>
             <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
                 <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
                 

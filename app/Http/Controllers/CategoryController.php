@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -14,12 +15,13 @@ class CategoryController extends Controller
             ->orderBy('name')
             ->get();
 
+        Inertia::share('meta', [
+            'title' => 'Pizza Categories - Find Your Perfect Pizza',
+            'description' => 'Browse frozen pizzas by category. From vegetarian to meat lovers, find the perfect frozen pizza for your taste.',
+        ]);
+
         return Inertia::render('Categories/Index', [
-            'categories' => $categories,
-            'meta' => [
-                'title' => 'Pizza Categories - Find Your Perfect Frozen Pizza',
-                'description' => 'Browse frozen pizzas by category. From vegetarian to meat lovers, find the perfect frozen pizza for your taste.',
-            ]
+            'categories' => $categories
         ]);
     }
 
@@ -30,12 +32,13 @@ class CategoryController extends Controller
                 ->orderBy('average_rating', 'desc');
         }]);
 
+        Inertia::share('meta', [
+            'title' => Str::limit("{$category->name} Frozen Pizzas - Reviews", 65),
+            'description' => "Find the best {$category->name} frozen pizzas. Compare brands, read reviews, and discover where to buy.",
+        ]);
+
         return Inertia::render('Categories/Show', [
-            'category' => $category,
-            'meta' => [
-                'title' => "{$category->name} Frozen Pizzas - Reviews and Ratings",
-                'description' => "Find the best {$category->name} frozen pizzas. Compare brands, read reviews, and discover where to buy {$category->name} pizzas.",
-            ]
+            'category' => $category
         ]);
     }
 } 
