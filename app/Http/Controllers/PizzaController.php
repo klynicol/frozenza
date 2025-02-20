@@ -67,8 +67,9 @@ class PizzaController extends Controller
         }
 
         $tags = implode(', ', $pizza->tags ?? []);
+
         Inertia::share('meta', [
-            'title' => "{$pizza->name} by {$brandName} - Frozen Pizza Review",
+            'title' => "{$pizza->name} by {$brandName}",
             'description' => "Read reviews and ratings for {$pizza->name} frozen pizza by {$brandName}. Find out where to buy and what others think about this {$tags} pizza.",
         ]);
 

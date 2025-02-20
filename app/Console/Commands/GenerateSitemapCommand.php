@@ -28,7 +28,7 @@ class GenerateSitemapCommand extends Command
      */
     public function handle()
     {
-        Sitemap::create('http://127.0.0.1:8001')
+        Sitemap::create(Url::create('https://pizzakraken.com'))
             ->writeToFile(public_path('sitemap.xml'));
     }
 }

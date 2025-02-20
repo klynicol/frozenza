@@ -20,114 +20,114 @@ class LuigesSeeder extends Seeder
         $pizzas = [
             // Fresh Italian Pizza
             [
-                "name" => "Fresh Italian Pizza Cheese",
-                "slug" => "fresh-italian-pizza-cheese",
+                "name" => "Fresh Italian Cheese",
+                "slug" => "fresh-italian-cheese",
                 "description" => "A Cheese-Lover's pizza covered in Mozzarella Cheese",
                 "tags" => ["classic", "cheesy"],
                 "image_url" => "https://www.luigespizza.com/files/V20.jpg"
             ],
             [
-                "name" => "Fresh Italian Pizza Cheese & Sausage",
-                "slug" => "fresh-italian-pizza-cheese-sausage",
+                "name" => "Fresh Italian Cheese & Sausage",
+                "slug" => "fresh-italian-cheese-sausage",
                 "description" => "Made with Sausage and Mozzarella Cheese",
                 "tags" => ["sausage", "cheesy"],
                 "image_url" => "https://www.luigespizza.com/files/V21.jpg"
             ],
             [
-                "name" => "Fresh Italian Pizza Pepperoni",
-                "slug" => "fresh-italian-pizza-pepperoni",
+                "name" => "Fresh Italian Pepperoni",
+                "slug" => "fresh-italian-pepperoni",
                 "description" => "A tasty original loaded with Pepperoni and Mozzarella Cheese",
                 "tags" => ["pepperoni", "classic"],
                 "image_url" => "https://www.luigespizza.com/files/V22.jpg"
             ],
             [
-                "name" => "Fresh Italian Pizza Sausage & Peppers",
-                "slug" => "fresh-italian-pizza-sausage-peppers",
+                "name" => "Fresh Italian Sausage & Peppers",
+                "slug" => "fresh-italian-sausage-peppers",
                 "description" => "Pork Sausage, Pepperoni, and Mozzarella Cheese",
                 "tags" => ["sausage", "peppers"],
                 "image_url" => "https://www.luigespizza.com/files/V23.jpg"
             ],
             [
-                "name" => "Fresh Italian Pizza Sausage & Mushroom",
-                "slug" => "fresh-italian-pizza-sausage-mushroom",
+                "name" => "Fresh Italian Sausage & Mushroom",
+                "slug" => "fresh-italian-sausage-mushroom",
                 "description" => "Fully loaded with Sausage, Mushrooms, and Mozzarella Cheese",
                 "tags" => ["sausage", "mushroom"],
                 "image_url" => "https://www.luigespizza.com/files/V24.jpg"
             ],
             [
-                "name" => "Fresh Italian Pizza Deluxe",
-                "slug" => "fresh-italian-pizza-deluxe",
+                "name" => "Fresh Italian Deluxe",
+                "slug" => "fresh-italian-deluxe",
                 "description" => "Crafted with Sausage, Pepperoni, Mushrooms, Black Olives, Green Peppers, Onions, and Mozzarella Cheese",
                 "tags" => ["deluxe"],
                 "image_url" => "https://www.luigespizza.com/files/V25.jpg"
             ],
             [
-                "name" => "Fresh Italian Pizza Supreme",
-                "slug" => "fresh-italian-pizza-supreme",
+                "name" => "Fresh Italian Supreme",
+                "slug" => "fresh-italian-supreme",
                 "description" => "A fan favorite topped with Sausage, Pepperoni, Green Peppers, Onions, and Red Peppers topped with Mozzarella Cheese",
                 "tags" => ["supreme"],
                 "image_url" => "https://www.luigespizza.com/files/V26.jpg"
             ],
             // Original "Homestyle" Pizza
             [
-                "name" => "Original \"Homestyle\" Pizza Cheese",
-                "slug" => "original-homestyle-pizza-cheese",
+                "name" => "Original \"Homestyle\" Cheese",
+                "slug" => "original-homestyle-cheese",
                 "description" => "A Cheese Lover's classic topped with Mozzarella Cheese",
                 "tags" => ["cheese"],
                 "image_url" => "https://www.luigespizza.com/files/103.jpg"
             ],
             [
-                "name" => "Original \"Homestyle\" Pizza Cheese & Sausage",
-                "slug" => "original-homestyle-pizza-cheese-sausage",
+                "name" => "Original \"Homestyle\" Cheese & Sausage",
+                "slug" => "original-homestyle-cheese-sausage",
                 "description" => "Made with Sausage and Mozzarella Cheese",
                 "tags" => ["cheese", "sausage"],
                 "image_url" => "https://www.luigespizza.com/files/101.jpg"
             ],
             [
-                "name" => "Original \"Homestyle\" Pizza Pepperoni",
-                "slug" => "original-homestyle-pizza-pepperoni",
+                "name" => "Original \"Homestyle\" Pepperoni",
+                "slug" => "original-homestyle-pepperoni",
                 "description" => "A tasty classic loaded with Pepperoni and Mozzarella Cheese",
                 "tags" => ["pepperoni"],
                 "image_url" => "https://www.luigespizza.com/files/Pepp.jpg"
             ],
             [
-                "name" => "Original \"Homestyle\" Pizza Sausage & Pepperoni",
-                "slug" => "original-homestyle-pizza-sausage-pepperoni",
+                "name" => "Original \"Homestyle\" Sausage & Pepperoni",
+                "slug" => "original-homestyle-sausage-pepperoni",
                 "description" => "Pork Sausage, Pepperoni, Topped with Mozzarella Cheese",
                 "tags" => ["sausage", "pepperoni"],
                 "image_url" => "https://www.luigespizza.com/files/Combo.jpg"
             ],
             [
-                "name" => "Original \"Homestyle\" Pizza Deluxe",
-                "slug" => "original-homestyle-pizza-deluxe",
+                "name" => "Original \"Homestyle\" Deluxe",
+                "slug" => "original-homestyle-deluxe",
                 "description" => "Crafted with Sausage, Pepperoni, Mushrooms, Black Olives, Green Peppers, Onions, and Mozzarella Cheese",
                 "tags" => ["deluxe"],
                 "image_url" => "https://www.luigespizza.com/files/Deluxe.jpg"
             ],
             [
-                "name" => "Original \"Homestyle\" Pizza Mighty Meaty",
-                "slug" => "original-homestyle-pizza-mighty-meaty",
+                "name" => "Original \"Homestyle\" Mighty Meaty",
+                "slug" => "original-homestyle-mighty-meaty",
                 "description" => "Fully Loaded with Sausage, Ham, Pepperoni, Smokey Bacon Bits, and Mozzarella Cheese",
                 "tags" => ["meaty"],
                 "image_url" => "https://www.luigespizza.com/files/Mighty%20Meaty.jpg"
             ],
             [
-                "name" => "Original \"Homestyle\" Pizza Sausage & Mushroom",
-                "slug" => "original-homestyle-pizza-sausage-mushroom",
+                "name" => "Original \"Homestyle\" Sausage & Mushroom",
+                "slug" => "original-homestyle-sausage-mushroom",
                 "description" => "Italian Sausage, Onions, Mushrooms, and Mozzarella Cheese",
                 "tags" => ["sausage", "mushroom"],
                 "image_url" => "https://www.luigespizza.com/files/102.jpg"
             ],
             [
-                "name" => "Original \"Homestyle\" Pizza Sausage Mushroom & Onion",
-                "slug" => "original-homestyle-pizza-sausage-mushroom-onion",
+                "name" => "Original \"Homestyle\" Sausage Mushroom & Onion",
+                "slug" => "original-homestyle-sausage-mushroom-onion",
                 "description" => "Italian Sausage, Onions, Mushrooms, and Mozzarella Cheese",
                 "tags" => ["sausage", "mushroom", "onion"],
                 "image_url" => "https://www.luigespizza.com/files/104.jpg"
             ],
             [
-                "name" => "Original \"Homestyle\" Pizza Supreme",
-                "slug" => "original-homestyle-pizza-supreme",
+                "name" => "Original \"Homestyle\" Supreme",
+                "slug" => "original-homestyle-supreme",
                 "description" => "A fan favorite topped with Sausage, Pepperoni, Green Peppers, Onions, and Red Peppers topped with Mozzarella Cheese",
                 "tags" => ["supreme"],
                 "image_url" => "https://www.luigespizza.com/files/125.jpg"

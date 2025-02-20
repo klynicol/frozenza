@@ -31,7 +31,7 @@ export default function BrandsIndex({ brands, meta, auth }) {
                             '@type': 'Brand',
                             'name': brand.name,
                             'description': brand.seo_description || brand.description,
-                            'url': `/brands/${brand.slug}`,
+                            'url': `/brands/${brand.slug}/pizzas`,
                             'image': brand?.image ? `/${brand.image.path}/${brand.image.name}` : null
                         }
                     }))
@@ -48,7 +48,7 @@ export default function BrandsIndex({ brands, meta, auth }) {
             )}
             
             <div className="max-w-7xl mx-auto">
-                <h1 className="text-4xl font-bold mb-6">Frozen Pizza Brands</h1>
+                <h1 className="text-4xl font-bold mb-6">The Worlds Frozen Pizza Brands</h1>
                 <div className="prose max-w-none mb-8">
                     <p className="text-lg">
                         Discover the best frozen pizza brands, from artisanal wood-fired pizzas to classic favorites. 
@@ -70,7 +70,7 @@ export default function BrandsIndex({ brands, meta, auth }) {
                                         <div className="flex items-start gap-4">
                                             {brand?.image && (
                                                 <img 
-                                                    src={`/${brand.image.path}/${brand.image.name}`} 
+                                                    src={getImageUrl(brand.image)} 
                                                     alt={brand.name} 
                                                     className="w-64 h-64 object-contain flex-shrink-0"
                                                 />
@@ -80,19 +80,9 @@ export default function BrandsIndex({ brands, meta, auth }) {
                                                 <p className="text-gray-600 mb-4">
                                                     {(brand.seo_about_content || brand.description).substring(0, 200)}...
                                                 </p>
-                                                {brand.unique_selling_points && (
-                                                    <div className="mb-4">
-                                                        <h4 className="font-semibold mb-2">What Makes Them Special:</h4>
-                                                        <div className="text-sm text-gray-600" 
-                                                             dangerouslySetInnerHTML={{ 
-                                                                 __html: brand.unique_selling_points.split('\n').slice(0, 3).join('<br>') 
-                                                             }} 
-                                                        />
-                                                    </div>
-                                                )}
                                                 <div className="flex flex-wrap gap-2">
                                                     <Link 
-                                                        href={`/brands/${brand.slug}`}
+                                                        href={`/brands/${brand.slug}/pizzas`}
                                                         className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                                                     >
                                                         <PizzaIcon className="mr-2 w-5 h-5" />

@@ -27,9 +27,14 @@ class PizzaSeedHandler
          }
          unset($pizza['image_url']);
       }
-      $pizza = Pizza::create([...$pizza, 'brand_id' => $brand->id]);
+      $pizza = Pizza::updateOrCreate([
+         'brand_id' => $brand->id,
+         'slug' => $pizza['slug']
+      ], [...$pizza]);
       if ($nutritionalFacts) {
-         NutritionFact::create([...$nutritionalFacts, 'pizza_id' => $pizza->id]);
+         NutritionFact::updateOrCreate([
+            'pizza_id' => $pizza->id
+         ], [...$nutritionalFacts]);
       }
    }
 }
