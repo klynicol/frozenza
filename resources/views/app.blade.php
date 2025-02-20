@@ -10,7 +10,7 @@
         @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
         @inertiaHead
 
-        <link rel="icon" type="image/x-icon" href="/assets/pizza_kraken_favicon.jpg">
+        <link rel="icon" type="image/x-icon" href="/storage/assets/pizza_kraken_favicon.jpg">
         <script async data-id="101478560" src="/b6eb809d57.js"></script>
     </head>
     <body class="font-sans antialiased">
