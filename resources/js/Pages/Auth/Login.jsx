@@ -132,13 +132,13 @@ export default function Login({ status, canResetPassword }) {
                         <span className="text-sm font-semibold leading-6">Facebook</span>
                     </button> */}
 
-                    <button
-                        onClick={() => router.visit(route('social.login', 'google'))}
+                    <a
+                        href={route('social.login', 'google')}
                         className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-1.5 text-gray-900 border border-gray-200 hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4285F4]"
                     >
                         <GoogleIcon className="h-5 w-5" />
                         <span className="text-sm font-semibold leading-6">Google</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </GuestLayout>
