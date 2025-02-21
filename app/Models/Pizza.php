@@ -86,9 +86,9 @@ class Pizza extends Model implements Sitemapable
         'average_rating' => 'float',
     ];
 
-    public function image(): BelongsTo
+    public function images(): BelongsToMany
     {
-        return $this->belongsTo(Image::class);
+        return $this->belongsToMany(Image::class, 'pizza_images');
     }
 
     public function brand(): BelongsTo

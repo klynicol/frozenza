@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/react';
 import { SearchIcon } from './Icons';
 import ApplicationLogo from './ApplicationLogo';
 import { router } from '@inertiajs/react';
-import { FacebookIcon, DiscordIcon } from './Icons';
+import { FacebookIcon, DiscordIcon, BlueSkyIcon } from './Icons';
 
 export default function Navbar({ auth }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +11,7 @@ export default function Navbar({ auth }) {
     const socialLinks = [
         { icon: FacebookIcon, href: 'https://www.facebook.com/profile.php?id=61573217433128', label: 'Facebook' },
         { icon: DiscordIcon, href: 'https://discord.gg/ccGKZPE76k', label: 'Discord' },
+        // { icon: BlueSkyIcon, href: 'https://bsky.app/profile/pizza-kraken.bsky.social', label: 'BlueSky' },
     ];
 
     return (

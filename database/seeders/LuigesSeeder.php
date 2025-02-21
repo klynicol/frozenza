@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Brand;
-use App\Models\Pizza;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Handlers\PizzaSeedHandler;
 
@@ -15,8 +13,6 @@ class LuigesSeeder extends Seeder
      */
     public function run(): void
     {
-        $brand = Brand::where('slug', 'luiges')->first();
-
         $pizzas = [
             // Fresh Italian Pizza
             [

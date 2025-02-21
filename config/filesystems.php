@@ -30,17 +30,24 @@ return [
 
     'disks' => [
 
+        'root' => [
+            'driver' => 'local',
+            'root' => base_path(),
+            'visibility' => 'private',
+            'throw' => false,
+        ],
+
         'private' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),
-            'serve' => true,
+            'visibility' => 'private',
             'throw' => false,
         ],
 
         'public' => [
             'driver' => 'local',
-            'root' => public_path(),
-            'url' => config('app.env') === 'local' ? env('APP_URL') : env('APP_URL').'/storage',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
