@@ -63,6 +63,7 @@ class PizzaController extends Controller
         $pizza->load([
             'brand',
             'tags',
+            'nutritionFact',
             'reviews' => function ($query) {
                 $query->with(['user', 'images']);
             },

@@ -4,9 +4,10 @@ import PizzaListItem from '@/Components/Common/PizzaListItem';
 import { getImageUrl } from '@/utils/image';
 import SchemaMarkup from '@/Components/SEO/SchemaMarkup';
 import BreadcrumbSchema from '@/Components/SEO/BreadcrumbSchema';
+import { ExternalLinkIcon } from '@/Components/Icons';
 
 export default function BrandShow({ brand, meta, auth }) {
-
+    console.log(brand);
     return (
         <MainLayout meta={meta} auth={auth}>
             <SchemaMarkup 
@@ -37,19 +38,19 @@ export default function BrandShow({ brand, meta, auth }) {
                                 />
                             </div>
                         )}
-                        <div className="text-center sm:text-left">
+                        <div className="text-center sm:text-left flex-1">
                             <h1 className="text-3xl font-bold mb-2">{`${brand.name} - Frozen Pizza`}</h1>
-                            <div className="prose max-w-none">
-                                <div className="text-gray-600 mb-4" 
-                                     dangerouslySetInnerHTML={{ __html: brand.seo_about_content || brand.description }} 
-                                />
+                            <div className="prose prose-sm sm:prose lg:prose-lg max-w-none">
+                                <div className="text-gray-600 mb-4 whitespace-pre-wrap">
+                                    {brand.description}
+                                </div>
                                 
                                 {brand.brand_story && (
                                     <>
                                         <h2 className="text-xl font-semibold mt-4 mb-2">About {brand.name}</h2>
-                                        <div className="text-gray-600"
-                                             dangerouslySetInnerHTML={{ __html: brand.brand_story }}
-                                        />
+                                        <div className="text-gray-600 whitespace-pre-wrap">
+                                            {brand.brand_story}
+                                        </div>
                                     </>
                                 )}
                             </div>
@@ -61,26 +62,8 @@ export default function BrandShow({ brand, meta, auth }) {
                                     className="text-blue-600 hover:underline inline-flex items-center gap-1"
                                 >
                                     <span>{brand.website}</span>
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                    </svg>
+                                    <ExternalLinkIcon className="w-4 h-4" />
                                 </a>
-                            )}
-                            
-                            {brand.social_media_handles && Object.keys(brand.social_media_handles).length > 0 && (
-                                <div className="mt-4 flex gap-4">
-                                    {Object.entries(brand.social_media_handles).map(([platform, url]) => (
-                                        <a
-                                            key={platform}
-                                            href={url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-gray-600 hover:text-gray-900"
-                                        >
-                                            {platform}
-                                        </a>
-                                    ))}
-                                </div>
                             )}
                         </div>
                     </div>
@@ -104,4 +87,4 @@ export default function BrandShow({ brand, meta, auth }) {
             </div>
         </MainLayout>
     );
-} 
+}
