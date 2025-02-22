@@ -60,11 +60,17 @@ class PizzaController extends Controller
      */
     public function show(Brand $brand, Pizza $pizza)
     {
-        $pizza->load(['brand', 'tags', 'reviews' => function ($query) {
-            $query->with(['user', 'images']);
-        }, 'nutritionFact', 'image']);
+        $pizza->load([
+            'brand',
+            'tags',
+            'reviews' => function ($query) {
+                $query->with(['user', 'images']);
+            },
+            'images' => function ($query) {
+                $query->withPivot('type', 'created_at');
+            }
+        ]);
         $brandName = $pizza?->brand?->name ?? 'Unknown Brand';
-        $styleName = $pizza?->style?->name ?? 'Unknown Style';
 
         // Add hasUserReviewed property
         $hasUserReviewed = false;

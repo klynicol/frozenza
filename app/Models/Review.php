@@ -49,19 +49,22 @@ class Review extends Model
     use HasUuid;
 
     protected $fillable = [
-        'pizza_id',
-        'user_id',
+        'overall_rating',
         'appearance_rating',
         'texture_rating',
         'flavor_rating',
+        'average_rating_date',
         'review',
         'purchase_location',
-        'purchase_date'
+        'pizza_id',
+        'user_id',
     ];
 
     protected $casts = [
-        'rating' => 'float',
-        'purchase_date' => 'date'
+        'overall_rating' => 'float',
+        'appearance_rating' => 'float',
+        'texture_rating' => 'float',
+        'flavor_rating' => 'float',
     ];
 
     public function pizza(): BelongsTo

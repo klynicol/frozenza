@@ -18,13 +18,16 @@ export default function PizzaShow({ pizza, meta, auth }) {
         setOpen(prevState => !prevState);
     };
 
+
+    const mainImage = pizza?.images?.find(image => image.pivot.type === 'main') ?? null;
+
     return (
         <MainLayout meta={meta} auth={auth}>
             <Modal show={isReviewModalOpen} onClose={() => setReviewModalOpen(false)}>
                 <div className="p-6">
                     <h3 className="text-lg font-semibold mb-4">Write a Review</h3>
-                    <ReviewForm 
-                        pizzaId={pizza.id} 
+                    <ReviewForm
+                        pizzaId={pizza.id}
                         onSuccess={() => setReviewModalOpen(false)}
                     />
                 </div>
@@ -36,15 +39,13 @@ export default function PizzaShow({ pizza, meta, auth }) {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
                     {/* Left column with large image */}
                     <div className="md:col-span-5">
-                        {pizza.image && (
-                            <div className="relative aspect-square rounded-lg overflow-hidden">
-                                <img
-                                    className="absolute inset-0 w-full h-full object-cover"
-                                    src={getImageUrl(pizza.image)}
-                                    alt={pizza.name}
-                                />
-                            </div>
-                        )}
+                        <div className="relative aspect-square rounded-lg overflow-hidden">
+                            <img
+                                className="absolute inset-0 w-full h-full object-cover"
+                                src={mainImage ? getImageUrl(mainImage) : '/storage/assets/pizza_placeholder.png'}
+                                alt={pizza.name}
+                            />
+                        </div>
                     </div>
 
                     {/* Right column with details */}
@@ -90,7 +91,7 @@ export default function PizzaShow({ pizza, meta, auth }) {
                             {/* Disclaimer */}
                             <div className="bg-gray-50 p-4 rounded-lg mb-8">
                                 <p className="text-sm text-gray-600 italic">
-                                    Product information or packaging displayed may not be current or complete. 
+                                    Product information or packaging displayed may not be current or complete.
                                     Always refer to the physical product for the most accurate information and warnings.</p>
                             </div>
 
@@ -163,7 +164,7 @@ export default function PizzaShow({ pizza, meta, auth }) {
                                                 <div key={rating} className="flex items-center">
                                                     <div className="w-12 text-sm text-gray-600">{rating} stars</div>
                                                     <div className="flex-1 mx-4 h-4 bg-gray-100 rounded-full overflow-hidden">
-                                                        <div 
+                                                        <div
                                                             className="h-full bg-yellow-400 rounded-full"
                                                             style={{ width: `${percentage}%` }}
                                                         ></div>

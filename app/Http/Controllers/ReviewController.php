@@ -35,6 +35,12 @@ class ReviewController extends Controller
             'appearance_rating' => $validated['appearance_rating'],
             'texture_rating' => $validated['texture_rating'],
             'flavor_rating' => $validated['flavor_rating'],
+            'overall_rating' => round(
+                ($validated['appearance_rating'] ?? 0 +
+                $validated['texture_rating'] ?? 0 +
+                $validated['flavor_rating'] ?? 0) / 3,
+                2
+            ),
         ]);
 
         if (isset($validated['images'])) {
