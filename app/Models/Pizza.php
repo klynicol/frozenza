@@ -96,11 +96,6 @@ class Pizza extends Model implements Sitemapable
         return $this->belongsTo(Brand::class);
     }
 
-    public function style(): BelongsTo
-    {
-        return $this->belongsTo(Style::class);
-    }
-
     public function nutritionFact(): HasOne
     {
         return $this->hasOne(NutritionFact::class);

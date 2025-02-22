@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pizza_images', function (Blueprint $table) {
-            $table->timestamps();
+        Schema::create('pizza_tags', function (Blueprint $table) {
             $table->foreignUuid('pizza_id')->references('id')->on('pizzas')->onDelete('cascade');
-            $table->foreignUuid('image_id')->references('id')->on('images')->onDelete('cascade');
-            $table->primary(['pizza_id', 'image_id']);
-            $table->string('type', 255)->index();
+            $table->foreignUuid('tag_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->primary(['pizza_id', 'tag_id']);
+            $table->timestamps();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pizza_images');
+        Schema::dropIfExists('pizza_tags');
     }
 };

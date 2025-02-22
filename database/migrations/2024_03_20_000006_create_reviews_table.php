@@ -10,7 +10,11 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->decimal('rating', 2, 1);
+            $table->decimal('overall_rating', 2, 1);
+            $table->decimal('appearance_rating', 2, 1);
+            $table->decimal('texture_rating', 2, 1);
+            $table->decimal('flavor_rating', 2, 1);
+            $table->dateTime('average_rating_date')->nullable()->comment('Date when this review was used to calculate the average rating');
             $table->text('review')->nullable();
             $table->string('purchase_location')->nullable();
             $table->timestamps();
