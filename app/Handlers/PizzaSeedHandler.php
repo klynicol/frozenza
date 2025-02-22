@@ -8,6 +8,7 @@ use App\Handlers\ImageHandler;
 use App\Models\Image;
 use App\Models\NutritionFact;
 use App\Enums\PizzaImageType;
+use App\Models\Tag;
 
 class PizzaSeedHandler
 {
@@ -20,6 +21,9 @@ class PizzaSeedHandler
     */
    public static function seedPizza(Brand $brand, array $pizza): void
    {
+      $tags = $pizza['tags'] ?? [];
+      unset($pizza['tags']);
+
       $image = null;
       if (isset($pizza['image_url'])) {
          $path = "images/pizzas/{$brand->slug}/frozen";
@@ -48,6 +52,11 @@ class PizzaSeedHandler
             'image_id' => $image->id,
             'type' => PizzaImageType::MAIN
          ]);
+      }
+
+      foreach ($tags as $tag) {
+         $tag = Tag::firstOrCreate(['slug' => $tag]);
+         $pizza->tags()->attach($tag);
       }
 
       if ($nutritionalFacts) {

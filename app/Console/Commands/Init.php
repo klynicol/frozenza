@@ -37,7 +37,7 @@ class Init extends Command
         User::create([
             'name' => 'Super Admin',
             'email' => 'superadmin@frozenza.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make(config('kraken.super_admin_password')),
         ]);
 
         $this->info('Application initialized successfully.');
