@@ -1,5 +1,6 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
+import { getImageUrl } from '@/utils/image';
 
 export default function SchemaMarkup({ type, data }) {
     const generatePizzaSchema = (pizza) => ({
@@ -51,6 +52,7 @@ export default function SchemaMarkup({ type, data }) {
         name: brand.name,
         description: brand.description,
         url: brand.website,
+        image: getImageUrl(brand.image),
     });
 
     const generateReviewSchema = (review) => ({
