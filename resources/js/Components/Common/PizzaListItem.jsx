@@ -1,34 +1,19 @@
 import { Link } from '@inertiajs/react';
 import { getImageUrl } from '@/utils/image';
+import SchemaMarkup from '@/Components/SEO/SchemaMarkup';
 
 export default function PizzaListItem({ pizza }) {
+
+    const mainImage = pizza?.images?.find(image => image.pivot.type === 'main') ?? null;
+
     return (
         <>
-            <script type="application/ld+json">
-            {
-                "@context": "https://schema.org/",
-                "@type": "Product",
-                "name": pizza.name,
-                "description": pizza.description,
-                "image": pizza?.image ? getImageUrl(pizza.image) : '/storage/assets/pizza_placeholder.png',
-                "offers": {
-                    "@type": "Offer",
-                    "price": pizza.price,
-                    "priceCurrency": "USD",
-                    "availability": "https://schema.org/InStock"
-                },
-                "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": pizza.average_rating || "0",
-                    "reviewCount": pizza.review_count || "0"
-                }
-            }
-            </script>
+            <SchemaMarkup type="Pizza" data={pizza} />
             <Link href={route('pizzas.show', { brand: pizza.brand.slug, pizza: pizza.slug })} className="block">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                     <div className="relative aspect-square">
                         <img
-                            src={pizza?.image ? getImageUrl(pizza.image) : '/storage/assets/pizza_placeholder.png'}
+                            src={mainImage ? getImageUrl(mainImage) : '/storage/assets/pizza_placeholder.png'}
                             alt={pizza.name}
                             className="w-full h-full object-cover p-3"
                         />
@@ -48,7 +33,7 @@ export default function PizzaListItem({ pizza }) {
                                         key={index}
                                         className="px-2 py-1 bg-gray-100 text-sm rounded-full text-gray-600"
                                     >
-                                        {tag}
+                                        {tag.slug}
                                     </span>
                                 ))}
                             </div>

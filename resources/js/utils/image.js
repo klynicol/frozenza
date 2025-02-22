@@ -1,3 +1,3 @@
 export function getImageUrl(image) {
-   return '/' + image.path + '/' + image.name;
+   return '/storage/' + image.path + '/' + image.name;
 }

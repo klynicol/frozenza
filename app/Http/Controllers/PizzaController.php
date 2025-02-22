@@ -45,7 +45,7 @@ class PizzaController extends Controller
         $page = $request?->input('page', 1) ?? 1;
 
         $pizzas = Pizza::orderBy('average_rating', 'desc')
-            ->with(['brand', 'style', 'images' => function ($query) {
+            ->with(['brand', 'tags', 'images' => function ($query) {
                 $query->withPivot('type', 'created_at');
             }])
             ->paginate(self::PIZZAS_PER_PAGE, ['*'], 'page', $page);
@@ -60,7 +60,7 @@ class PizzaController extends Controller
      */
     public function show(Brand $brand, Pizza $pizza)
     {
-        $pizza->load(['brand', 'style', 'reviews' => function ($query) {
+        $pizza->load(['brand', 'tags', 'reviews' => function ($query) {
             $query->with(['user', 'images']);
         }, 'nutritionFact', 'image']);
         $brandName = $pizza?->brand?->name ?? 'Unknown Brand';
