@@ -43,6 +43,11 @@ class BrandController extends Controller
                 ->orderBy('average_rating', 'desc');
         }]);
 
+        Inertia::share('meta', [
+            'title' => "{$brand->name} Frozen Pizzas | Reviews & Ratings",
+            'description' => "Discover {$brand->name}'s best frozen pizza selection. Read reviews, nutritional information, and find your favorite varieties.",
+        ]);
+
         return Inertia::render('Brands/Show', [
             'brand' => $brand
         ]);

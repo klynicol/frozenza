@@ -26,15 +26,19 @@ export default function BrandShow({ brand, meta, auth }) {
                     <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
                         {brand?.image && (
                             <div className="flex-shrink-0">
-                                <img 
+                                <img
+                                    title={brand.name + ' logo'}
                                     src={getImageUrl(brand.image)} 
                                     alt={`${brand.name} logo`}
                                     className="w-32 h-32 object-contain"
+                                    width={brand.image.width}
+                                    height={brand.image.height}
+                                    loading="lazy"
                                 />
                             </div>
                         )}
                         <div className="text-center sm:text-left">
-                            <h1 className="text-3xl font-bold mb-2">{brand.name}</h1>
+                            <h1 className="text-3xl font-bold mb-2">{`${brand.name} - Frozen Pizza`}</h1>
                             <div className="prose max-w-none">
                                 <div className="text-gray-600 mb-4" 
                                      dangerouslySetInnerHTML={{ __html: brand.seo_about_content || brand.description }} 

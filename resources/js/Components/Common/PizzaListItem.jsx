@@ -15,11 +15,16 @@ export default function PizzaListItem({ pizza }) {
                         <img
                             src={mainImage ? getImageUrl(mainImage) : '/storage/assets/pizza_placeholder.png'}
                             alt={pizza.name}
+                            title={pizza.name}
                             className="w-full h-full object-cover p-3"
+                            width={mainImage?.width}
+                            height={mainImage?.height}
+                            loading="lazy"
                         />
                     </div>
                     <div className="p-4">
-                        <h3 className="font-semibold text-lg mb-2">{pizza.name}</h3>
+                        <h3 className="font-semibold text-lg mb-1">{pizza.name}</h3>
+                        <p className="text-gray-600 text-sm mb-2">{pizza.brand.name}</p>
                         <div className="flex items-center justify-end mb-2">
                             <div className="flex items-center">
                                 <span className="text-yellow-400">★</span>

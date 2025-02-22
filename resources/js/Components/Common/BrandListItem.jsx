@@ -16,7 +16,11 @@ export default function BrandListItem({ brand }) {
                   <img
                      src={getImageUrl(brand.image)}
                      alt={brand.name}
+                     title={brand.name}
                      className="w-full h-48 object-contain mb-4"
+                     width={brand.image.width}
+                     height={brand.image.height}
+                     loading="lazy"
                   />
                )}
                <h3 className="text-xl font-bold mb-2">{brand.name}</h3>
