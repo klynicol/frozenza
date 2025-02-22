@@ -10,6 +10,8 @@ use Inertia\Response as InertiaResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\PizzaResource;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PizzaController extends Controller
 {
@@ -38,13 +40,17 @@ class PizzaController extends Controller
      * 
      *@api {get} /pizzas/list Get all pizzas
      */
-    public function list(Request|null $request = null): LengthAwarePaginator
+    public function list(Request|null $request = null): AnonymousResourceCollection
     {
         $page = $request?->input('page', 1) ?? 1;
-        $pizzas = Pizza::with(['brand', 'style', 'image'])
-            ->orderBy('average_rating', 'desc')
+
+        $pizzas = Pizza::orderBy('average_rating', 'desc')
+            ->with(['brand', 'style', 'images' => function ($query) {
+                $query->withPivot('type', 'created_at');
+            }])
             ->paginate(self::PIZZAS_PER_PAGE, ['*'], 'page', $page);
-        return $pizzas;
+
+        return PizzaResource::collection($pizzas);
     }
 
     /**
@@ -54,7 +60,7 @@ class PizzaController extends Controller
      */
     public function show(Brand $brand, Pizza $pizza)
     {
-        $pizza->load(['brand', 'style', 'reviews' => function($query) {
+        $pizza->load(['brand', 'style', 'reviews' => function ($query) {
             $query->with(['user', 'images']);
         }, 'nutritionFact', 'image']);
         $brandName = $pizza?->brand?->name ?? 'Unknown Brand';
