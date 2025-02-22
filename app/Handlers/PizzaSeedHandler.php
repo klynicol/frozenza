@@ -56,7 +56,9 @@ class PizzaSeedHandler
 
       foreach ($tags as $tag) {
          $tag = Tag::firstOrCreate(['slug' => $tag]);
-         $pizza->tags()->attach($tag);
+         if (!$pizza->tags()->where('id', $tag->id)->exists()) {
+            $pizza->tags()->attach($tag);
+         }
       }
 
       if ($nutritionalFacts) {

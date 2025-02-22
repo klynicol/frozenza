@@ -1,9 +1,5 @@
 import React from 'react';
-import { Head } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { Link } from '@inertiajs/react';
 import PizzaListItem from '@/Components/Common/PizzaListItem';
 
 export default function TopRated({ pizzas, meta, auth }) {
@@ -18,4 +14,4 @@ export default function TopRated({ pizzas, meta, auth }) {
          </div>
       </MainLayout>
    );
-} 
+}

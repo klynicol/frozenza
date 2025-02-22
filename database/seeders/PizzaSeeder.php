@@ -60,6 +60,9 @@ great tasting product, but also a product that was developed at a lower cost.
         ];
 
         foreach ($brands as $brandData) {
+            if(Brand::where('slug', $brandData['slug'])->exists()) {
+                continue;
+            }
             $image = ImageHandler::createFromExistingFile('public', "images/logos/frozen/{$brandData['image_name']}");
             unset($brandData['image_name']);
             $brandData['image_id'] = $image->id;
@@ -102,52 +105,6 @@ great tasting product, but also a product that was developed at a lower cost.
 
         // Style::create(['name' => 'Other', 'slug' => 'other', 'description' => "Other pizza styles that don't fit into the other categories."]);
 
-        // Create some tags
-        $tags = [
-            ['slug' => 'spicy'],
-            ['slug' => 'cheesy'],
-            ['slug' => 'meaty'],
-            ['slug' => 'savory'],
-            ['slug' => 'classic'],
-            ['slug' => 'gluten-free'],
-            ['slug' => 'low-carb'],
-            ['slug' => 'keto'],
-            ['slug' => 'vegan'],
-            ['slug' => 'vegetarian'],
-            ['slug' => 'pesto'],
-            ['slug' => 'bbq'],
-            ['slug' => 'meat-lovers'],
-            ['slug' => 'cheese-lovers'],
-            ['slug' => 'pepperoni'],
-            ['slug' => 'mushroom'],
-            ['slug' => 'onion'],
-            ['slug' => 'garlic'],
-            ['slug' => 'tomato'],
-            ['slug' => 'pineapple'],
-            ['slug' => 'spinach'],
-            ['slug' => 'artichoke'],
-            ['slug' => 'parmesan'],
-            ['slug' => 'mozzarella'],
-            ['slug' => 'provolone'],
-            ['slug' => 'ricotta'],
-            ['slug' => 'feta'],
-            ['slug' => 'bacon'],
-            ['slug' => 'sausage'],
-            ['slug' => 'ham'],
-            ['slug' => 'salami'],
-            ['slug' => 'handmade'],
-            ['slug' => 'wood-fired'],
-            ['slug' => 'thin'],
-            ['slug' => 'crispy'],
-            ['slug' => 'rising-crust'],
-            ['slug' => 'deluxe'],
-            ['slug' => 'supreme'],
-            ['slug' => 'pub-style'],
-            ['slug' => 'homestyle'],
-        ];
-
-        foreach ($tags as $tagData) {
-            Tag::create($tagData);
-        }
+        // Create some tag
     }
 }
