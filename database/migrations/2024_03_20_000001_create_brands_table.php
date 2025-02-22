@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignUuid('image_id')->nullable()->constrained('images')->nullOnDelete();
             $table->text('seo_title')->nullable();
             $table->text('seo_description')->nullable();
-            $table->json('seo_faq_questions')->nullable();
             $table->text('seo_about_content')->nullable();
             $table->json('seo_keywords')->nullable();
             $table->text('unique_selling_points')->nullable();
