@@ -27,7 +27,7 @@ export default function BrandListItem({ brand }) {
                </p>
                <div className="flex flex-wrap gap-2">
                   <Link
-                     href={`/brands/${brand.slug}`}
+                     href={`/brands/${brand.slug}/pizzas`}
                      className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                   >
                      <PizzaIcon className="mr-2 w-5 h-5" />

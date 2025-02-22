@@ -1,29 +1,17 @@
 import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
-import { Link } from '@inertiajs/react';
 import PizzaListItem from '@/Components/Common/PizzaListItem';
 import { getImageUrl } from '@/utils/image';
 import SchemaMarkup from '@/Components/SEO/SchemaMarkup';
 import BreadcrumbSchema from '@/Components/SEO/BreadcrumbSchema';
-import FAQSchema from '@/Components/SEO/FAQSchema';
-import OrganizationSchema from '@/Components/SEO/OrganizationSchema';
 
 export default function BrandShow({ brand, meta, auth }) {
-    // Enhanced meta using brand's SEO fields
-    const enhancedMeta = {
-        ...meta,
-        title: brand.seo_title || `${brand.name} Frozen Pizzas | Reviews & Ratings`,
-        description: brand.seo_description || `Discover ${brand.name}'s frozen pizza selection. Read reviews, nutritional information, and find your favorite varieties.`,
-        canonicalUrl: `/brands/${brand.slug}`,
-        imageUrl: brand?.image ? getImageUrl(brand.image) : null,
-        keywords: brand.seo_keywords || []
-    };
 
     return (
-        <MainLayout meta={enhancedMeta} auth={auth}>
+        <MainLayout meta={meta} auth={auth}>
             <SchemaMarkup 
                 type="Brand"
-                data={brand.schema_markup}
+                data={brand}
             />
             <BreadcrumbSchema
                 items={[
@@ -32,18 +20,6 @@ export default function BrandShow({ brand, meta, auth }) {
                     { name: brand.name, url: `/brands/${brand.slug}` }
                 ]}
             />
-            {brand.seo_faq_questions && (
-                <FAQSchema questions={brand.seo_faq_questions} />
-            )}
-            {brand.social_media_handles && (
-                <OrganizationSchema
-                    name={brand.name}
-                    url={brand.website}
-                    logo={brand?.image ? getImageUrl(brand.image) : null}
-                    description={brand.seo_description || brand.description}
-                    socialMediaHandles={brand.social_media_handles}
-                />
-            )}
             
             <div className="bg-white shadow-lg rounded-lg overflow-hidden mb-8">
                 <div className="p-6">
@@ -69,24 +45,6 @@ export default function BrandShow({ brand, meta, auth }) {
                                         <h2 className="text-xl font-semibold mt-4 mb-2">About {brand.name}</h2>
                                         <div className="text-gray-600"
                                              dangerouslySetInnerHTML={{ __html: brand.brand_story }}
-                                        />
-                                    </>
-                                )}
-
-                                {brand.unique_selling_points && (
-                                    <>
-                                        <h2 className="text-xl font-semibold mt-4 mb-2">What Makes {brand.name} Special</h2>
-                                        <div className="text-gray-600"
-                                             dangerouslySetInnerHTML={{ __html: brand.unique_selling_points }}
-                                        />
-                                    </>
-                                )}
-
-                                {brand.cooking_instructions && (
-                                    <>
-                                        <h2 className="text-xl font-semibold mt-4 mb-2">Cooking Instructions</h2>
-                                        <div className="text-gray-600"
-                                             dangerouslySetInnerHTML={{ __html: brand.cooking_instructions }}
                                         />
                                     </>
                                 )}

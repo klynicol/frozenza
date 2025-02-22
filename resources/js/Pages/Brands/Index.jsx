@@ -1,12 +1,6 @@
 import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
-import { Link } from '@inertiajs/react';
-import { PizzaIcon, ExternalLinkIcon } from '@/Components/Icons';
-import SchemaMarkup from '@/Components/SEO/SchemaMarkup';
 import BreadcrumbSchema from '@/Components/SEO/BreadcrumbSchema';
-import FAQSchema from '@/Components/SEO/FAQSchema';
-import OrganizationSchema from '@/Components/SEO/OrganizationSchema';
-import { getImageUrl } from '@/utils/image';
 import BrandListItem from '@/Components/Common/BrandListItem';
 
 export default function BrandsIndex({ brands, meta, auth }) {
