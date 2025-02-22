@@ -12,25 +12,11 @@ use App\Traits\HasUuid;
 /**
  * 
  *
- * @property string $id
- * @property string $name
- * @property string $slug
- * @property string $description
- * @property string|null $image_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Pizza> $pizzas
  * @property-read int|null $pizzas_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Style newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Style newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Style query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Style whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Style whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Style whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Style whereImageId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Style whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Style whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Style whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Style extends Model implements Sitemapable

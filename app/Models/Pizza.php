@@ -25,22 +25,20 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $average_texture_rating
  * @property string $average_flavor_rating
  * @property int $total_reviews
- * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $brand_id
- * @property string|null $style_id
- * @property string|null $image_id
  * @property string|null $website
  * @property string|null $allergens
  * @property-read \App\Models\Brand $brand
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category> $categories
  * @property-read int|null $categories_count
- * @property-read \App\Models\Image|null $image
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Image> $images
+ * @property-read int|null $images_count
  * @property-read \App\Models\NutritionFact|null $nutritionFact
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Review> $reviews
  * @property-read int|null $reviews_count
- * @property-read \App\Models\Style|null $style
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
  * @property-read int|null $tags_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza newQuery()
@@ -54,12 +52,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereImageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereIngredients($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereStyleId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereTags($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereTotalReviews($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereWebsite($value)
