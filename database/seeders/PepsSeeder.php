@@ -8,7 +8,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Handlers\ImageHandler;
 
-class LegitSeeder extends Seeder
+class PepsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
