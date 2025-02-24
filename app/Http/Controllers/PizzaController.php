@@ -45,7 +45,7 @@ class PizzaController extends Controller
         $page = $request?->input('page', 1) ?? 1;
 
         $pizzas = Pizza::orderBy('average_rating', 'desc')
-            ->with(['brand', 'tags', 'images' => function ($query) {
+            ->with(['brand.image', 'tags', 'images' => function ($query) {
                 $query->withPivot('type', 'created_at');
             }])
             ->paginate(self::PIZZAS_PER_PAGE, ['*'], 'page', $page);
@@ -61,7 +61,7 @@ class PizzaController extends Controller
     public function show(Brand $brand, Pizza $pizza)
     {
         $pizza->load([
-            'brand',
+            'brand.image',
             'tags',
             'nutritionFact',
             'reviews' => function ($query) {
@@ -98,7 +98,7 @@ class PizzaController extends Controller
      */
     public function topRated(): InertiaResponse
     {
-        $pizzas = Pizza::with(['brand', 'tags', 'images' => function ($query) {
+        $pizzas = Pizza::with(['brand.image', 'tags', 'images' => function ($query) {
             $query->withPivot('type', 'created_at');
         }])
             ->orderBy('average_rating', 'desc')

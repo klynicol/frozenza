@@ -37,7 +37,7 @@ class BrandController extends Controller
     public function show(Brand $brand)
     {
         $brand->load(['image', 'pizzas' => function ($query) {
-            $query->with(['brand', 'images' => function($imageQuery){
+            $query->with(['brand.image', 'tags', 'images' => function($imageQuery){
                 $imageQuery->withPivot('type', 'created_at');
             }])
                 ->orderBy('average_rating', 'desc');

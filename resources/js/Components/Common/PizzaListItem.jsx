@@ -3,14 +3,15 @@ import { getImageUrl } from '@/utils/image';
 import SchemaMarkup from '@/Components/SEO/SchemaMarkup';
 
 export default function PizzaListItem({ pizza }) {
-
+    console.log(pizza);
     const mainImage = pizza?.images?.find(image => image.pivot.type === 'main') ?? null;
+    const brandLogo = pizza?.brand?.image ? getImageUrl(pizza.brand.image) : '/storage/assets/brand_placeholder.png';
 
     return (
         <>
             <SchemaMarkup type="Pizza" data={pizza} />
-            <Link href={route('pizzas.show', { brand: pizza.brand.slug, pizza: pizza.slug })} className="block">
-                <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <Link href={route('pizzas.show', { brand: pizza.brand.slug, pizza: pizza.slug })} className="block h-full">
+                <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
                     <div className="relative aspect-square">
                         <img
                             src={mainImage ? getImageUrl(mainImage) : '/storage/assets/pizza_placeholder.png'}
@@ -22,9 +23,19 @@ export default function PizzaListItem({ pizza }) {
                             loading="lazy"
                         />
                     </div>
-                    <div className="p-4">
-                        <h3 className="font-semibold text-lg mb-1">{pizza.name}</h3>
-                        <p className="text-gray-600 text-sm mb-2">{pizza.brand.name}</p>
+                    <div className="p-4 flex-grow flex flex-col">
+                        <div className="flex items-center gap-3 mb-2">
+                            <img
+                                src={brandLogo}
+                                alt={`${pizza.brand.name} logo`}
+                                className="w-16 h-16 rounded-full object-contain bg-gray-50"
+                                loading="lazy"
+                            />
+                            <div>
+                                <h3 className="font-semibold text-lg leading-tight">{pizza.name}</h3>
+                                <p className="text-gray-600 text-sm">{pizza.brand.name}</p>
+                            </div>
+                        </div>
                         <div className="flex items-center justify-end mb-2">
                             <div className="flex items-center">
                                 <span className="text-yellow-400">★</span>
@@ -32,7 +43,7 @@ export default function PizzaListItem({ pizza }) {
                             </div>
                         </div>
                         {pizza.tags && pizza.tags.length > 0 && (
-                            <div className="flex flex-wrap gap-2 mt-2">
+                            <div className="flex flex-wrap gap-2 mt-auto pt-2">
                                 {pizza.tags.map((tag, index) => (
                                     <span
                                         key={index}
