@@ -37,7 +37,7 @@ class TagSeeder extends Seeder
             ['slug' => 'honey'],
             ['slug' => 'sriracha'],
             ['slug' => 'eggs'],
-
+            ['slug' => 'corn-chips'],
             //sauces
             ['slug' => 'pesto'],
             ['slug' => 'bbq'],
@@ -90,6 +90,7 @@ class TagSeeder extends Seeder
             ['slug' => 'taco'],
             ['slug' => 'hawaiian'],
             ['slug' => 'breakfast'],
+            ['slug' => 'cheesesteak'],
         ];
 
         foreach ($tags as $tagData) {
