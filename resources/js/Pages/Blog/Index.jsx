@@ -1,18 +1,9 @@
 import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import { Link } from '@inertiajs/react';
-import type { PageProps } from '@/types/props';
-import type { BlogPost } from '@/types/models';
 import { route } from '@/utils/route';
 
-interface BlogIndexProps extends PageProps {
-    posts: {
-        data: BlogPost[];
-        links: { url: string | null; label: string; active: boolean }[];
-    };
-}
-
-export default function BlogIndex({ posts, meta, auth }: BlogIndexProps) {
+export default function BlogIndex({ posts, meta, auth }) {
     return (
         <MainLayout meta={meta} auth={auth}>
             <div className="max-w-7xl mx-auto">
@@ -30,8 +21,8 @@ export default function BlogIndex({ posts, meta, auth }: BlogIndexProps) {
 
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {posts.data.map((post) => (
-                        <Link 
-                            key={post.id} 
+                        <Link
+                            key={post.id}
                             href={route('blog.show', post.slug)}
                             className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                         >
@@ -62,11 +53,10 @@ export default function BlogIndex({ posts, meta, auth }: BlogIndexProps) {
                         <Link
                             key={i}
                             href={link.url || '#'}
-                            className={`px-4 py-2 rounded ${
-                                link.active
+                            className={`px-4 py-2 rounded ${link.active
                                     ? 'bg-blue-500 text-white'
                                     : 'bg-white text-gray-700 hover:bg-gray-50'
-                            } ${!link.url ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                } ${!link.url ? 'opacity-50 cursor-not-allowed' : ''}`}
                             dangerouslySetInnerHTML={{ __html: link.label }}
                         />
                     ))}

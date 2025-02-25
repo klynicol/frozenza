@@ -56,8 +56,8 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
 
 // Blog routes (public)
-Route::get('/blog', [BlogPostController::class, 'index'])->name('blog.index');
-Route::get('/blog/{post:slug}', [BlogPostController::class, 'show'])->name('blog.show');
+Route::get('/blogs', [BlogPostController::class, 'index'])->name('blog.index');
+Route::get('/blogs/{post:slug}', [BlogPostController::class, 'show'])->name('blog.show');
 
 // Authenticated routes
 Route::middleware(['auth'])->group(function () {
@@ -73,11 +73,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
 
     // Blog management
-    Route::get('/blog/create', [BlogPostController::class, 'create'])->name('blog.create');
-    Route::post('/blog', [BlogPostController::class, 'store'])->name('blog.store');
-    Route::get('/blog/{post:slug}/edit', [BlogPostController::class, 'edit'])->name('blog.edit');
-    Route::put('/blog/{post:slug}', [BlogPostController::class, 'update'])->name('blog.update');
-    Route::delete('/blog/{post:slug}', [BlogPostController::class, 'destroy'])->name('blog.destroy');
+    Route::get('/blogs/create', [BlogPostController::class, 'create'])->name('blog.create');
+    Route::post('/blogs', [BlogPostController::class, 'store'])->name('blog.store');
+    Route::get('/blogs/{post:slug}/edit', [BlogPostController::class, 'edit'])->name('blog.edit');
+    Route::put('/blogs/{post:slug}', [BlogPostController::class, 'update'])->name('blog.update');
+    Route::delete('/blogs/{post:slug}', [BlogPostController::class, 'destroy'])->name('blog.destroy');
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

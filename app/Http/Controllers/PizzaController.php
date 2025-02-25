@@ -26,7 +26,7 @@ class PizzaController extends Controller
     public function index(): InertiaResponse
     {
         Inertia::share('meta', [
-            'title' => "Pizza Kraken - The Frozen Pizza Directory",
+            'title' => "Best Frozen Pizzas - Ratings, Brands, Reviews, and Where to Buy",
             'description' => 'Discover and review the best frozen pizzas. Read honest reviews, ratings, and find where to buy your favorite frozen pizzas.',
         ]);
 

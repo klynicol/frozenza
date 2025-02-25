@@ -40,7 +40,7 @@ class TagSeeder extends Seeder
             ['slug' => 'corn-chips'],
             ['slug' => 'basil'],
             ['slug' => 'meatball'],
-            
+
             //sauces
             ['slug' => 'pesto'],
             ['slug' => 'bbq'],
@@ -73,6 +73,7 @@ class TagSeeder extends Seeder
             ['slug' => 'fontina'],
             ['slug' => 'romano'],
             ['slug' => 'cheddar'],
+            ['slug' => 'fontina'],
 
             //styles and types
             ['slug' => 'spicy'],

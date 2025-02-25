@@ -1,14 +1,8 @@
 import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
-import type { BlogPost } from '@/types/models';
-import type { PageProps } from '@/types/props';
 import { Link } from '@inertiajs/react';
 
-interface BlogShowProps extends PageProps {
-    post: BlogPost;
-}
-
-export default function BlogShow({ post, meta, auth }: BlogShowProps) {
+export default function BlogShow({ post, meta, auth }) {
     return (
         <MainLayout meta={meta} auth={auth}>
             <div className="max-w-4xl mx-auto">

@@ -1,5 +1,8 @@
 Initiated as the new pizza chronicle late 2024.
 
+
+[ ] blog: fda recalls frozen pizzas due to risk of contamination.
+
 [ ] Review location and price    
 [ ] User profile    
 [ ] geo positioning and/or google location search    

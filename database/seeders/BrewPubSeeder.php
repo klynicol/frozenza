@@ -350,6 +350,34 @@ class BrewPubSeeder extends Seeder
                     'potassium' => '400mg',
                 ]
             ],
+            [
+                'name' => "MVP - Jalapeno Popper",
+                'slug' => "mvp-jalapeno-popper",
+                'tags' => ['jalapeno', 'cheddar', 'jalapeno-cream-cheese-sauce'],
+                'description' => "Limited Edition Cream cheese sauce, mozzarella & asiago cheeses, bacon, jalapeno peppers & garlic. Contains a bioengineered food ingredient. Your official game day pizza. Highest quality. Most valuable pizza. Proudly Wisconsin cheese. U.S. Inspected and passed by Department of Agriculture. www.bernatellos.com. To The Customer: Questions or comments? Retain label and plastic wrap, write to: Bernatello's Pizza Inc., Customer Service PO Box 740 Kaukauwa, WI 54130. Visit our website: www.bernatellos.com.",
+                'image_url' => 'https://images.albertsons-media.com/is/image/ABS/970777781-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available',
+                'ingredients' => "Crust (Enriched Flour (Bleached Wheat Flour, Niacin, Reduced Iron, Thiamin Mononitrate, Riboflavin, Enzyme, Folic Acid], Water, Lard [Lard, BHA, Propyl Gallate with Citric Acid Added to Help Protect Flavor], Dough Conditioner [Malted Barley Flour, Dextrose), Salt, Sugar, Yeast [Yeast, Sorbitan Monostearate, Ascorbic Acid]), Jalapeno Cream Cheese Sauce (Water, [Cream Cheese (Pasteurized Milk and Cream, Cheese Culture, Salt, Carob Bean Gum), Sour Cream Powder (Cream, Cultures and Lactic Acid), Modified Food Starch, Whey, Nonfat Milk, Sugar, Less than 2% of Spices, Salt, Sodium Phosphate, Citric Acid, and Fully Refined Soybean Oil]), Low Moisture Part Skim Mozzarella Cheese (Pasteurized Part Skim Milk, Salt, Cheese Cultures, Enzymes), Fully Cooked Bacon Topping (Pork Cured with Water, Salt, Sodium Phosphate, Sodium Erythorbate, Sodium Nitrite, May Also Contain Sugar, Flavoring, Smoke Flavor, Brown Sugar), Jalapeno Pepper, Shredded Asiago Cheese (Asiago Cheese (Pasteurized Milk, Cheese Cultures, Salt, Enzymes] Powdered Cellulose [to Prevent Caking]), Minced Garlic.",
+                'allergens' => "Wheat, Milk, Soy",
+                'nutritional_facts' => [
+                    'serving_per_container' => '4 servings per container',
+                    'serving_size' => '0.25 pizza',
+                    'calories' => 400,
+                    'total_fat' => '21g',
+                    'saturated_fat' => '11g',
+                    'trans_fat' => '0.5g',
+                    'cholesterol' => '60mg',
+                    'sodium' => '900mg',
+                    'total_carbohydrate' => '34g',
+                    'dietary_fiber' => '1g',
+                    'total_sugars' => '4g',
+                    'added_sugars' => '1g',
+                    'protein' => '15g',
+                    'vitamin_d' => '0.4mcg',
+                    'calcium' => '320mg',
+                    'iron' => '2mg',
+                    'potassium' => '290mg',
+                ]
+            ],
         ];
 
         foreach ($pizzas as $pizza) {
