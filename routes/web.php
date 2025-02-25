@@ -38,6 +38,10 @@ Route::get('/privacy', function() {
     return Inertia::render('Privacy');
 })->name('privacy');
 
+Route::get('/users/delete-data-instructions', function() {
+    return Inertia::render('Auth/DeleteDataInstructions');
+})->name('users.delete-data-instructions');
+
 // Pizza routes
 Route::get('/pizzas', [PizzaController::class, 'index'])->name('pizzas.index');
 Route::get('/pizzas/{brand:slug}/{pizza:slug}', [PizzaController::class, 'show'])->name('pizzas.show');
