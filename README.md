@@ -47,3 +47,5 @@ Initiated as the new pizza chronicle late 2024.
 [ ] Good & Gather
 [ ] Italpizza
 [ ] Mama Cozzis
+
+[ ] Kettle River
