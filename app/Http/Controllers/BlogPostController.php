@@ -18,7 +18,7 @@ class BlogPostController extends Controller
     {
         $posts = BlogPost::with('author')
             ->published()
-            ->orderBy('published_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->paginate(12);
 
         Inertia::share('meta', [
@@ -40,12 +40,12 @@ class BlogPostController extends Controller
         
         Inertia::share('meta', [
             'title' => $title,
-            'description' => Str::limit(strip_tags($post->content), 160),
-            'imageUrl' => $post->featured_image,
+            'description' => $post->meta_description,
         ]);
 
         return Inertia::render('Blog/Show', [
-            'post' => $post
+            'post' => $post,
+            'content' => view("blogs.{$post->slug}")->render()
         ]);
     }
 

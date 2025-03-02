@@ -43,7 +43,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereSeoAboutContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereSeoDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereSeoFaqQuestions($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereSeoKeywords($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereSeoTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereSlug($value)

@@ -47,6 +47,12 @@ export default function Navbar({ auth }) {
                             >
                                 Contact
                             </Link>
+                            <Link
+                                href="/blogs"
+                                className="text-gray-600 hover:text-gray-900"
+                            >
+                                Blog
+                            </Link>
                         </div>
                     </div>
 

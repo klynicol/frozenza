@@ -26,13 +26,12 @@ class OneTimeCommand extends Command
      */
     public function handle()
     {
-        $image = \App\Handlers\ImageHandler::createFromUrl(
-            'https://www.luigespizza.com/files/V20.jpg',
-            'public',
-            'images/pizzas/frozen',
-            'something-something'
-        );
-
-        $this->info($image->id);
+        \App\Models\BlogPost::create([
+            'title' => "FDA Recalls Connie's Frozen Pizzas Over Safety Concerns",
+            'meta_description' => "FDA recalls 1,728 Connie's Thin Crust Cheese Frozen Pizzas due to possible plastic contamination. Products distributed in IL, MN, and WI.",
+            'slug' => 'connies-pizza-recall',
+            'published_at' => now(),
+            'feature_image' => 'storage/blogs/connies-pizza-recall-front.png',
+        ]);
     }
 }

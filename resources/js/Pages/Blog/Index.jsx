@@ -4,6 +4,7 @@ import { Link } from '@inertiajs/react';
 import { route } from '@/utils/route';
 
 export default function BlogIndex({ posts, meta, auth }) {
+    console.log(posts);
     return (
         <MainLayout meta={meta} auth={auth}>
             <div className="max-w-7xl mx-auto">
@@ -23,12 +24,12 @@ export default function BlogIndex({ posts, meta, auth }) {
                     {posts.data.map((post) => (
                         <Link
                             key={post.id}
-                            href={route('blog.show', post.slug)}
+                            href={`/blogs/${post.slug}`}
                             className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                         >
-                            {post.featured_image && (
+                            {post.feature_image && (
                                 <img
-                                    src={post.featured_image}
+                                    src={post.feature_image}
                                     alt={post.title}
                                     className="w-full h-48 object-cover"
                                 />
@@ -36,10 +37,10 @@ export default function BlogIndex({ posts, meta, auth }) {
                             <div className="p-6">
                                 <h2 className="text-xl font-bold mb-2">{post.title}</h2>
                                 <p className="text-gray-600 mb-4">
-                                    {post.description.substring(0, 150)}...
+                                    {post.meta_description.substring(0, 150)}...
                                 </p>
                                 <div className="flex justify-between items-center text-sm text-gray-500">
-                                    <span>By {post.author.name}</span>
+                                    <span>By Charles Gilchrist</span>
                                     <span>{new Date(post.published_at).toLocaleDateString()}</span>
                                 </div>
                             </div>

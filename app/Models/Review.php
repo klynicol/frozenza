@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\DB;
  * 
  *
  * @property string $id
- * @property string $overall_rating
- * @property string $appearance_rating
- * @property string $texture_rating
- * @property string $flavor_rating
+ * @property float $overall_rating
+ * @property float $appearance_rating
+ * @property float $texture_rating
+ * @property float $flavor_rating
  * @property string|null $average_rating_date Date when this review was used to calculate the average rating
  * @property string|null $review
  * @property string|null $purchase_location

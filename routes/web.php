@@ -60,8 +60,8 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
 
 // Blog routes (public)
-Route::get('/blogs', [BlogPostController::class, 'index'])->name('blog.index');
-Route::get('/blogs/{post:slug}', [BlogPostController::class, 'show'])->name('blog.show');
+Route::get('/blogs', [BlogPostController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{post:slug}', [BlogPostController::class, 'show'])->name('blogs.show');
 
 // Authenticated routes
 Route::middleware(['auth'])->group(function () {

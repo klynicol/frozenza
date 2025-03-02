@@ -12,13 +12,11 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('content');
-            $table->string('featured_image')->nullable();
+            $table->text('meta_description');
             $table->json('tags')->nullable();
-            $table->timestamp('published_at')->nullable();
+            $table->dateTime('published_at')->nullable();
+            $table->string('feature_image')->nullable();
             $table->timestamps();
-
-            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
