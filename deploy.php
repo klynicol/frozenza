@@ -23,6 +23,12 @@ task('composer:install', function () {
 });
 after('artisan:migrate', 'composer:install');
 
+//sitemap
+task('sitemap:generate', function () {
+    run('cd {{release_path}} && php artisan app:generate-sitemap');
+});
+after('composer:install', 'sitemap:generate');
+
 add('shared_files', []);
 add('shared_dirs', []);
 add('writable_dirs', []);

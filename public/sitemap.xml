@@ -1,3 +1,849 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    <url>
+        <loc>http://127.0.0.1:8000/blogs/connies-pizza-recall</loc>
+        <lastmod>2025-03-02T19:21:31+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-dough-breakfast-scramble</loc>
+        <lastmod>2025-02-22T22:28:37+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-italian-supreme</loc>
+        <lastmod>2025-02-22T22:28:17+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-chicken-bacon-ranch-mixer</loc>
+        <lastmod>2025-02-23T20:14:39+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//hot-chicken</loc>
+        <lastmod>2025-02-24T15:54:16+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-honey-sriracha-chicken-rocker</loc>
+        <lastmod>2025-02-23T20:14:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/sausage</loc>
+        <lastmod>2025-02-22T22:31:34+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/pepperoni</loc>
+        <lastmod>2025-02-22T22:31:34+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/brewpub/lotzza-motzza-sausage-pepperoni</loc>
+        <lastmod>2025-02-24T02:22:34+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/cauliflower-sausage-pepperoni</loc>
+        <lastmod>2025-02-22T22:31:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/bcb-bacon-cheeseburger</loc>
+        <lastmod>2025-02-22T22:31:36+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/bellatoria/ultra-thin-crust-ultimate-pepperoni</loc>
+        <lastmod>2025-02-23T21:40:49+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/american-flatbread/vegan-harvest</loc>
+        <lastmod>2025-02-22T22:28:38+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/bacon-bacon</loc>
+        <lastmod>2025-02-24T15:57:27+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/big-daddy-pub-style-3x-sausage</loc>
+        <lastmod>2025-02-22T22:28:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/sausage-pepperoni</loc>
+        <lastmod>2025-02-24T15:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-dough-pepperoni</loc>
+        <lastmod>2025-02-22T22:28:34+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/tomato-basic-garlic</loc>
+        <lastmod>2025-02-24T15:57:28+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-dough-sausage-pepperoni</loc>
+        <lastmod>2025-02-22T22:28:35+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-brawlin-buffalo-chicken</loc>
+        <lastmod>2025-02-23T20:14:39+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//pepperoni-pepperoncini</loc>
+        <lastmod>2025-02-24T15:54:16+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/italian-beef-pizza</loc>
+        <lastmod>2025-02-22T22:31:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/chicken-alfredo</loc>
+        <lastmod>2025-02-22T22:31:35+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//4-meat</loc>
+        <lastmod>2025-02-24T15:54:14+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/brewpub/lotzza-motzza-breakfast</loc>
+        <lastmod>2025-02-24T02:23:24+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/deluxe</loc>
+        <lastmod>2025-02-24T15:57:27+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/big-daddy-pub-style-2x-pepperoni</loc>
+        <lastmod>2025-02-22T22:28:25+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//meatball-mozzarella</loc>
+        <lastmod>2025-02-24T15:54:17+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-9-ball-special</loc>
+        <lastmod>2025-02-23T20:14:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/cauliflower-crust-chicken-alfredo</loc>
+        <lastmod>2025-02-22T22:29:56+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/original-homestyle-sausage-mushroom-onion</loc>
+        <lastmod>2025-02-22T22:28:24+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/six-pack</loc>
+        <lastmod>2025-02-22T22:31:35+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/brewpub/lotzza-motzza-cheese</loc>
+        <lastmod>2025-02-24T02:22:34+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//bacon-bacon</loc>
+        <lastmod>2025-02-24T15:54:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//tomato-basic-garlic</loc>
+        <lastmod>2025-02-24T15:54:16+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/brewpub/lotzza-motzza-sausage</loc>
+        <lastmod>2025-02-24T02:22:34+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/double-cheese-pizza</loc>
+        <lastmod>2025-02-22T22:31:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/brewpub/lotzza-motzza-4-meat</loc>
+        <lastmod>2025-02-24T02:22:35+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/veggie</loc>
+        <lastmod>2025-02-24T15:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/cauliflower-crust-margherita</loc>
+        <lastmod>2025-02-22T22:31:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-rising-bacon-cheeseburger</loc>
+        <lastmod>2025-02-23T20:14:41+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-dough-sausage-mushroom</loc>
+        <lastmod>2025-02-22T22:28:36+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/big-daddy-pub-style-3x-cheese-3x-meat</loc>
+        <lastmod>2025-02-22T22:28:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/legit-sausage-pepperoni</loc>
+        <lastmod>2025-02-23T16:56:02+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/legit-sausage-mushroom</loc>
+        <lastmod>2025-02-23T16:56:03+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/porta/mushroom-fontina</loc>
+        <lastmod>2025-02-24T16:33:27+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//deluxe</loc>
+        <lastmod>2025-02-24T15:54:14+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/hamburger</loc>
+        <lastmod>2025-02-24T15:57:27+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-sausage-chaser</loc>
+        <lastmod>2025-02-23T20:14:38+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/american-flatbread/cheese-herb</loc>
+        <lastmod>2025-02-22T22:28:38+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/pizza-corner/pepproni</loc>
+        <lastmod>2025-02-24T01:24:59+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/big-daddy-pub-style-mega-meaty</loc>
+        <lastmod>2025-02-22T22:28:31+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-five-cheese-growler</loc>
+        <lastmod>2025-02-23T20:14:39+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-five-meat-mash</loc>
+        <lastmod>2025-02-23T20:14:38+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/big-daddy-pub-style-chicken-alfredo</loc>
+        <lastmod>2025-02-22T22:28:30+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/4-meat</loc>
+        <lastmod>2025-02-24T15:57:27+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/pepperoni</loc>
+        <lastmod>2025-02-24T15:57:28+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/big-daddy-pub-style-x-tra-special</loc>
+        <lastmod>2025-02-22T22:28:34+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-prohibition-special</loc>
+        <lastmod>2025-02-23T20:14:38+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-dough-western-omelette</loc>
+        <lastmod>2025-02-22T22:28:38+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-italian-sausage-peppers</loc>
+        <lastmod>2025-02-22T22:28:15+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/legit-three-meat</loc>
+        <lastmod>2025-02-23T16:56:02+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/el-jefe</loc>
+        <lastmod>2025-02-22T22:31:37+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/hot-chicken</loc>
+        <lastmod>2025-02-24T15:57:28+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/legit-pepperoni</loc>
+        <lastmod>2025-02-23T16:56:03+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/original-homestyle-mighty-meaty</loc>
+        <lastmod>2025-02-22T22:28:22+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/pepperoni-pepperoncini</loc>
+        <lastmod>2025-02-24T15:57:28+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-rising-supreme</loc>
+        <lastmod>2025-02-23T20:14:41+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-italian-pepperoni</loc>
+        <lastmod>2025-02-22T22:28:14+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/bellatoria/ultra-thin-crust-ultimate-supreme</loc>
+        <lastmod>2025-02-23T21:40:49+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/legit-three-cheese</loc>
+        <lastmod>2025-02-23T16:56:03+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/bellatoria/ultra-thin-crust-ultimate-5-cheese</loc>
+        <lastmod>2025-02-23T21:40:50+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//pepperoni</loc>
+        <lastmod>2025-02-24T15:54:15+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/brewpub/packers-bbq-blitz</loc>
+        <lastmod>2025-02-24T02:23:25+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/original-homestyle-sausage-pepperoni</loc>
+        <lastmod>2025-02-22T22:28:20+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-bacon-cheeseburger-bomber</loc>
+        <lastmod>2025-02-23T20:14:39+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/brewpub/lotzza-motzza-supreme</loc>
+        <lastmod>2025-02-24T02:22:35+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/american-flatbread/revolution</loc>
+        <lastmod>2025-02-22T22:28:39+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/porta/sausage-caramelized-onion</loc>
+        <lastmod>2025-02-24T16:33:28+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/bellatoria/ultra-thin-crust-ultimate-combo</loc>
+        <lastmod>2025-02-23T21:40:49+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/bellatoria/ultra-thin-crust-hawaiian-style-bbq</loc>
+        <lastmod>2025-02-23T21:40:51+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-sausage-and-pepperoni-toss</loc>
+        <lastmod>2025-02-23T20:14:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/deluxe-combo</loc>
+        <lastmod>2025-02-22T22:31:34+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/pizza-corner/supreme</loc>
+        <lastmod>2025-02-24T01:24:59+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/inferno</loc>
+        <lastmod>2025-02-22T22:31:37+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/brewpub/packers-the-pick-6</loc>
+        <lastmod>2025-02-24T02:23:24+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-double-pepperoni-bullseye</loc>
+        <lastmod>2025-02-23T20:14:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//cheese</loc>
+        <lastmod>2025-02-24T15:54:16+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-italian-sausage-mushroom</loc>
+        <lastmod>2025-02-22T22:28:15+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/brewpub/packers-stadium-steak</loc>
+        <lastmod>2025-02-24T02:23:25+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/bellatoria/sunday-brunch-bacon-scramble</loc>
+        <lastmod>2025-02-23T21:40:52+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/big-daddy-pub-style-garlic-dipper</loc>
+        <lastmod>2025-02-22T22:28:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-rising-three-meat</loc>
+        <lastmod>2025-02-23T20:14:41+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/pizza-corner/sausage-and-pepperoni</loc>
+        <lastmod>2025-02-24T01:24:59+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/brewpub/packers-the-kicker</loc>
+        <lastmod>2025-02-24T02:23:24+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/original-homestyle-cheese-sausage</loc>
+        <lastmod>2025-02-22T22:28:18+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/big-daddy-pub-style-2x-sausage-mushroom</loc>
+        <lastmod>2025-02-22T22:28:28+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/bellatoria/gluten-free-cheese</loc>
+        <lastmod>2025-02-23T21:40:51+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-fiesta-taco-michelada</loc>
+        <lastmod>2025-02-23T20:14:39+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-dough-gourmet-deluxe</loc>
+        <lastmod>2025-02-22T22:28:36+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/bellatoria/sunday-brunch-sausage-scramble</loc>
+        <lastmod>2025-02-23T21:40:51+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//sausage-pepperoni</loc>
+        <lastmod>2025-02-24T15:54:17+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-twisted-luau</loc>
+        <lastmod>2025-02-23T20:14:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/pizza-corner/taco</loc>
+        <lastmod>2025-02-24T01:24:59+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-taproom-double</loc>
+        <lastmod>2025-02-23T20:14:38+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/legit-supreme</loc>
+        <lastmod>2025-02-23T16:56:03+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/brewpub/lotzza-motzza-pepperoni</loc>
+        <lastmod>2025-02-24T02:22:34+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/original-homestyle-supreme</loc>
+        <lastmod>2025-02-22T22:28:24+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//hamburger</loc>
+        <lastmod>2025-02-24T15:54:15+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/cheese</loc>
+        <lastmod>2025-02-24T15:57:28+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-italian-deluxe</loc>
+        <lastmod>2025-02-22T22:28:16+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/big-daddy-pub-style-2x-sausage-pepperoni</loc>
+        <lastmod>2025-02-22T22:28:27+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/bellatoria/gluten-free-pepperoni</loc>
+        <lastmod>2025-02-23T21:40:50+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/sausage-and-pepperoni</loc>
+        <lastmod>2025-02-22T22:31:34+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-italian-cheese-sausage</loc>
+        <lastmod>2025-02-22T22:28:14+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/porta/margherita</loc>
+        <lastmod>2025-02-24T16:33:27+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas//veggie</loc>
+        <lastmod>2025-02-24T15:54:17+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/original-homestyle-pepperoni</loc>
+        <lastmod>2025-02-22T22:28:19+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/original-homestyle-deluxe</loc>
+        <lastmod>2025-02-22T22:28:21+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/porta/uncured-pepperoni</loc>
+        <lastmod>2025-02-24T16:33:26+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/fresh-italian-cheese</loc>
+        <lastmod>2025-02-22T22:28:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/bellatoria/ultra-thin-crust-garlic-chicken-alfredo</loc>
+        <lastmod>2025-02-23T21:40:50+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-rising-honey-sriracha-chicken</loc>
+        <lastmod>2025-02-23T20:14:41+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/original-homestyle-sausage-mushroom</loc>
+        <lastmod>2025-02-22T22:28:23+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/dogtown-pizza/meatball-mozzarella</loc>
+        <lastmod>2025-02-24T15:57:28+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/breakfast</loc>
+        <lastmod>2025-02-22T22:31:36+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/heggies/sausage-and-mushroom</loc>
+        <lastmod>2025-02-22T22:31:34+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/peps-pizza-co/drafthaus-double-pepperoni-doppelbock</loc>
+        <lastmod>2025-02-23T20:14:38+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/pizzas/luiges/original-homestyle-cheese</loc>
+        <lastmod>2025-02-22T22:28:17+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/udis/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/peps-pizza-co/pizzas</loc>
+        <lastmod>2025-02-23T17:03:44+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/the-take-away/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/chopsies/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/luiges/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/kashi/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/digiorno/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/delissio/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/dogtown-pizza/pizzas</loc>
+        <lastmod>2025-02-24T15:57:26+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/sbarro/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/gluseppe/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/bold/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/amys/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/tonys/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/heggies/pizzas</loc>
+        <lastmod>2025-02-22T22:28:39+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/tombstone/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/caulipower/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/whole-foods/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/connies/pizzas</loc>
+        <lastmod>2025-03-02T18:29:50+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/palermos/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/home-run-inn/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/porta/pizzas</loc>
+        <lastmod>2025-02-24T16:33:25+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands//pizzas</loc>
+        <lastmod>2025-02-24T15:54:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/jacks/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/american-flatbread/pizzas</loc>
+        <lastmod>2025-02-22T22:28:38+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/freschetta/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/pizza-corner/pizzas</loc>
+        <lastmod>2025-02-24T01:24:58+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/celeste/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/brewpub/pizzas</loc>
+        <lastmod>2025-02-24T02:22:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/red-baron/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/goodfellas/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/newmans/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/glutino/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/screamin-sicilian/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/jenos-pizza/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/bellatoria/pizzas</loc>
+        <lastmod>2025-02-23T21:40:07+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/brands/california-pizza-kitchen/pizzas</loc>
+        <lastmod>2025-02-22T22:28:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>https://pizzakraken.com/contact</loc>
+    
+            </url>
+    <url>
+        <loc>https://pizzakraken.com/brands</loc>
+    
+            </url>
+    <url>
+        <loc>https://pizzakraken.com/blogs</loc>
+    
+            </url>
+    <url>
+        <loc>https://pizzakraken.com/top-rated</loc>
+    
+            </url>
 </urlset>

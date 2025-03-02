@@ -28,7 +28,39 @@ class GenerateSitemapCommand extends Command
      */
     public function handle()
     {
-        Sitemap::create(Url::create('https://pizzakraken.com'))
-            ->writeToFile(public_path('sitemap.xml'));
+        $sitemap = Sitemap::create();
+
+        // Add BlogPost URLs
+        $blogPosts = \App\Models\BlogPost::published()->get();
+        foreach ($blogPosts as $post) {
+            $sitemap->add($post->toSitemapTag());
+        }
+
+        // Add Pizza URLs
+        $pizzas = \App\Models\Pizza::all();
+        foreach ($pizzas as $pizza) {
+            $sitemap->add($pizza->toSitemapTag());
+        }
+
+        // Add Brand URLs
+        $brands = \App\Models\Brand::all();
+        foreach ($brands as $brand) {
+            $sitemap->add($brand->toSitemapTag());
+        }
+
+        // contact us page
+        $sitemap->add(Url::create('https://pizzakraken.com/contact'));
+
+        // brands page
+        $sitemap->add(Url::create('https://pizzakraken.com/brands'));
+
+        // blogs page
+        $sitemap->add(Url::create('https://pizzakraken.com/blogs'));
+
+        // top rated pizzas page
+        $sitemap->add(Url::create('https://pizzakraken.com/top-rated'));
+
+        // Save the sitemap to a file
+        $sitemap->writeToFile(public_path('sitemap.xml'));
     }
 }
