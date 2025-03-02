@@ -3,7 +3,13 @@ import { Link } from '@inertiajs/react';
 import { SearchIcon } from './Icons';
 import ApplicationLogo from './ApplicationLogo';
 import { router } from '@inertiajs/react';
-import { FacebookIcon, DiscordIcon, BlueSkyIcon } from './Icons';
+import {
+    FacebookIcon,
+    DiscordIcon,
+    BlueSkyIcon,
+    TwitterIcon,
+    InstagramIcon,
+} from './Icons';
 
 export default function Navbar({ auth }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +17,8 @@ export default function Navbar({ auth }) {
     const socialLinks = [
         { icon: FacebookIcon, href: 'https://www.facebook.com/profile.php?id=61573217433128', label: 'Facebook' },
         { icon: DiscordIcon, href: 'https://discord.gg/ccGKZPE76k', label: 'Discord' },
+        { icon: InstagramIcon, href: 'https://www.instagram.com/pizza.kraken', label: 'Instagram' },
+        { icon: TwitterIcon, href: 'https://x.com/pizza_kraken', label: 'Twitter' },
         // { icon: BlueSkyIcon, href: 'https://bsky.app/profile/pizza-kraken.bsky.social', label: 'BlueSky' },
     ];
 
@@ -26,7 +34,7 @@ export default function Navbar({ auth }) {
                                 </Link>
                             </span>
                         </div>
-                        
+
                         {/* Desktop Menu */}
                         <div className="hidden md:ml-10 md:flex md:items-center md:space-x-4">
                             <Link
@@ -73,7 +81,7 @@ export default function Navbar({ auth }) {
                                 </a>
                             ))}
                         </div>
-                        
+
                         {/* Auth Menu */}
                         {auth.user ? (
                             <button
@@ -139,7 +147,7 @@ export default function Navbar({ auth }) {
                     >
                         Contact
                     </Link>
-                    
+
                     {/* Mobile Social Links */}
                     <div className="flex space-x-4 px-3 py-2">
                         {socialLinks.map((social) => (
