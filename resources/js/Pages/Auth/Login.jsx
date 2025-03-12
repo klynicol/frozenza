@@ -18,7 +18,7 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('login'), {
+        post('/login', {
             onFinish: () => reset('password'),
         });
     };
@@ -35,7 +35,7 @@ export default function Login({ status, canResetPassword }) {
 
             {import.meta.env.VITE_APP_ENV === 'local' && (
                 <div className="mb-4 underline">
-                    <Link href={route('local-login', { user_email: 'superadmin@frozenza.com' })}>Login as Super Admin</Link>
+                    <Link href={`/local-login/superadmin@frozenza.com`}>Login as Super Admin</Link>
                 </div>
             )}
 
@@ -91,7 +91,7 @@ export default function Login({ status, canResetPassword }) {
                 <div className="mt-4 flex items-center justify-between">
                     {canResetPassword && (
                         <Link
-                            href={route('password.request')}
+                            href={`/password-reset`}
                             className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                             Forgot your password?
@@ -104,7 +104,7 @@ export default function Login({ status, canResetPassword }) {
                         </PrimaryButton>
                         <span className="text-gray-500">or</span>
                         <Link
-                            href={route('register')}
+                            href={`/register`}
                             className="rounded-md text-sm font-semibold text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                             Register now
@@ -133,7 +133,7 @@ export default function Login({ status, canResetPassword }) {
                     </button> */}
 
                     <a
-                        href={route('social.login', 'google')}
+                        href={`/social-auth/google`}
                         className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-1.5 text-gray-900 border border-gray-200 hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4285F4]"
                     >
                         <GoogleIcon className="h-5 w-5" />

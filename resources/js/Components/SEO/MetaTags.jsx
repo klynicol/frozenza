@@ -1,15 +1,24 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
 
-export default function MetaTags({ title, description, canonicalUrl, imageUrl }) {
-    const baseUrl = window.location.origin;
-    const fullCanonicalUrl = canonicalUrl ? `${baseUrl}${canonicalUrl}` : window.location.href;
+export default function MetaTags({ title, description, canonicalUrl = 'nothing' }) {
+    const baseUrl = import.meta.env.VITE_APP_URL || ''; // Use an environment variable for the base URL
+    const fullCanonicalUrl = canonicalUrl ? `${baseUrl}${canonicalUrl}` : ''; // Default to an empty string if canonicalUrl is not provided
+    const isServer = typeof window === 'undefined';
+    
+    if (isServer) {
+        return (
+            <Head>
+                <title>{title}</title>
+                <meta name="description" content={description} />
+            </Head>
+        );
+    }
 
     return (
         <Head>
             <title>{title}</title>
             <meta name="description" content={description} />
-
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
             <meta property="og:image" content={`${baseUrl}/storage/assets/social_image.png`} />

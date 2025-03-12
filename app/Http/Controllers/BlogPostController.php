@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Helpers\PizzaHelper;
 
 class BlogPostController extends Controller
 {
@@ -45,7 +46,8 @@ class BlogPostController extends Controller
 
         return Inertia::render('Blog/Show', [
             'post' => $post,
-            'content' => view("blogs.{$post->slug}")->render()
+            'content' => view("blogs.{$post->slug}")->render(),
+            'pizzas' => PizzaHelper::getPizzasPaginated(1),
         ]);
     }
 

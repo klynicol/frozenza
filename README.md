@@ -1,7 +1,20 @@
 Initiated as the new pizza chronicle late 2024.
 
 
-[ ] blog: fda recalls frozen pizzas due to risk of contamination.
+# Running the local server
+
+```
+php artisan inertia:start-ssr
+```
+
+then run  ??
+
+```
+php artisan serve
+```
+
+
+[x] blog: fda recalls frozen pizzas due to risk of contamination.
 
 [ ] location finder
 [ ] Recent reviews

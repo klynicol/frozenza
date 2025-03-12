@@ -1,16 +1,7 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
 
-interface Breadcrumb {
-    name: string;
-    url: string;
-}
-
-interface BreadcrumbSchemaProps {
-    items: Breadcrumb[];
-}
-
-export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
+export default function BreadcrumbSchema({ items }) {
     const schema = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -18,7 +9,7 @@ export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
             '@type': 'ListItem',
             'position': index + 1,
             'item': {
-                '@id': `${window.location.origin}${item.url}`,
+                '@id': `${import.meta.env.VITE_APP_URL}${item.url}`,
                 'name': item.name,
             },
         })),

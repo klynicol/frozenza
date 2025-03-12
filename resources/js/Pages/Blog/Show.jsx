@@ -2,13 +2,9 @@ import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import { Link } from '@inertiajs/react';
 import './blog.css';
-import useAxios from 'axios-hooks';
 import PizzaListItem from '@/Components/Common/PizzaListItem';
 
-export default function BlogShow({ post, content, meta, auth }) {
-
-    const [{ data: pizzas, loading, error }, refetch] = useAxios('/pizzas/list');
-
+export default function BlogShow({ post, content, pizzas, meta, auth }) {
     return (
         <MainLayout meta={meta} auth={auth}>
             <div className="blog max-w-7xl mx-auto flex">

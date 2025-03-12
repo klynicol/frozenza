@@ -6,11 +6,12 @@ export default function PizzaListItem({ pizza }) {
     console.log(pizza);
     const mainImage = pizza?.images?.find(image => image.pivot.type === 'main') ?? null;
     const brandLogo = pizza?.brand?.image ? getImageUrl(pizza.brand.image) : '/storage/assets/brand_placeholder.png';
+    const pizzaUrl = `/pizzas/${pizza.brand.slug}/${pizza.slug}`
 
     return (
         <>
             <SchemaMarkup type="Pizza" data={pizza} />
-            <Link href={route('pizzas.show', { brand: pizza.brand.slug, pizza: pizza.slug })} className="block h-full">
+            <Link href={pizzaUrl} className="block h-full">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
                     <div className="relative aspect-square">
                         <img

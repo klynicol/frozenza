@@ -18,7 +18,6 @@ export default function PizzaShow({ pizza, meta, auth }) {
         setOpen(prevState => !prevState);
     };
 
-
     const mainImage = pizza?.images?.find(image => image.pivot.type === 'main') ?? null;
 
     return (
@@ -57,7 +56,7 @@ export default function PizzaShow({ pizza, meta, auth }) {
 
                             <div className="text-sm text-gray-600 mb-4">
                                 <Link
-                                    href={route('brands.show', pizza.brand.slug)}
+                                    href={`/brands/${pizza.brand.slug}`}
                                     className="text-indigo-700 hover:underline text-lg text-bold"
                                 >
                                     By {pizza.brand.name}
@@ -66,7 +65,7 @@ export default function PizzaShow({ pizza, meta, auth }) {
                                     <>
                                         <span className="mx-2">•</span>
                                         <Link
-                                            href={route('styles.show', pizza?.style?.slug)}
+                                            href={`/styles/${pizza?.style?.slug}`}
                                             className="hover:text-indigo-600"
                                         >
                                             {pizza?.style?.name}
@@ -199,7 +198,9 @@ export default function PizzaShow({ pizza, meta, auth }) {
                     ) : (
                         <div className="bg-gray-50 rounded-lg p-6 mb-8 text-center">
                             <p className="text-gray-600">
-                                Please <Link href={route('login')} className="text-indigo-600 hover:text-indigo-800">login</Link> to write a review
+                                Please <Link 
+                                    href={`/login`}
+                                    className="text-indigo-600 hover:text-indigo-800">login</Link> to write a review
                             </p>
                         </div>
                     )}
