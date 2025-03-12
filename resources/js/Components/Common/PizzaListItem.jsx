@@ -3,7 +3,6 @@ import { getImageUrl } from '@/utils/image';
 import SchemaMarkup from '@/Components/SEO/SchemaMarkup';
 
 export default function PizzaListItem({ pizza }) {
-    console.log(pizza);
     const mainImage = pizza?.images?.find(image => image.pivot.type === 'main') ?? null;
     const brandLogo = pizza?.brand?.image ? getImageUrl(pizza.brand.image) : '/storage/assets/brand_placeholder.png';
     const pizzaUrl = `/pizzas/${pizza.brand.slug}/${pizza.slug}`

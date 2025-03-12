@@ -7,7 +7,6 @@ import BreadcrumbSchema from '@/Components/SEO/BreadcrumbSchema';
 import { ExternalLinkIcon } from '@/Components/Icons';
 
 export default function BrandShow({ brand, meta, auth }) {
-    console.log(brand);
     return (
         <MainLayout meta={meta} auth={auth}>
             <SchemaMarkup 

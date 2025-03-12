@@ -4,7 +4,6 @@ import { Link } from '@inertiajs/react';
 import { route } from '@/utils/route';
 
 export default function BlogIndex({ posts, meta, auth }) {
-    console.log(posts);
     return (
         <MainLayout meta={meta} auth={auth}>
             <div className="max-w-7xl mx-auto">
