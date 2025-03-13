@@ -26,8 +26,10 @@ class PizzaController extends Controller
     public function index(): InertiaResponse
     {
         Inertia::share('meta', [
-            'title' => "Best Frozen Pizzas - Ratings, Brands, Reviews, and Where to Buy",
-            'description' => 'Discover and review the best frozen pizzas. Read honest reviews, ratings, and find where to buy your favorite frozen pizzas.',
+            'title' => "Best Frozen Pizzas - Ratings, Brands, canonicalUrlReviews, and Where to Buy",
+            'description' => 'Pizza Kraken: Discover and review the best frozen pizzas with honest ratings, ingredient details, and expert guidance to make informed choices today!',
+            'keywords' => "frozen pizza, pizza reviews, pizza ratings, best frozen pizzas, frozen pizza brands, frozen pizza guide, frozen pizza ingredients, pizza comparison",
+            'canonicalUrl' => "/pizzas",
         ]);
 
         return Inertia::render('Pizzas/Index', [
@@ -84,6 +86,8 @@ class PizzaController extends Controller
         Inertia::share('meta', [
             'title' => "{$pizza->name} by {$brandName}",
             'description' => "Read reviews and ratings for {$pizza->name} frozen pizza by {$brandName}. Find out where to buy and what others think about this {$tags} pizza.",
+            'keywords' => "{$pizza->name}, frozen pizza, pizza reviews, pizza ratings, best frozen pizzas, frozen pizza brands, frozen pizza guide, frozen pizza ingredients, pizza comparison",
+            'canonicalUrl' => "/pizzas/{$pizza->slug}",
         ]);
 
         return Inertia::render('Pizzas/Show', [
@@ -108,6 +112,8 @@ class PizzaController extends Controller
         Inertia::share('meta', [
             'title' => 'Top 10 Best Rated Frozen Pizzas',
             'description' => 'Discover the highest-rated frozen pizzas according to our community. See reviews, ratings, and where to buy these top-rated frozen pizzas.',
+            'keywords' => "frozen pizza, pizza reviews, pizza ratings, best frozen pizzas, frozen pizza brands, frozen pizza guide, frozen pizza ingredients, pizza comparison",
+            'canonicalUrl' => "/pizzas/top-rated",
         ]);
 
         return Inertia::render('Pizzas/TopRated', [

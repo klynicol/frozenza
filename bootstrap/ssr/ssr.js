@@ -344,19 +344,22 @@ function Footer() {
     ] }) })
   ] }) });
 }
-function MetaTags({ title, description, canonicalUrl = "nothing" }) {
+function MetaTags({ title, description, canonicalUrl, keywords }) {
   const baseUrl = "http://127.0.0.1:8001";
   const fullCanonicalUrl = canonicalUrl ? `${baseUrl}${canonicalUrl}` : "";
   const isServer2 = typeof window === "undefined";
   if (isServer2) {
     return /* @__PURE__ */ jsxs(Head, { children: [
       /* @__PURE__ */ jsx("title", { children: title }),
-      /* @__PURE__ */ jsx("meta", { name: "description", content: description })
+      /* @__PURE__ */ jsx("meta", { name: "description", content: description }),
+      /* @__PURE__ */ jsx("meta", { name: "keywords", content: keywords }),
+      /* @__PURE__ */ jsx("link", { rel: "canonical", href: fullCanonicalUrl })
     ] });
   }
   return /* @__PURE__ */ jsxs(Head, { children: [
     /* @__PURE__ */ jsx("title", { children: title }),
     /* @__PURE__ */ jsx("meta", { name: "description", content: description }),
+    /* @__PURE__ */ jsx("meta", { name: "keywords", content: keywords }),
     /* @__PURE__ */ jsx("meta", { property: "og:title", content: title }),
     /* @__PURE__ */ jsx("meta", { property: "og:description", content: description }),
     /* @__PURE__ */ jsx("meta", { property: "og:image", content: `${baseUrl}/storage/assets/social_image.png` }),
@@ -815,7 +818,6 @@ function route$1(name, params) {
   return `/${name.replace(".", "/")}`;
 }
 function BlogIndex({ posts, meta, auth }) {
-  console.log(posts);
   return /* @__PURE__ */ jsx(MainLayout, { meta, auth, children: /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto", children: [
     /* @__PURE__ */ jsxs("div", { className: "flex justify-between items-center mb-8", children: [
       /* @__PURE__ */ jsx("h1", { className: "text-3xl font-bold", children: "Blog Posts" }),
@@ -969,7 +971,6 @@ function SchemaMarkup({ type, data }) {
 }
 function PizzaListItem({ pizza }) {
   var _a, _b;
-  console.log(pizza);
   const mainImage = ((_a = pizza == null ? void 0 : pizza.images) == null ? void 0 : _a.find((image) => image.pivot.type === "main")) ?? null;
   const brandLogo = ((_b = pizza == null ? void 0 : pizza.brand) == null ? void 0 : _b.image) ? getImageUrl(pizza.brand.image) : "/storage/assets/brand_placeholder.png";
   const pizzaUrl = `/pizzas/${pizza.brand.slug}/${pizza.slug}`;
@@ -1090,51 +1091,29 @@ function BrandListItem({ brand }) {
   return /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsx(SchemaMarkup, { type: "Brand", data: brand }),
     /* @__PURE__ */ jsx(
-      "div",
+      Link,
       {
-        className: "bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow",
-        children: /* @__PURE__ */ jsxs("div", { className: "p-6", children: [
+        href: `/brands/${brand.slug}/pizzas`,
+        className: "block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all hover:translate-y-[-2px] h-full",
+        children: /* @__PURE__ */ jsxs("div", { className: "p-4 flex flex-col items-center justify-between h-full", children: [
           (brand == null ? void 0 : brand.image) && /* @__PURE__ */ jsx(
             "img",
             {
               src: getImageUrl(brand.image),
               alt: brand.name,
               title: brand.name,
-              className: "w-full h-48 object-contain mb-4",
+              className: "w-full h-32 object-contain mb-4",
               width: brand.image.width,
               height: brand.image.height,
               loading: "lazy"
             }
           ),
-          /* @__PURE__ */ jsx("h3", { className: "text-xl font-bold mb-2", children: brand.name }),
-          /* @__PURE__ */ jsx("p", { className: "text-gray-600 mb-4", children: brand.description.length > 150 ? `${brand.description.substring(0, 150)}...` : brand.description }),
-          /* @__PURE__ */ jsxs("div", { className: "flex flex-wrap gap-2", children: [
-            /* @__PURE__ */ jsxs(
-              Link,
-              {
-                href: `/brands/${brand.slug}/pizzas`,
-                className: "inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors",
-                children: [
-                  /* @__PURE__ */ jsx(PizzaIcon, { className: "mr-2 w-5 h-5" }),
-                  "View ",
-                  brand.pizzas_count,
-                  " Pizzas"
-                ]
-              }
-            ),
-            brand.website && /* @__PURE__ */ jsxs(
-              "a",
-              {
-                href: brand.website,
-                target: "_blank",
-                rel: "noopener noreferrer",
-                className: "inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors",
-                children: [
-                  /* @__PURE__ */ jsx(ExternalLinkIcon, { className: "mr-2 w-5 h-5" }),
-                  "Website"
-                ]
-              }
-            )
+          /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-center mt-auto bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 px-4 rounded-full shadow-sm", children: [
+            /* @__PURE__ */ jsx(PizzaIcon, { className: "w-5 h-5 text-white mr-2" }),
+            /* @__PURE__ */ jsxs("span", { className: "font-semibold", children: [
+              brand.pizzas_count,
+              " Pizzas"
+            ] })
           ] })
         ] })
       }
@@ -1157,7 +1136,7 @@ function BrandsIndex({ brands, meta, auth }) {
       /* @__PURE__ */ jsx("div", { className: "prose max-w-none mb-8", children: /* @__PURE__ */ jsx("p", { className: "text-lg", children: "Discover the best frozen pizza brands, from artisanal wood-fired pizzas to classic favorites. We provide detailed reviews, nutritional information, and honest feedback from real pizza lovers." }) }),
       /* @__PURE__ */ jsxs("div", { children: [
         /* @__PURE__ */ jsx("h2", { className: "text-2xl font-semibold mb-6", children: "All Brands" }),
-        /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6", children: brands.map((brand) => /* @__PURE__ */ jsx(
+        /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4", children: brands.map((brand) => /* @__PURE__ */ jsx(
           BrandListItem,
           {
             brand
@@ -1173,7 +1152,6 @@ const __vite_glob_0_9 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   default: BrandsIndex
 }, Symbol.toStringTag, { value: "Module" }));
 function BrandShow({ brand, meta, auth }) {
-  console.log(brand);
   return /* @__PURE__ */ jsxs(MainLayout, { meta, auth, children: [
     /* @__PURE__ */ jsx(
       SchemaMarkup,
