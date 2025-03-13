@@ -25,6 +25,8 @@ class BlogPostController extends Controller
         Inertia::share('meta', [
             'title' => 'Frozen Pizza Blog - Tips, Reviews & News',
             'description' => 'Read the latest blog posts about frozen pizzas, cooking tips, reviews, and more.',
+            'keywords' => "frozen pizza, pizza reviews, pizza tips, frozen pizza news, pizza recipes, Connie's frozen pizza recall, frozen pizza safety, pizza blog",
+            'canonicalUrl' => "/blogs",
         ]);
 
         return Inertia::render('Blog/Index', [
@@ -42,6 +44,8 @@ class BlogPostController extends Controller
         Inertia::share('meta', [
             'title' => $title,
             'description' => $post->meta_description,
+            'keywords' => $post->keywords ?? '',
+            'canonicalUrl' => "/blogs/{$post->slug}",
         ]);
 
         return Inertia::render('Blog/Show', [
