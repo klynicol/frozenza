@@ -26,12 +26,14 @@ class OneTimeCommand extends Command
      */
     public function handle()
     {
-        \App\Models\BlogPost::create([
-            'title' => "FDA Recalls Connie's Frozen Pizzas Over Safety Concerns",
-            'meta_description' => "FDA recalls 1,728 Connie's Thin Crust Cheese Frozen Pizzas due to possible plastic contamination. Products distributed in IL, MN, and WI.",
-            'slug' => 'connies-pizza-recall',
-            'published_at' => now(),
-            'feature_image' => 'storage/blogs/connies-pizza-recall-front.png',
+        $role = \App\Models\UserRole::updateOrCreate([
+            'code' => 'admin',
+            'name' => 'Administrator',
+            'description' => 'Administrator role',
         ]);
+
+        $user = \App\Models\User::find('a7ddde51-e96d-4d42-83a9-c2598cada218');
+        $this->info($user->id);
+        $user->roles()->attach($role);
     }
 }

@@ -29,13 +29,13 @@ class Init extends Command
     {
         $this->info('Initializing application...');
 
-        $this->call('migrate:fresh');
+        // $this->call('migrate:fresh');
         
-        $this->call('db:seed', ['--class' => 'PizzaSeeder']);
-        $this->call('db:seed', ['--class' => 'TagSeeder']);
-        $this->call('db:seed', ['--class' => 'LuigesSeeder']);
-        $this->call('db:seed', ['--class' => 'AmericanFlatbreadSeeder']);
-        $this->call('db:seed', ['--class' => 'HeggiesSeeder']);
+        // $this->call('db:seed', ['--class' => 'PizzaSeeder']);
+        // $this->call('db:seed', ['--class' => 'TagSeeder']);
+        // $this->call('db:seed', ['--class' => 'LuigesSeeder']);
+        // $this->call('db:seed', ['--class' => 'AmericanFlatbreadSeeder']);
+        // $this->call('db:seed', ['--class' => 'HeggiesSeeder']);
 
         User::create([
             'name' => 'Super Admin',
