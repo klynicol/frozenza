@@ -50,7 +50,7 @@ class AffiliateLinkController extends Controller
     public function create(): InertiaResponse
     {
         return Inertia::render('Admin/AffiliateLinks/Create', [
-            'pizzas' => Pizza::select('id', 'name')
+            'pizzas' => Pizza::select('id', 'name', 'brand_id')
                 ->with('brand:id,name')
                 ->orderBy('name')
                 ->get(),
