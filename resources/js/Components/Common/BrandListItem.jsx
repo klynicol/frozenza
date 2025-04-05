@@ -23,8 +23,9 @@ export default function BrandListItem({ brand }) {
                      loading="lazy"
                   />
                )}
-               <div className="flex items-center justify-center mt-auto bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 px-4 rounded-full shadow-sm">
-                  <PizzaIcon className="w-5 h-5 text-white mr-2" />
+               <div className="flex items-center justify-center mt-auto 
+                  bg-slate-100 py-2 px-4 rounded-md shadow-sm">
+                  <PizzaIcon className="w-5 h-5 text-slate-500 mr-2" />
                   <span className="font-semibold">{brand.pizzas_count} Pizzas</span>
                </div>
             </div>

@@ -66,6 +66,7 @@ class PizzaController extends Controller
             'brand.image',
             'tags',
             'nutritionFact',
+            'affiliateLinks',
             'reviews' => function ($query) {
                 $query->with(['user', 'images']);
             },

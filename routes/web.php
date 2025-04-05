@@ -10,7 +10,8 @@ use App\Http\Controllers\{
     MessageController,
     BlogPostController,
     ContactController,
-    Auth\SocialAuthController
+    Auth\SocialAuthController,
+    Admin\AffiliateLinkController
 };
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -89,9 +90,11 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware(['role:admin'])->group(function () {
-        // simple test return
-        Route::get('/nothing', function() {
-            return 'Admin';
+        // Admin routes
+        Route::name('admin.')->prefix('admin')->group(function () {
+            // Affiliate Links management
+            Route::resource('affiliate-links', AffiliateLinkController::class);
+            Route::post('affiliate-links/update-order', [AffiliateLinkController::class, 'updateOrder'])->name('affiliate-links.update-order');
         });
     });
 });

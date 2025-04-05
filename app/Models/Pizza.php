@@ -111,6 +111,14 @@ class Pizza extends Model implements Sitemapable
         return $this->belongsToMany(Tag::class);
     }
 
+    /**
+     * Get the affiliate links for the pizza.
+     */
+    public function affiliateLinks(): HasMany
+    {
+        return $this->hasMany(AffiliateLink::class)->where('is_active', true)->orderBy('display_order');
+    }
+
     public function toSitemapTag(): Url
     {
         return Url::create("/pizzas/{$this->brand->slug}/{$this->slug}")

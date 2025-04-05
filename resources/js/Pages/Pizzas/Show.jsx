@@ -4,6 +4,7 @@ import ReviewList from '@/Components/Reviews/ReviewList';
 import ReviewForm from '@/Components/Reviews/ReviewForm';
 import SchemaMarkup from '@/Components/SEO/SchemaMarkup';
 import NutritionFact from '@/Components/Common/NutritionFact';
+import AffiliateLinks from '@/Components/Pizza/AffiliateLinks';
 import { Link } from '@inertiajs/react';
 import { PlusIcon, MinusIcon } from '@/Components/Icons';
 import { getImageUrl } from '@/utils/image';
@@ -132,6 +133,9 @@ export default function PizzaShow({ pizza, meta, auth }) {
                         </div>
                     </div>
                 </div>
+
+                {/* Affiliate Links Section */}
+                <AffiliateLinks affiliateLinks={pizza.affiliate_links} />
 
                 {/* Reviews Section */}
                 <div className="mt-12">

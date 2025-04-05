@@ -26,14 +26,17 @@ class OneTimeCommand extends Command
      */
     public function handle()
     {
-        $role = \App\Models\UserRole::updateOrCreate([
-            'code' => 'admin',
-            'name' => 'Administrator',
-            'description' => 'Administrator role',
-        ]);
+        // $role = \App\Models\UserRole::updateOrCreate([
+        //     'code' => 'admin',
+        //     'name' => 'Administrator',
+        //     'description' => 'Administrator role',
+        // ]);
 
-        $user = \App\Models\User::find('a7ddde51-e96d-4d42-83a9-c2598cada218');
-        $this->info($user->id);
-        $user->roles()->attach($role);
+        // $user = \App\Models\User::find('a7ddde51-e96d-4d42-83a9-c2598cada218');
+        // $this->info($user->id);
+        // $user->roles()->attach($role);
+
+        $pizzas = \App\Models\Pizza::select('id', 'name', 'brand_id')->with('brand:id,name')->orderBy('name')->get();
+        dd($pizzas[0]->brand);
     }
 }
