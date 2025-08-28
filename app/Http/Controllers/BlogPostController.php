@@ -70,11 +70,22 @@ class BlogPostController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'featured_image' => 'nullable|string',
+            'meta_description' => 'nullable|string|max:160',
+            'featured_image' => 'nullable|string|url',
             'tags' => 'nullable|array',
             'tags.*' => 'string',
             'published_at' => 'nullable|date',
+            'is_published' => 'boolean',
         ]);
+
+        // Handle publish date logic
+        if ($validated['is_published'] ?? false) {
+            $validated['published_at'] = now();
+        } elseif (!empty($validated['published_at'])) {
+            $validated['published_at'] = $validated['published_at'];
+        } else {
+            $validated['published_at'] = null; // Draft
+        }
 
         $post = BlogPost::create([
             ...$validated,
@@ -82,7 +93,7 @@ class BlogPostController extends Controller
             'slug' => Str::slug($validated['title']),
         ]);
 
-        return redirect()->route('blog.show', $post)
+        return redirect()->route('blogs.show', $post)
             ->with('success', 'Blog post created successfully!');
     }
 

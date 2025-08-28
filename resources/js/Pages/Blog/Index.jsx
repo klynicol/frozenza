@@ -2,6 +2,7 @@ import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import { Link } from '@inertiajs/react';
 import { route } from '@/utils/route';
+import { hasRole } from '@/utils/roles';
 
 export default function BlogIndex({ posts, meta, auth }) {
     return (
@@ -9,9 +10,9 @@ export default function BlogIndex({ posts, meta, auth }) {
             <div className="max-w-7xl mx-auto">
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-3xl font-bold">Blog Posts</h1>
-                    {auth.user && (
+                    {auth.user && hasRole(auth.user, 'blog-writer,admin') && (
                         <Link
-                            href={route('blog.create')}
+                            href={route('blogs.create')}
                             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
                         >
                             Write New Post

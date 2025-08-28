@@ -24,7 +24,7 @@ export default function AdminLayout({ children, header, title }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const navigation = [
-    { name: 'Dashboard', href: route('home'), icon: HomeIcon, current: route().current('admin.dashboard') },
+    { name: 'Dashboard', href: route('admin.dashboard'), icon: HomeIcon, current: route().current('admin.dashboard') },
     { name: 'Pizzas', href: '#', icon: ShoppingBagIcon, current: false },
     { name: 'Brands', href: '#', icon: TagIcon, current: false },
     { name: 'Reviews', href: '#', icon: DocumentTextIcon, current: false },

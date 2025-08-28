@@ -11,7 +11,8 @@ use App\Http\Controllers\{
     BlogPostController,
     ContactController,
     Auth\SocialAuthController,
-    Admin\AffiliateLinkController
+    Admin\AffiliateLinkController,
+    Admin\DashboardController
 };
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -19,7 +20,7 @@ use App\Models;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/local-login/{user_email}', function ($user_email) {
-    if(config('app.env') !== 'local') {
+    if (config('app.env') !== 'local') {
         return redirect()->route('login');
     }
     $user = Models\User::where('email', $user_email)->first();
@@ -35,11 +36,11 @@ Route::get('/', [PizzaController::class, 'index'])->name('home');
 Route::get('/top-rated', [PizzaController::class, 'topRated'])->name('pizzas.top-rated');
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-Route::get('/privacy', function() {
+Route::get('/privacy', function () {
     return Inertia::render('Privacy');
 })->name('privacy');
 
-Route::get('/users/delete-data-instructions', function() {
+Route::get('/users/delete-data-instructions', function () {
     return Inertia::render('Auth/DeleteDataInstructions');
 })->name('users.delete-data-instructions');
 
@@ -60,9 +61,6 @@ Route::get('/styles/{style:slug}', [StyleController::class, 'show'])->name('styl
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
 
-// Blog routes (public)
-Route::get('/blogs', [BlogPostController::class, 'index'])->name('blogs.index');
-Route::get('/blogs/{post:slug}', [BlogPostController::class, 'show'])->name('blogs.show');
 
 // Authenticated routes
 Route::middleware(['auth'])->group(function () {
@@ -78,25 +76,31 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
 
     // Blog management
-    Route::get('/blogs/create', [BlogPostController::class, 'create'])->name('blog.create');
-    Route::post('/blogs', [BlogPostController::class, 'store'])->name('blog.store');
-    Route::get('/blogs/{post:slug}/edit', [BlogPostController::class, 'edit'])->name('blog.edit');
-    Route::put('/blogs/{post:slug}', [BlogPostController::class, 'update'])->name('blog.update');
-    Route::delete('/blogs/{post:slug}', [BlogPostController::class, 'destroy'])->name('blog.destroy');
+    Route::middleware(['role:admin,blog-writer'])->group(function () {
+        Route::get('/blogs/create', [BlogPostController::class, 'create'])->name('blogs.create');
+        Route::post('/blogs', [BlogPostController::class, 'store'])->name('blogs.store');
+        Route::get('/blogs/{post:slug}/edit', [BlogPostController::class, 'edit'])->name('blogs.edit');
+        Route::put('/blogs/{post:slug}', [BlogPostController::class, 'update'])->name('blogs.update');
+        Route::delete('/blogs/{post:slug}', [BlogPostController::class, 'destroy'])->name('blogs.destroy');
+    });
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // admin routes
     Route::middleware(['role:admin'])->group(function () {
-        // Admin routes
         Route::name('admin.')->prefix('admin')->group(function () {
-            // Affiliate Links management
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
             Route::resource('affiliate-links', AffiliateLinkController::class);
             Route::post('affiliate-links/update-order', [AffiliateLinkController::class, 'updateOrder'])->name('affiliate-links.update-order');
         });
     });
 });
 
-require __DIR__.'/auth.php';
+// Blog routes (public)
+Route::get('/blogs', [BlogPostController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{post:slug}', [BlogPostController::class, 'show'])->name('blogs.show');
+
+require __DIR__ . '/auth.php';
