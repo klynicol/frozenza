@@ -40,6 +40,14 @@ Route::get('/privacy', function () {
     return Inertia::render('Privacy');
 })->name('privacy');
 
+Route::get('/about', function () {
+    return Inertia::render('About');
+})->name('about');
+
+Route::get('/giveaway', function () {
+    return Inertia::render('Giveaway');
+})->name('giveaway');
+
 Route::get('/users/delete-data-instructions', function () {
     return Inertia::render('Auth/DeleteDataInstructions');
 })->name('users.delete-data-instructions');

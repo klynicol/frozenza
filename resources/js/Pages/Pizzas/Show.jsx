@@ -139,6 +139,46 @@ export default function PizzaShow({ pizza, meta, auth }) {
 
                 {/* Reviews Section */}
                 <div className="mt-12">
+                    {/* Giveaway Promotional Banner */}
+                    <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl p-6 mb-8 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+                        <div className="relative z-10">
+                            <div className="flex items-center justify-between">
+                                <div className="flex-1">
+                                    <div className="flex items-center space-x-3 mb-2">
+                                        <span className="text-3xl">🎉</span>
+                                        <h3 className="text-xl font-bold">Win a $50 Gift Card!</h3>
+                                        <span className="text-3xl">🎉</span>
+                                    </div>
+                                    <p className="text-lg opacity-90">
+                                        Write a review for this pizza and get entered into our monthly giveaway!
+                                    </p>
+                                </div>
+                                <div className="ml-6">
+                                    {auth.user ? (
+                                        <button
+                                            onClick={() => setReviewModalOpen(true)}
+                                            className="bg-white text-purple-600 px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                                        >
+                                            Write Review
+                                        </button>
+                                    ) : (
+                                        <Link
+                                            href="/login"
+                                            className="bg-white text-purple-600 px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 inline-block"
+                                        >
+                                            Sign In to Review
+                                        </Link>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* Floating elements */}
+                        <div className="absolute top-4 right-4 w-16 h-16 bg-white bg-opacity-10 rounded-full animate-bounce"></div>
+                        <div className="absolute bottom-4 left-4 w-12 h-12 bg-white bg-opacity-10 rounded-full animate-pulse delay-1000"></div>
+                    </div>
+
                     <div className="border-b border-gray-200 mb-8">
                         <h2 className="text-2xl font-bold pb-4">Reviews</h2>
                     </div>

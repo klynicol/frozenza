@@ -56,6 +56,18 @@ export default function Navbar({ auth }) {
                                 Contact
                             </Link>
                             <Link
+                                href="/about"
+                                className="text-gray-600 hover:text-gray-900"
+                            >
+                                About
+                            </Link>
+                            <Link
+                                href="/giveaway"
+                                className="text-gray-600 hover:text-gray-900"
+                            >
+                                Giveaway
+                            </Link>
+                            <Link
                                 href="/blogs"
                                 className="text-gray-600 hover:text-gray-900"
                             >
@@ -146,6 +158,18 @@ export default function Navbar({ auth }) {
                         className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                     >
                         Contact
+                    </Link>
+                    <Link
+                        href="/about"
+                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                    >
+                        About
+                    </Link>
+                    <Link
+                        href="/giveaway"
+                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                    >
+                        Giveaway
                     </Link>
 
                     {/* Mobile Social Links */}

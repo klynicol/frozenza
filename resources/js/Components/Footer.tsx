@@ -29,6 +29,11 @@ export default function Footer() {
                                     Privacy Policy
                                 </Link>
                             </li>
+                            <li>
+                                <Link href="/giveaway" className="hover:text-gray-300">
+                                    🎉 Monthly Giveaway
+                                </Link>
+                            </li>
                             {/* <li>
                                 <Link href="/styles" className="hover:text-gray-300">
                                     Pizza Styles
