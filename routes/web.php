@@ -12,7 +12,10 @@ use App\Http\Controllers\{
     ContactController,
     Auth\SocialAuthController,
     Admin\AffiliateLinkController,
-    Admin\DashboardController
+    Admin\DashboardController,
+    Admin\UserRoleController,
+    BrandSubmissionController,
+    PizzaSubmissionController
 };
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -92,6 +95,21 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/blogs/{post:slug}', [BlogPostController::class, 'destroy'])->name('blogs.destroy');
     });
 
+    // Pizza Ambassador submissions
+    Route::middleware(['role:admin,pizza-ambassador, brand-ambassador'])->group(function () {
+        Route::get('/pizza-ambassador/dashboard', function () {
+            return Inertia::render('PizzaAmbassador/Dashboard');
+        })->name('pizza-ambassador.dashboard');
+        
+        Route::get('/brand-submissions/create', [BrandSubmissionController::class, 'create'])->name('brand-submissions.create');
+        Route::post('/brand-submissions', [BrandSubmissionController::class, 'store'])->name('brand-submissions.store');
+        Route::get('/brand-submissions/{brand}/success', [BrandSubmissionController::class, 'success'])->name('brand-submissions.success');
+        
+        Route::get('/pizza-submissions/create', [PizzaSubmissionController::class, 'create'])->name('pizza-submissions.create');
+        Route::post('/pizza-submissions', [PizzaSubmissionController::class, 'store'])->name('pizza-submissions.store');
+        Route::get('/pizza-submissions/{pizza}/success', [PizzaSubmissionController::class, 'success'])->name('pizza-submissions.success');
+    });
+
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -103,6 +121,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
             Route::resource('affiliate-links', AffiliateLinkController::class);
             Route::post('affiliate-links/update-order', [AffiliateLinkController::class, 'updateOrder'])->name('affiliate-links.update-order');
+            Route::resource('user-roles', UserRoleController::class);
         });
     });
 });

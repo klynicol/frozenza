@@ -12,6 +12,7 @@ import {
   ChartBarIcon,
   Cog6ToothIcon,
   ArrowRightOnRectangleIcon,
+  ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
@@ -29,6 +30,7 @@ export default function AdminLayout({ children, header, title }) {
     { name: 'Brands', href: '#', icon: TagIcon, current: false },
     { name: 'Reviews', href: '#', icon: DocumentTextIcon, current: false },
     { name: 'Users', href: '#', icon: UserGroupIcon, current: false },
+    { name: 'User Roles', href: route('admin.user-roles.index'), icon: ShieldCheckIcon, current: route().current('admin.user-roles.*') },
     { name: 'Affiliate Links', href: route('admin.affiliate-links.index'), icon: LinkIcon, current: route().current('admin.affiliate-links.*') },
     { name: 'Analytics', href: '#', icon: ChartBarIcon, current: false },
     { name: 'Settings', href: '#', icon: Cog6ToothIcon, current: false },
