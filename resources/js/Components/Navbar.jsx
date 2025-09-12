@@ -83,16 +83,16 @@ export default function Navbar({ auth }) {
             href: '/pizzas',
             hasSubmenu: false
         },
-        {
-            name: 'Styles',
-            href: '/styles',
-            hasSubmenu: false
-        },
-        {
-            name: 'Categories',
-            href: '/categories',
-            hasSubmenu: false
-        },
+        // {
+        //     name: 'Styles',
+        //     href: '/styles',
+        //     hasSubmenu: false
+        // },
+        // {
+        //     name: 'Categories',
+        //     href: '/categories',
+        //     hasSubmenu: false
+        // },
         {
             name: 'Contact',
             href: '/contact',
