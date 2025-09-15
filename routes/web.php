@@ -101,9 +101,9 @@ Route::middleware(['auth'])->group(function () {
             return Inertia::render('PizzaAmbassador/Dashboard');
         })->name('pizza-ambassador.dashboard');
         
-        Route::get('/brand-submissions/create', [BrandSubmissionController::class, 'create'])->name('brand-submissions.create');
-        Route::post('/brand-submissions', [BrandSubmissionController::class, 'store'])->name('brand-submissions.store');
-        Route::get('/brand-submissions/{brand}/success', [BrandSubmissionController::class, 'success'])->name('brand-submissions.success');
+        Route::get('/brand-submissions/create', [BrandController::class, 'submissionCreate'])->name('brand-submissions.create');
+        Route::post('/brand-submissions', [BrandController::class, 'submissionStore'])->name('brand-submissions.store');
+        Route::get('/brand-submissions/{brand}/success', [BrandController::class, 'submissionSuccess'])->name('brand-submissions.success');
         
         Route::get('/pizza-submissions/create', [PizzaSubmissionController::class, 'create'])->name('pizza-submissions.create');
         Route::post('/pizza-submissions', [PizzaSubmissionController::class, 'store'])->name('pizza-submissions.store');
@@ -122,6 +122,13 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('affiliate-links', AffiliateLinkController::class);
             Route::post('affiliate-links/update-order', [AffiliateLinkController::class, 'updateOrder'])->name('affiliate-links.update-order');
             Route::resource('user-roles', UserRoleController::class);
+            Route::get('brands', [BrandController::class, 'adminIndex'])->name('brands.index');
+            Route::get('brands/create', [BrandController::class, 'create'])->name('brands.create');
+            Route::post('brands', [BrandController::class, 'store'])->name('brands.store');
+            Route::get('brands/{brand}', [BrandController::class, 'adminShow'])->name('brands.show');
+            Route::get('brands/{brand}/edit', [BrandController::class, 'edit'])->name('brands.edit');
+            Route::put('brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
+            Route::delete('brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
         });
     });
 });

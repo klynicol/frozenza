@@ -12,6 +12,7 @@ export default function Create({ auth }) {
         name: '',
         description: '',
         website: '',
+        store_locator_url: '',
         founded_year: '',
         brand_story: '',
         unique_selling_points: [''],
@@ -26,6 +27,7 @@ export default function Create({ auth }) {
         formData.append('name', data.name);
         formData.append('description', data.description);
         formData.append('website', data.website);
+        formData.append('store_locator_url', data.store_locator_url);
         formData.append('founded_year', data.founded_year);
         formData.append('brand_story', data.brand_story);
         formData.append('unique_selling_points', JSON.stringify(data.unique_selling_points.filter(point => point.trim())));
@@ -121,6 +123,22 @@ export default function Create({ auth }) {
                                             onChange={(e) => setData('website', e.target.value)}
                                         />
                                         <InputError message={errors.website} className="mt-2" />
+                                    </div>
+
+                                    <div>
+                                        <InputLabel htmlFor="store_locator_url" value="Store Locator URL" />
+                                        <TextInput
+                                            id="store_locator_url"
+                                            type="url"
+                                            className="mt-1 block w-full"
+                                            value={data.store_locator_url}
+                                            onChange={(e) => setData('store_locator_url', e.target.value)}
+                                            placeholder="https://example.com/store-locator"
+                                        />
+                                        <p className="mt-1 text-sm text-gray-500">
+                                            Link to your brand's store locator page (optional)
+                                        </p>
+                                        <InputError message={errors.store_locator_url} className="mt-2" />
                                     </div>
 
                                     <div>

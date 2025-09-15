@@ -70,6 +70,7 @@ class Brand extends Model implements Sitemapable
         'social_media_handles',
         'brand_story',
         'founded_year',
+        'store_locator_url',
     ];
 
     protected $casts = [
