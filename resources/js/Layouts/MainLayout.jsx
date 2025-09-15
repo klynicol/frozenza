@@ -5,7 +5,7 @@ import MetaTags from '@/Components/SEO/MetaTags';
 import MessageNotification from '@/Components/Messages/MessageNotification';
 import PromotionalBanner from '@/Components/PromotionalBanner';
 
-export default function MainLayout({ children, meta, auth }) {
+export default function MainLayout({ children, meta, auth, showPromotionalBanner = true }) {
     const [notification, setNotification] = useState({
         message: '',
         sender: '',
@@ -39,7 +39,7 @@ export default function MainLayout({ children, meta, auth }) {
             <MetaTags {...meta} />
             <div className="min-h-screen bg-gray-100">
                 <Navbar auth={auth} />
-                <PromotionalBanner auth={auth} />
+                {showPromotionalBanner && <PromotionalBanner auth={auth} />}
                 <main className="container mx-auto px-4 py-8">
                     {children}
                 </main>

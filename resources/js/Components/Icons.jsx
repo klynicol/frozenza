@@ -109,3 +109,35 @@ export function WalmartIcon(props) {
    return (<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" {...props}><path fill="currentColor" d="m8.225 13.132l-4.776 2.217a1.22 1.22 0 0 0-.134 1.656c.384.655 1.056.968 1.5.706L9.134 14.7a.86.86 0 0 0 .031-1.066a.854.854 0 0 0-.94-.502m7.552.001c-.3-.118-.7.1-.942.505a.87.87 0 0 0 .026 1.06l4.315 3.018c.448.256 1.123-.055 1.507-.711s.309-1.4-.135-1.656zM12 15.271a.856.856 0 0 0-.906.556l-.466 5.235c0 .518.606.938 1.372.938s1.371-.42 1.371-.938l-.462-5.235a.86.86 0 0 0-.909-.556m2.835-4.904a.88.88 0 0 0 .942.509l4.776-2.221c.444-.262.51-.995.135-1.654s-1.059-.97-1.507-.714L14.866 9.3a.88.88 0 0 0-.026 1.07ZM4.819 6.289c-.448-.262-1.12.05-1.5.71a1.22 1.22 0 0 0 .134 1.656l4.772 2.215a.854.854 0 0 0 .94-.5a.86.86 0 0 0-.031-1.065ZM12 2c-.766 0-1.372.424-1.372.943l.472 5.234a.856.856 0 0 0 .9.556a.86.86 0 0 0 .909-.556l.462-5.234C13.372 2.424 12.762 2 12 2"></path></svg>);
 }
 
+// New icons for Navbar
+export function ChevronDownIcon(props) {
+   return (<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+   </svg>);
+}
+
+export function AdminDashboardIcon(props) {
+   return (<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5v14M16 5v14" />
+   </svg>);
+}
+
+export function AmbassadorDashboardIcon(props) {
+   return (<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+   </svg>);
+}
+
+export function SubmitBrandIcon(props) {
+   return (<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+   </svg>);
+}
+
+export function SubmitPizzaIcon(props) {
+   return (<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+   </svg>);
+}
+
