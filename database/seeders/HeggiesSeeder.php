@@ -43,7 +43,7 @@ class HeggiesSeeder extends Seeder
                 'images/logos/frozen/Heggies.png',
                 'heggies'
             );
-            $brand->image_id = $image->id;
+            $brand->image_id = $image->id ?? null;
             $brand->save();
         }
 

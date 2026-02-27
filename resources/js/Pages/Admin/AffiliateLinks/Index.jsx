@@ -5,10 +5,10 @@ import { PencilIcon, TrashIcon, PlusIcon, FunnelIcon } from '@heroicons/react/24
 import Pagination from '@/Components/Pagination';
 import MultiLevelPizzaDropdown from '@/Components/MultiLevelPizzaDropdown';
 
-export default function Index({ links, filters, pizzas }) {
+export default function Index({ links, filters, pizzas, affiliates = [] }) {
   const [filterForm, setFilterForm] = useState({
     pizza_id: filters.pizza_id || '',
-    vendor: filters.vendor || '',
+    affiliate_id: filters.affiliate_id || '',
   });
   const [showFilters, setShowFilters] = useState(Object.values(filters).some(Boolean));
 
@@ -35,7 +35,7 @@ export default function Index({ links, filters, pizzas }) {
   const resetFilters = () => {
     setFilterForm({
       pizza_id: '',
-      vendor: '',
+      affiliate_id: '',
     });
     router.get(route('admin.affiliate-links.index'));
   };
@@ -91,18 +91,21 @@ export default function Index({ links, filters, pizzas }) {
                         />
                       </div>
                       <div>
-                        <label htmlFor="vendor" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="affiliate_id" className="block text-sm font-medium text-gray-700">
                           Vendor
                         </label>
-                        <input
-                          type="text"
-                          name="vendor"
-                          id="vendor"
-                          value={filterForm.vendor}
+                        <select
+                          name="affiliate_id"
+                          id="affiliate_id"
+                          value={filterForm.affiliate_id}
                           onChange={handleFilterChange}
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                          placeholder="Enter vendor name"
-                        />
+                        >
+                          <option value="">All vendors</option>
+                          {affiliates.map((a) => (
+                            <option key={a.id} value={a.id}>{a.name}</option>
+                          ))}
+                        </select>
                       </div>
                       <div className="flex items-end space-x-2">
                         <button
