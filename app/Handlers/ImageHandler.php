@@ -131,4 +131,8 @@ class ImageHandler
          'size' => $fileSize,
       ];
    }
+
+   private static uploadClouflare(){
+      
+   }
 }
