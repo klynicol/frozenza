@@ -18,6 +18,11 @@ class LocalAdminSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // run the role seeder first
+        $this->call([
+            UserRoleSeeder::class,
+        ]);
         
         /**
          * This seeder is used to create a local admin user for testing purposes
