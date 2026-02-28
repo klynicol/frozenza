@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Facades\Log;
 
 class ImageHandler
 {
@@ -70,8 +71,15 @@ class ImageHandler
     */
    public static function createFromUrl(string $url, string $disk, string $path, string $newFileName = null): Image|null
    {
-      $image = file_get_contents($url);
+      try {
+         $image = file_get_contents($url);
+      } catch (\Exception $e) {
+         Log::error('Error downloading image from URL: ' . $url . ' - ' . $e->getMessage());
+         return null;
+      }
+
       if (!$image) {
+         Log::error('Error downloading image from URL: ' . $url . ' - Image is null');
          return null;
       }
 
@@ -130,5 +138,9 @@ class ImageHandler
          'height' => $height,
          'size' => $fileSize,
       ];
+   }
+
+   private static function uploadClouflare(){
+      
    }
 }

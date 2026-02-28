@@ -3,7 +3,7 @@ import { Head, Link, router } from '@inertiajs/react';
 import AdminLayout from '@/Layouts/AdminLayout';
 import Form from './Form';
 
-export default function Create({ pizzas }) {
+export default function Create({ pizzas, affiliates = [] }) {
   return (
     <AdminLayout>
       <Head title="Create Affiliate Link" />
@@ -24,6 +24,7 @@ export default function Create({ pizzas }) {
             <div className="p-6 bg-white border-b border-gray-200">
               <Form
                 pizzas={pizzas}
+                affiliates={affiliates}
                 submitLabel="Create"
                 onCancel={() => router.get(route('admin.affiliate-links.index'))}
               />

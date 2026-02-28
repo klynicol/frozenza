@@ -35,7 +35,7 @@ add('writable_dirs', []);
 
 // Hosts
 
-host('173.22.163.66')
+host('68.46.84.167')
     ->set('remote_user', 'mark')
     ->set('deploy_path', '/var/www/www.pizzakraken.com')
     ->set('branch', 'main');

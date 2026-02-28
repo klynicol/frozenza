@@ -67,6 +67,28 @@ class Review extends Model
         'flavor_rating' => 'float',
     ];
 
+
+    /**
+     * On create call for the overall rating based on the 3 differ
+     * rating fields.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->overall_rating = round(
+                ($model->appearance_rating + $model->texture_rating + $model->flavor_rating) / 3,
+                2
+            );
+        });
+        static::updating(function ($model) {
+            $model->overall_rating = round(
+                ($model->appearance_rating + $model->texture_rating + $model->flavor_rating) / 3,
+                2
+            );
+        });
+    }
+
     public function pizza(): BelongsTo
     {
         return $this->belongsTo(Pizza::class);

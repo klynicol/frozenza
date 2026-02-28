@@ -3,16 +3,17 @@ import { Head, Link, router } from '@inertiajs/react';
 import AdminLayout from '@/Layouts/AdminLayout';
 import Form from './Form';
 
-export default function Edit({ affiliateLink, pizzas }) {
+export default function Edit({ affiliateLink, pizzas, affiliates = [] }) {
+  const vendorName = affiliateLink.vendor_name || affiliateLink.affiliate?.name || 'Affiliate Link';
   return (
     <AdminLayout>
-      <Head title={`Edit Affiliate Link - ${affiliateLink.vendor_name}`} />
+      <Head title={`Edit Affiliate Link - ${vendorName}`} />
 
       <div className="py-6">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-2xl font-semibold text-gray-900">
-              Edit Affiliate Link - {affiliateLink.vendor_name}
+              Edit Affiliate Link - {vendorName}
             </h1>
             <Link
               href={route('admin.affiliate-links.index')}
@@ -27,6 +28,7 @@ export default function Edit({ affiliateLink, pizzas }) {
               <Form
                 affiliateLink={affiliateLink}
                 pizzas={pizzas}
+                affiliates={affiliates}
                 submitLabel="Update"
                 onCancel={() => router.get(route('admin.affiliate-links.index'))}
               />

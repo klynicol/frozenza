@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Affiliate;
 use App\Models\AffiliateLink;
 use App\Models\Pizza;
 use Illuminate\Http\Request;
@@ -18,16 +19,16 @@ class AffiliateLinkController extends Controller
      */
     public function index(Request $request): InertiaResponse
     {
-        $query = AffiliateLink::with('pizza.brand');
+        $query = AffiliateLink::with(['pizza.brand', 'affiliate']);
 
         // Filter by pizza if provided
         if ($request->has('pizza_id')) {
             $query->where('pizza_id', $request->pizza_id);
         }
 
-        // Filter by vendor if provided
-        if ($request->has('vendor')) {
-            $query->where('vendor_name', 'like', '%' . $request->vendor . '%');
+        // Filter by affiliate (vendor) if provided
+        if ($request->filled('affiliate_id')) {
+            $query->where('affiliate_id', $request->affiliate_id);
         }
 
         $links = $query->orderBy('pizza_id')
@@ -37,8 +38,9 @@ class AffiliateLinkController extends Controller
 
         return Inertia::render('Admin/AffiliateLinks/Index', [
             'links' => $links,
-            'filters' => $request->only(['pizza_id', 'vendor']),
+            'filters' => $request->only(['pizza_id', 'affiliate_id']),
             'pizzas' => Pizza::select('id', 'name', 'brand_id')->with('brand:id,name')->orderBy('name')->get(),
+            'affiliates' => Affiliate::orderBy('display_order')->orderBy('name')->get(['id', 'name']),
         ]);
     }
 
@@ -54,6 +56,7 @@ class AffiliateLinkController extends Controller
                 ->with('brand:id,name')
                 ->orderBy('name')
                 ->get(),
+            'affiliates' => Affiliate::where('is_active', true)->orderBy('display_order')->orderBy('name')->get(['id', 'name']),
         ]);
     }
 
@@ -64,7 +67,7 @@ class AffiliateLinkController extends Controller
     {
         $validated = $request->validate([
             'pizza_id' => 'required|exists:pizzas,id',
-            'vendor_name' => 'required|string|max:100',
+            'affiliate_id' => 'required|exists:affiliates,id',
             'url' => 'required|url|max:2000',
             'commission_rate' => 'nullable|numeric|min:0|max:100',
             'description' => 'nullable|string|max:255',
@@ -83,12 +86,15 @@ class AffiliateLinkController extends Controller
      */
     public function edit(AffiliateLink $affiliateLink): InertiaResponse
     {
+        $affiliateLink->load('affiliate');
+
         return Inertia::render('Admin/AffiliateLinks/Edit', [
             'affiliateLink' => $affiliateLink,
-            'pizzas' => Pizza::select('id', 'name')
+            'pizzas' => Pizza::select('id', 'name', 'brand_id')
                 ->with('brand:id,name')
                 ->orderBy('name')
                 ->get(),
+            'affiliates' => Affiliate::where('is_active', true)->orderBy('display_order')->orderBy('name')->get(['id', 'name']),
         ]);
     }
 
@@ -99,7 +105,7 @@ class AffiliateLinkController extends Controller
     {
         $validated = $request->validate([
             'pizza_id' => 'required|exists:pizzas,id',
-            'vendor_name' => 'required|string|max:100',
+            'affiliate_id' => 'required|exists:affiliates,id',
             'url' => 'required|url|max:2000',
             'commission_rate' => 'nullable|numeric|min:0|max:100',
             'description' => 'nullable|string|max:255',

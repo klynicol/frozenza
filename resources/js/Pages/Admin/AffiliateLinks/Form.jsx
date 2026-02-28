@@ -6,10 +6,10 @@ import TextInput from '@/Components/TextInput';
 import Checkbox from '@/Components/Checkbox';
 import MultiLevelPizzaDropdown from '@/Components/MultiLevelPizzaDropdown';
 
-export default function Form({ affiliateLink = null, pizzas, submitLabel = 'Save', onCancel }) {
+export default function Form({ affiliateLink = null, pizzas, affiliates = [], submitLabel = 'Save', onCancel }) {
   const { data, setData, post, put, processing, errors } = useForm({
     pizza_id: affiliateLink?.pizza_id || '',
-    vendor_name: affiliateLink?.vendor_name || '',
+    affiliate_id: affiliateLink?.affiliate_id || '',
     url: affiliateLink?.url || '',
     commission_rate: affiliateLink?.commission_rate || '',
     description: affiliateLink?.description || '',
@@ -48,17 +48,21 @@ export default function Form({ affiliateLink = null, pizzas, submitLabel = 'Save
       </div>
 
       <div>
-        <InputLabel htmlFor="vendor_name" value="Vendor Name" />
-        <TextInput
-          id="vendor_name"
-          type="text"
-          name="vendor_name"
-          value={data.vendor_name}
-          className="mt-1 block w-full"
-          onChange={(e) => setData('vendor_name', e.target.value)}
+        <InputLabel htmlFor="affiliate_id" value="Affiliate (Vendor)" />
+        <select
+          id="affiliate_id"
+          name="affiliate_id"
+          value={data.affiliate_id}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          onChange={(e) => setData('affiliate_id', e.target.value)}
           required
-        />
-        <InputError message={errors.vendor_name} className="mt-2" />
+        >
+          <option value="">Select an affiliate</option>
+          {affiliates.map((a) => (
+            <option key={a.id} value={a.id}>{a.name}</option>
+          ))}
+        </select>
+        <InputError message={errors.affiliate_id} className="mt-2" />
       </div>
 
       <div>

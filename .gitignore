@@ -21,6 +21,9 @@ yarn-error.log
 /.vscode
 /.zed
 
+/bootstrap/ssr/
 
 /public/images
 /database_dumps
+
+sitemap.xml

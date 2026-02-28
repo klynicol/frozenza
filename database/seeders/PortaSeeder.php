@@ -32,7 +32,7 @@ class PortaSeeder extends Seeder
                 'images/logos/frozen',
                 'Porta' // name - no extension
             );
-            $brand->image_id = $image->id;
+            $brand->image_id = $image->id ?? null;
             $brand->save();
         }
 
