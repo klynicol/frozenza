@@ -62,7 +62,7 @@ Route::get('/pizzas/list', [PizzaController::class, 'list'])->name('pizzas.list'
 
 // Brand routes
 Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');
-Route::get('/brands/{brand:slug}/pizzas', [BrandController::class, 'show'])->name('brands.show');
+Route::get('/brands/{brand:slug}/pizzas', [BrandController::class, 'show'])->name('brands.pizzas.show');
 Route::get('/brands/{brand:slug}', [BrandController::class, 'show'])->name('brands.show');
 
 // Style routes
