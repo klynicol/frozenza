@@ -84,7 +84,7 @@ export default function Dashboard({ auth }) {
                                             <li>• Select the correct brand</li>
                                             <li>• List all ingredients accurately</li>
                                             <li>• Include allergen information</li>
-                                            <li>• Add relevant tags and categories</li>
+                                            <li>• Add relevant tags</li>
                                         </ul>
                                     </div>
                                 </div>

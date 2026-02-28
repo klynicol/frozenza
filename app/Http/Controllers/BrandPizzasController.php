@@ -9,7 +9,7 @@ class BrandPizzasController extends Controller
 {
     public function index(Brand $brand)
     {
-        $pizzas = $brand->pizzas()->with('style', 'categories')->paginate(12);
+        $pizzas = $brand->pizzas()->paginate(12);
 
         return Inertia::render('Pizzas/Index', [
             'pizzas' => $pizzas,

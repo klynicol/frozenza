@@ -4,7 +4,6 @@ use App\Http\Controllers\{
     ProfileController,
     PizzaController,
     BrandController,
-    CategoryController,
     ReviewController,
     MessageController,
     BlogPostController,
@@ -63,11 +62,6 @@ Route::get('/pizzas/list', [PizzaController::class, 'list'])->name('pizzas.list'
 Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');
 Route::get('/brands/{brand:slug}/pizzas', [BrandController::class, 'show'])->name('brands.pizzas.show');
 Route::get('/brands/{brand:slug}', [BrandController::class, 'show'])->name('brands.show');
-
-// Category routes
-Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
-
 
 // Authenticated routes
 Route::middleware(['auth'])->group(function () {

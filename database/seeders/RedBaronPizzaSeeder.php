@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Pizza;
 use App\Models\Brand;
-use App\Models\Category;
 use App\Models\Tag;
 
 class RedBaronPizzaSeeder extends Seeder
@@ -46,7 +45,6 @@ class RedBaronPizzaSeeder extends Seeder
             'tags' => ['Cheesy', 'Pepperoni', 'Classic'],
             'image_url' => 'https://example.com/red-baron-pepperoni.jpg',
         ])
-            ->categories()->attach(Category::where('slug', 'pizza')->first())
             ->tags()->attach(Tag::where('slug', 'cheesy')->first())
             ->tags()->attach(Tag::where('slug', 'pepperoni')->first())
             ->tags()->attach(Tag::where('slug', 'classic')->first());

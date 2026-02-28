@@ -7,7 +7,7 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 
-export default function Create({ brands, categories, tags }) {
+export default function Create({ brands, tags, auth}) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         description: '',
@@ -16,7 +16,6 @@ export default function Create({ brands, categories, tags }) {
         allergens: '',
         website: '',
         tags: [],
-        categories: [],
         pizza_image: null,
     });
 
@@ -31,7 +30,6 @@ export default function Create({ brands, categories, tags }) {
         formData.append('allergens', data.allergens);
         formData.append('website', data.website);
         formData.append('tags', JSON.stringify(data.tags));
-        formData.append('categories', JSON.stringify(data.categories));
         if (data.pizza_image) {
             formData.append('pizza_image', data.pizza_image);
         }
@@ -64,15 +62,8 @@ export default function Create({ brands, categories, tags }) {
         setData('tags', newTags);
     };
 
-    const handleCategoryChange = (categoryId) => {
-        const newCategories = data.categories.includes(categoryId)
-            ? data.categories.filter(id => id !== categoryId)
-            : [...data.categories, categoryId];
-        setData('categories', newCategories);
-    };
-
     return (
-        <MainLayout>
+        <MainLayout auth={auth}>
             <Head title="Submit New Pizza" />
 
             <div className="py-12">
@@ -194,25 +185,6 @@ export default function Create({ brands, categories, tags }) {
                                             placeholder="e.g., Contains: Milk, Wheat, Soy. May contain: Tree nuts"
                                         />
                                         <InputError message={errors.allergens} className="mt-2" />
-                                    </div>
-                                </div>
-
-                                {/* Categories */}
-                                <div className="space-y-4">
-                                    <h3 className="text-lg font-semibold text-gray-700">Categories</h3>
-                                    
-                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                                        {categories.map((category) => (
-                                            <label key={category.id} className="flex items-center space-x-2">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={data.categories.includes(category.id)}
-                                                    onChange={() => handleCategoryChange(category.id)}
-                                                    className="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                                />
-                                                <span className="text-sm text-gray-700">{category.name}</span>
-                                            </label>
-                                        ))}
                                     </div>
                                 </div>
 

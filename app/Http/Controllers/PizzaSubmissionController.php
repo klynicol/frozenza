@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Pizza;
 use App\Models\Brand;
-use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Image;
 use App\Handlers\ImageHandler;
@@ -18,12 +17,10 @@ class PizzaSubmissionController extends Controller
     public function create()
     {
         $brands = Brand::orderBy('name')->get(['id', 'name']);
-        $categories = Category::orderBy('name')->get(['id', 'name']);
-        $tags = Tag::orderBy('name')->get(['id', 'name']);
+        $tags = Tag::orderBy('slug')->get(['id', 'slug']);
 
         return Inertia::render('PizzaSubmission/Create', [
             'brands' => $brands,
-            'categories' => $categories,
             'tags' => $tags,
         ]);
     }
@@ -40,8 +37,6 @@ class PizzaSubmissionController extends Controller
             'website' => 'nullable|url|max:255',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
-            'categories' => 'nullable|array',
-            'categories.*' => 'exists:categories,id',
             'pizza_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -65,11 +60,6 @@ class PizzaSubmissionController extends Controller
         // Attach tags if provided
         if ($request->has('tags')) {
             $pizza->tags()->attach($request->tags);
-        }
-
-        // Attach categories if provided
-        if ($request->has('categories')) {
-            $pizza->categories()->attach($request->categories);
         }
 
         return redirect()->route('pizza-submissions.success', $pizza)

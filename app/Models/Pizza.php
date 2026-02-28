@@ -31,8 +31,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string|null $website
  * @property string|null $allergens
  * @property-read \App\Models\Brand $brand
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Category> $categories
- * @property-read int|null $categories_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Image> $images
  * @property-read int|null $images_count
  * @property-read \App\Models\NutritionFact|null $nutritionFact
@@ -93,11 +91,6 @@ class Pizza extends Model implements Sitemapable
     public function nutritionFact(): HasOne
     {
         return $this->hasOne(NutritionFact::class);
-    }
-
-    public function categories(): BelongsToMany
-    {
-        return $this->belongsToMany(Category::class);
     }
 
     public function reviews(): HasMany
