@@ -39,11 +39,14 @@ export default function NutritionFact({ nutritionFact }) {
    return (
       <div className="w-[300px] border p-4 max-w-xs mx-auto">
          <h2 className="text-xl font-bold border-b pb-1 mb-2">Nutrition Facts</h2>
-         {nutritionFact.serving_per_container && (
-            <p className="text-sm">{nutritionFact.serving_per_container}</p>
+         {nutritionFact.serving_per_container != null && (
+            <p className="text-sm">{nutritionFact.serving_per_container} {nutritionFact.serving_per_container === 1 ? 'serving' : 'servings'} per container</p>
          )}
-         {nutritionFact.serving_size && (
-            <p className="text-sm font-semibold"><strong>Serving size</strong> {nutritionFact.serving_size}</p>
+         {(nutritionFact.serving_fraction || nutritionFact.serving_weight != null) && (
+            <p className="text-sm font-semibold">
+               <strong>Serving size</strong>{' '}
+               {[nutritionFact.serving_fraction && `${nutritionFact.serving_fraction} pizza`, nutritionFact.serving_weight != null && `(${nutritionFact.serving_weight}g)`].filter(Boolean).join(' ')}
+            </p>
          )}
          <hr className="my-2" />
          {nutritionFact.calories && (

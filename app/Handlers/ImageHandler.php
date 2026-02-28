@@ -41,10 +41,10 @@ class ImageHandler
    /**
     * Create an image from an existing file on the given disk
     */
-   public static function createFromExistingFile(string $disk, string $filePath, array $details = []): Image
+   public static function createFromExistingFile(string $disk, string $filePath, array $details = []): Image|null
    {
       if (!Storage::disk($disk)->exists($filePath)) {
-         throw new \Exception("File does not exist at path: {$filePath}");
+         return null;
       }
 
       if (empty($details)) {

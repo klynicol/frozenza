@@ -65,7 +65,7 @@ great tasting product, but also a product that was developed at a lower cost.
             }
             $image = ImageHandler::createFromExistingFile('public', "images/logos/frozen/{$brandData['image_name']}");
             unset($brandData['image_name']);
-            $brandData['image_id'] = $image->id;
+            $brandData['image_id'] = $image?->id ?? null;
             Brand::create($brandData);
         }
 

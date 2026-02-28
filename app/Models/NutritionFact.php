@@ -2,18 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Base\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 /**
- * 
- *
  * @property string $id
  * @property string $pizza_id
- * @property string $serving_per_container
- * @property string $serving_size
+ * @property int|null $serving_per_container
+ * @property string|null $serving_fraction
+ * @property int|null $serving_weight
  * @property int $calories
  * @property string $total_fat
  * @property string|null $saturated_fat
@@ -54,7 +53,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereProtein($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereSaturatedFat($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereServingPerContainer($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereServingSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereServingFraction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereServingWeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereSodium($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereTotalCarbohydrate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereTotalFat($value)
@@ -66,15 +66,17 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereVitaminD($value)
  * @mixin \Eloquent
  */
-class NutritionFact extends Model
+class NutritionFact extends BaseModel
 {
     use HasFactory, HasUuids;
     
     protected $fillable = [
         'pizza_id',
         'serving_per_container',
-        'serving_size',
+        'serving_fraction',
+        'serving_weight',
         'calories',
+        'caloris_from_fat',
         'total_fat',
         'saturated_fat',
         'trans_fat',
@@ -97,6 +99,8 @@ class NutritionFact extends Model
 
     protected $casts = [
         'calories' => 'integer',
+        'serving_per_container' => 'integer',
+        'serving_weight' => 'integer',
     ];
 
     public function pizza(): BelongsTo

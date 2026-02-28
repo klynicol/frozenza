@@ -23,7 +23,8 @@ export default function Create({ brands, tags, auth, meta }) {
         pizza_image: null,
         nutrition: {
             serving_per_container: '',
-            serving_size: '',
+            serving_fraction: '',
+            serving_weight: '',
             calories: '',
             total_fat: '',
             saturated_fat: '',
@@ -190,32 +191,46 @@ export default function Create({ brands, tags, auth, meta }) {
                                 {/* Nutritional Information */}
                                 <div className="space-y-4">
                                     <h3 className="text-lg font-semibold text-gray-700">Nutritional Information</h3>
-                                    <p className="text-sm text-gray-500">Optional. Per serving, as shown on the package (e.g., 1/4 pizza, 141g).</p>
+                                    <p className="text-sm text-gray-500">Optional. Per serving, as shown on the package (e.g., 4 per container, 1/4 pizza, 141g).</p>
                                     
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
                                             <InputLabel htmlFor="serving_per_container" value="Serving per container" />
                                             <TextInput
                                                 id="serving_per_container"
-                                                type="text"
+                                                type="number"
+                                                min="1"
                                                 className="mt-1 block w-full"
-                                                value={data.nutrition.serving_per_container}
-                                                onChange={(e) => setNutrition('serving_per_container', e.target.value)}
-                                                placeholder="e.g., 4 servings per container"
+                                                value={data.nutrition.serving_per_container === '' ? '' : data.nutrition.serving_per_container}
+                                                onChange={(e) => setNutrition('serving_per_container', e.target.value === '' ? '' : parseInt(e.target.value, 10) || '')}
+                                                placeholder="e.g., 4"
                                             />
                                             <InputError message={errors['nutrition.serving_per_container']} className="mt-2" />
                                         </div>
                                         <div>
-                                            <InputLabel htmlFor="serving_size" value="Serving size" />
+                                            <InputLabel htmlFor="serving_fraction" value="Serving fraction" />
                                             <TextInput
-                                                id="serving_size"
+                                                id="serving_fraction"
                                                 type="text"
                                                 className="mt-1 block w-full"
-                                                value={data.nutrition.serving_size}
-                                                onChange={(e) => setNutrition('serving_size', e.target.value)}
-                                                placeholder="e.g., 1/4 pizza (141 g)"
+                                                value={data.nutrition.serving_fraction}
+                                                onChange={(e) => setNutrition('serving_fraction', e.target.value)}
+                                                placeholder="e.g., 1/4 or 1/6"
                                             />
-                                            <InputError message={errors['nutrition.serving_size']} className="mt-2" />
+                                            <InputError message={errors['nutrition.serving_fraction']} className="mt-2" />
+                                        </div>
+                                        <div>
+                                            <InputLabel htmlFor="serving_weight" value="Serving weight (g)" />
+                                            <TextInput
+                                                id="serving_weight"
+                                                type="number"
+                                                min="0"
+                                                className="mt-1 block w-full"
+                                                value={data.nutrition.serving_weight === '' ? '' : data.nutrition.serving_weight}
+                                                onChange={(e) => setNutrition('serving_weight', e.target.value === '' ? '' : parseInt(e.target.value, 10) ?? '')}
+                                                placeholder="e.g., 141"
+                                            />
+                                            <InputError message={errors['nutrition.serving_weight']} className="mt-2" />
                                         </div>
                                     </div>
 

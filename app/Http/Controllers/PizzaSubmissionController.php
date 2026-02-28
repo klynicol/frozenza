@@ -47,8 +47,9 @@ class PizzaSubmissionController extends Controller
             'tags.*' => 'exists:tags,id',
             'pizza_image' => ['nullable', File::types(['jpg', 'jpeg', 'png', 'gif'])->max('100mb')],
             'nutrition' => 'nullable|array',
-            'nutrition.serving_per_container' => 'nullable|string|max:255',
-            'nutrition.serving_size' => 'nullable|string|max:255',
+            'nutrition.serving_per_container' => 'nullable|integer|min:1',
+            'nutrition.serving_fraction' => 'nullable|string|max:20',
+            'nutrition.serving_weight' => 'nullable|integer|min:0',
             'nutrition.calories' => 'nullable',
             'nutrition.total_fat' => 'nullable|string|max:10',
             'nutrition.saturated_fat' => 'nullable|string|max:10',
@@ -109,8 +110,9 @@ class PizzaSubmissionController extends Controller
         if ($nutritionFilled) {
             $nutritionData = array_filter([
                 'pizza_id' => $pizza->id,
-                'serving_per_container' => $nutrition['serving_per_container'] ?? null,
-                'serving_size' => $nutrition['serving_size'] ?? null,
+                'serving_per_container' => isset($nutrition['serving_per_container']) && $nutrition['serving_per_container'] !== '' ? (int) $nutrition['serving_per_container'] : null,
+                'serving_fraction' => $nutrition['serving_fraction'] ?? null,
+                'serving_weight' => isset($nutrition['serving_weight']) && $nutrition['serving_weight'] !== '' ? (int) $nutrition['serving_weight'] : null,
                 'calories' => isset($nutrition['calories']) && $nutrition['calories'] !== '' ? (int) $nutrition['calories'] : null,
                 'total_fat' => $nutrition['total_fat'] ?? null,
                 'saturated_fat' => $nutrition['saturated_fat'] ?? null,
@@ -131,9 +133,10 @@ class PizzaSubmissionController extends Controller
                 'vitamin_a' => $nutrition['vitamin_a'] ?? null,
                 'vitamin_c' => $nutrition['vitamin_c'] ?? null,
             ], fn ($v) => $v !== null && $v !== '');
-            // Only create if we have required fields (serving_per_container, serving_size, calories, total_fat, total_carbohydrate, protein)
-            $required = ['serving_per_container', 'serving_size', 'calories', 'total_fat', 'total_carbohydrate', 'protein'];
-            $hasRequired = count(array_intersect_key(array_flip($required), $nutritionData)) === count($required);
+            // Only create if we have required fields (serving_per_container, serving_fraction or serving_weight, calories, total_fat, total_carbohydrate, protein)
+            $required = ['serving_per_container', 'calories', 'total_fat', 'total_carbohydrate', 'protein'];
+            $hasRequired = count(array_intersect_key(array_flip($required), $nutritionData)) === count($required)
+                && (!empty($nutritionData['serving_fraction']) || isset($nutritionData['serving_weight']));
             if ($hasRequired) {
                 NutritionFact::create($nutritionData);
             }
