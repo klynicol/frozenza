@@ -7,7 +7,11 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 
+const MAX_IMAGE_SIZE_MB = 100;
+const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * 1024 * 1024;
+
 export default function Create({ brands, tags, auth, meta }) {
+    const [imageSizeError, setImageSizeError] = useState(null);
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         description: '',
@@ -462,12 +466,20 @@ export default function Create({ brands, tags, auth, meta }) {
                                             type="file"
                                             className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
                                             accept="image/*"
-                                            onChange={(e) => setData('pizza_image', e.target.files[0])}
+                                            onChange={(e) => {
+                                                const file = e.target.files?.[0];
+                                                setData('pizza_image', file || null);
+                                                if (file && file.size > MAX_IMAGE_SIZE_BYTES) {
+                                                    setImageSizeError(`File is too large. Maximum size is ${MAX_IMAGE_SIZE_MB} MB.`);
+                                                } else {
+                                                    setImageSizeError(null);
+                                                }
+                                            }}
                                         />
                                         <p className="mt-1 text-sm text-gray-500">
                                             Accepted formats: JPEG, PNG, JPG, GIF. Max size: 2MB.
                                         </p>
-                                        <InputError message={errors.pizza_image} className="mt-2" />
+                                        <InputError message={imageSizeError || errors.pizza_image} className="mt-2" />
                                     </div>
                                 </div>
 
@@ -475,12 +487,15 @@ export default function Create({ brands, tags, auth, meta }) {
                                 <div className="flex items-center justify-end space-x-4 pt-6">
                                     <SecondaryButton
                                         type="button"
-                                        onClick={() => reset()}
+                                        onClick={() => {
+                                            reset();
+                                            setImageSizeError(null);
+                                        }}
                                         disabled={processing}
                                     >
                                         Reset Form
                                     </SecondaryButton>
-                                    <PrimaryButton disabled={processing}>
+                                    <PrimaryButton disabled={processing || !!imageSizeError}>
                                         {processing ? 'Submitting...' : 'Submit Pizza'}
                                     </PrimaryButton>
                                 </div>
