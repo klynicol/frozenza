@@ -7,6 +7,10 @@ require 'recipe/laravel.php';
 
 set('repository', 'git@github.com:klynicol/frozenza.git');
 
+// Windows: SSH multiplexing causes "getsockname failed: Not a socket"
+set('ssh_multiplexing', false);
+set('git_tty', false);
+
 // React
 task('npm:install', function () {
     run('cd {{release_path}} && npm install');
