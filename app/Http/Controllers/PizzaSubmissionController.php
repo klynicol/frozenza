@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\Image;
 use App\Models\NutritionFact;
 use App\Handlers\ImageHandler;
+use App\Enums\PizzaImageType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\File;
@@ -69,7 +70,7 @@ class PizzaSubmissionController extends Controller
             'nutrition.vitamin_c' => 'nullable|string|max:10',
         ], [
             'pizza_image.max' => 'The pizza image must not be larger than 100 MB.',
-            'pizza_image.uploaded' => 'The pizza image could not be uploaded. It may be too large (max 2 MB) or the connection was interrupted. Please try a smaller image.',
+            'pizza_image.uploaded' => 'The pizza image could not be uploaded. It may be too large (max 100 MB) or the connection was interrupted. Please try a smaller image.',
             'pizza_image.image' => 'The pizza image must be an image (JPEG, PNG, JPG, or GIF).',
             'pizza_image.mimes' => 'The pizza image must be a JPEG, PNG, JPG, or GIF.',
         ]);
@@ -82,14 +83,17 @@ class PizzaSubmissionController extends Controller
         // Generate slug from name and brand
         $brand = Brand::find($request->brand_id);
         $pizzaData['slug'] = Str::slug($brand->slug . '-' . $request->name);
+
+        $pizza = Pizza::create($pizzaData);
         
         // Handle pizza image upload if provided
         if ($request->hasFile('pizza_image')) {
             $image = ImageHandler::upload($request->file('pizza_image'));
-            $pizzaData['image_url'] = $image->id; // We'll use image_id instead
+            $pizza->images()->attach($image, [
+                'image_id' => $image->id,
+                'type' => PizzaImageType::MAIN
+            ]);
         }
-
-        $pizza = Pizza::create($pizzaData);
 
         // Attach tags if provided
         if ($request->has('tags')) {
