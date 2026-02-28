@@ -6,6 +6,7 @@ use App\Models\Pizza;
 use App\Models\Brand;
 use App\Models\Tag;
 use App\Models\Image;
+use App\Models\NutritionFact;
 use App\Handlers\ImageHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -37,17 +38,38 @@ class PizzaSubmissionController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
             'brand_id' => 'required|exists:brands,id',
-            'ingredients' => 'nullable|array',
-            'ingredients.*' => 'string|max:255',
+            'ingredients' => 'nullable|string|max:5000',
             'allergens' => 'nullable|string|max:500',
             'website' => 'nullable|url|max:255',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
             'pizza_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nutrition' => 'nullable|array',
+            'nutrition.serving_per_container' => 'nullable|string|max:255',
+            'nutrition.serving_size' => 'nullable|string|max:255',
+            'nutrition.calories' => 'nullable',
+            'nutrition.total_fat' => 'nullable|string|max:10',
+            'nutrition.saturated_fat' => 'nullable|string|max:10',
+            'nutrition.trans_fat' => 'nullable|string|max:10',
+            'nutrition.cholesterol' => 'nullable|string|max:10',
+            'nutrition.sodium' => 'nullable|string|max:10',
+            'nutrition.total_carbohydrate' => 'nullable|string|max:10',
+            'nutrition.dietary_fiber' => 'nullable|string|max:10',
+            'nutrition.total_sugars' => 'nullable|string|max:10',
+            'nutrition.added_sugars' => 'nullable|string|max:10',
+            'nutrition.protein' => 'nullable|string|max:10',
+            'nutrition.vitamin_d' => 'nullable|string|max:10',
+            'nutrition.calcium' => 'nullable|string|max:10',
+            'nutrition.iron' => 'nullable|string|max:10',
+            'nutrition.potassium' => 'nullable|string|max:10',
+            'nutrition.monounsaturated_fat' => 'nullable|string|max:10',
+            'nutrition.polyunsaturated_fat' => 'nullable|string|max:10',
+            'nutrition.vitamin_a' => 'nullable|string|max:10',
+            'nutrition.vitamin_c' => 'nullable|string|max:10',
         ]);
 
         $pizzaData = $request->only([
-            'name', 'description', 'brand_id', 
+            'name', 'description', 'brand_id',
             'ingredients', 'allergens', 'website'
         ]);
 
@@ -66,6 +88,45 @@ class PizzaSubmissionController extends Controller
         // Attach tags if provided
         if ($request->has('tags')) {
             $pizza->tags()->attach($request->tags);
+        }
+
+        // Create nutrition facts if provided
+        $nutrition = $request->input('nutrition', []);
+        if (is_string($nutrition)) {
+            $nutrition = json_decode($nutrition, true) ?? [];
+        }
+        $nutritionFilled = collect($nutrition)->filter(fn ($v) => $v !== null && $v !== '')->isNotEmpty();
+        if ($nutritionFilled) {
+            $nutritionData = array_filter([
+                'pizza_id' => $pizza->id,
+                'serving_per_container' => $nutrition['serving_per_container'] ?? null,
+                'serving_size' => $nutrition['serving_size'] ?? null,
+                'calories' => isset($nutrition['calories']) && $nutrition['calories'] !== '' ? (int) $nutrition['calories'] : null,
+                'total_fat' => $nutrition['total_fat'] ?? null,
+                'saturated_fat' => $nutrition['saturated_fat'] ?? null,
+                'trans_fat' => $nutrition['trans_fat'] ?? null,
+                'cholesterol' => $nutrition['cholesterol'] ?? null,
+                'sodium' => $nutrition['sodium'] ?? null,
+                'total_carbohydrate' => $nutrition['total_carbohydrate'] ?? null,
+                'dietary_fiber' => $nutrition['dietary_fiber'] ?? null,
+                'total_sugars' => $nutrition['total_sugars'] ?? null,
+                'added_sugars' => $nutrition['added_sugars'] ?? null,
+                'protein' => $nutrition['protein'] ?? null,
+                'vitamin_d' => $nutrition['vitamin_d'] ?? null,
+                'calcium' => $nutrition['calcium'] ?? null,
+                'iron' => $nutrition['iron'] ?? null,
+                'potassium' => $nutrition['potassium'] ?? null,
+                'monounsaturated_fat' => $nutrition['monounsaturated_fat'] ?? null,
+                'polyunsaturated_fat' => $nutrition['polyunsaturated_fat'] ?? null,
+                'vitamin_a' => $nutrition['vitamin_a'] ?? null,
+                'vitamin_c' => $nutrition['vitamin_c'] ?? null,
+            ], fn ($v) => $v !== null && $v !== '');
+            // Only create if we have required fields (serving_per_container, serving_size, calories, total_fat, total_carbohydrate, protein)
+            $required = ['serving_per_container', 'serving_size', 'calories', 'total_fat', 'total_carbohydrate', 'protein'];
+            $hasRequired = count(array_intersect_key(array_flip($required), $nutritionData)) === count($required);
+            if ($hasRequired) {
+                NutritionFact::create($nutritionData);
+            }
         }
 
         return redirect()->route('pizza-submissions.success', $pizza)

@@ -72,8 +72,8 @@ class NutritionFact extends Model
     
     protected $fillable = [
         'pizza_id',
+        'serving_per_container',
         'serving_size',
-        'serving_unit',
         'calories',
         'total_fat',
         'saturated_fat',
@@ -96,7 +96,7 @@ class NutritionFact extends Model
     ];
 
     protected $casts = [
-        'tags' => 'array',
+        'calories' => 'integer',
     ];
 
     public function pizza(): BelongsTo
