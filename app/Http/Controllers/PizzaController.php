@@ -88,7 +88,7 @@ class PizzaController extends Controller
             'title' => "{$pizza->name} by {$brandName}",
             'description' => "Read reviews and ratings for {$pizza->name} frozen pizza by {$brandName}. Find out where to buy and what others think about this {$tags} pizza.",
             'keywords' => "{$pizza->name}, frozen pizza, pizza reviews, pizza ratings, best frozen pizzas, frozen pizza brands, frozen pizza guide, frozen pizza ingredients, pizza comparison",
-            'canonicalUrl' => "/pizzas/{$pizza->slug}",
+            'canonicalUrl' => "/pizzas/{$brand->slug}/{$pizza->slug}",
         ]);
 
         return Inertia::render('Pizzas/Show', [

@@ -77,6 +77,7 @@ class Brand extends Model implements Sitemapable
         'seo_faq_questions' => 'array',
         'seo_keywords' => 'array',
         'social_media_handles' => 'array',
+        'unique_selling_points' => 'array',
     ];
 
     public function pizzas(): HasMany

@@ -52,7 +52,7 @@ export default function SchemaMarkup({ type, data }) {
         name: brand.name,
         description: brand.description,
         url: brand.website,
-        image: getImageUrl(brand.image),
+        image: brand?.image ? getImageUrl(brand.image) : undefined,
     });
 
     const generateReviewSchema = (review) => ({

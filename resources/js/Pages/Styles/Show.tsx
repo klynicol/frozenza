@@ -25,7 +25,7 @@ export default function StyleShow({ style, meta, auth }: StyleShowProps) {
                 {style.pizzas.map((pizza) => (
                     <Link 
                         key={pizza.id}
-                        href={`/pizzas/${pizza.slug}`}
+                        href={`/pizzas/${pizza.brand.slug}/${pizza.slug}`}
                         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                     >
                         {pizza.image_url && (
