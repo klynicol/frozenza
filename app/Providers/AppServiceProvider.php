@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Force Inertia SSR off when local so the app uses client-only rendering (avoids hydration errors and missing chunk 404s).
+        if (app()->environment('local')) {
+            Config::set('inertia.ssr.enabled', false);
+        }
+
         Vite::prefetch(concurrency: 3);
 
         DB::listen(function ($query) {

@@ -22,6 +22,12 @@ class PizzaSubmissionController extends Controller
         return Inertia::render('PizzaSubmission/Create', [
             'brands' => $brands,
             'tags' => $tags,
+            'meta' => [
+                'title' => 'Submit New Pizza',
+                'description' => 'Submit a new frozen pizza to Frozenza.',
+                'canonicalUrl' => '/' . request()->path(),
+                'keywords' => 'submit pizza, frozen pizza, add pizza',
+            ],
         ]);
     }
 

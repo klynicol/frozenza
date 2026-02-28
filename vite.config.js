@@ -7,7 +7,7 @@ export default defineConfig({
         laravel({
             input: 'resources/js/app.jsx',
             refresh: true,
-            ssr: 'resources/js/ssr.js',
+            // SSR disabled for local dev. To use SSR in production, add back: ssr: 'resources/js/ssr.js'
         }),
         react(),
     ],

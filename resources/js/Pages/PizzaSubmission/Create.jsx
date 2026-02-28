@@ -7,7 +7,7 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 
-export default function Create({ brands, tags, auth}) {
+export default function Create({ brands, tags, auth, meta }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         description: '',
@@ -63,7 +63,7 @@ export default function Create({ brands, tags, auth}) {
     };
 
     return (
-        <MainLayout auth={auth}>
+        <MainLayout meta={meta} auth={auth}>
             <Head title="Submit New Pizza" />
 
             <div className="py-12">
