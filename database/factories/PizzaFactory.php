@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Pizza;
 use App\Models\Brand;
-use App\Models\Style;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -17,7 +16,6 @@ class PizzaFactory extends Factory
         $name = $this->faker->words(3, true);
         return [
             'brand_id' => Brand::factory(),
-            'style_id' => Style::factory(),
             'name' => $name,
             'slug' => Str::slug($name),
             'description' => $this->faker->paragraph(),

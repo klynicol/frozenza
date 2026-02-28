@@ -13,10 +13,6 @@ export default function SchemaMarkup({ type, data }) {
             '@type': 'Brand',
             name: pizza.brand.name,
         },
-        style: {
-            '@type': 'ProductModel',
-            name: pizza?.style?.name || undefined,
-        },
         aggregateRating: pizza.total_reviews > 0 ? {
             '@type': 'AggregateRating',
             ratingValue: pizza.average_rating,

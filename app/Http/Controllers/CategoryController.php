@@ -28,7 +28,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $category->load(['pizzas' => function ($query) {
-            $query->with(['brand', 'style'])
+            $query->with(['brand'])
                 ->orderBy('average_rating', 'desc');
         }]);
 

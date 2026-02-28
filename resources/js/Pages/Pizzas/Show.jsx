@@ -62,17 +62,6 @@ export default function PizzaShow({ pizza, meta, auth }) {
                                 >
                                     By {pizza.brand.name}
                                 </Link>
-                                {pizza?.style && (
-                                    <>
-                                        <span className="mx-2">•</span>
-                                        <Link
-                                            href={`/styles/${pizza?.style?.slug}`}
-                                            className="hover:text-indigo-600"
-                                        >
-                                            {pizza?.style?.name}
-                                        </Link>
-                                    </>
-                                )}
                             </div>
 
                             {/* Review Statistics */}

@@ -7,12 +7,11 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 
-export default function Create({ brands, styles, categories, tags }) {
+export default function Create({ brands, categories, tags }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         description: '',
         brand_id: '',
-        style_id: '',
         ingredients: [''],
         allergens: '',
         website: '',
@@ -28,7 +27,6 @@ export default function Create({ brands, styles, categories, tags }) {
         formData.append('name', data.name);
         formData.append('description', data.description);
         formData.append('brand_id', data.brand_id);
-        formData.append('style_id', data.style_id);
         formData.append('ingredients', JSON.stringify(data.ingredients.filter(ingredient => ingredient.trim())));
         formData.append('allergens', data.allergens);
         formData.append('website', data.website);
@@ -131,24 +129,6 @@ export default function Create({ brands, styles, categories, tags }) {
                                             ))}
                                         </select>
                                         <InputError message={errors.brand_id} className="mt-2" />
-                                    </div>
-
-                                    <div>
-                                        <InputLabel htmlFor="style_id" value="Style" />
-                                        <select
-                                            id="style_id"
-                                            className="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                                            value={data.style_id}
-                                            onChange={(e) => setData('style_id', e.target.value)}
-                                        >
-                                            <option value="">Select a style (optional)</option>
-                                            {styles.map((style) => (
-                                                <option key={style.id} value={style.id}>
-                                                    {style.name}
-                                                </option>
-                                            ))}
-                                        </select>
-                                        <InputError message={errors.style_id} className="mt-2" />
                                     </div>
 
                                     <div>

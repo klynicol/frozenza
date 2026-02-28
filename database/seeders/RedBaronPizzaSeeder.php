@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Pizza;
 use App\Models\Brand;
-use App\Models\Style;
 use App\Models\Category;
 use App\Models\Tag;
 
@@ -18,17 +17,11 @@ class RedBaronPizzaSeeder extends Seeder
             ['slug' => 'red-baron', 'description' => 'Red Baron is famous for its classic crust pizzas.']
         );
 
-        $style = Style::firstOrCreate(
-            ['name' => 'Classic Crust'],
-            ['slug' => 'classic-crust', 'description' => 'Not too thick and not too thin with just the right amount of crunch.']
-        );
-
         Pizza::create([
             'name' => 'RED BARON Classic Crust Pepperoni Pizza',
             'slug' => 'red-baron-classic-crust-pepperoni',
             'description' => 'Savor the mouthwatering taste of zesty tomato sauce, 100% real cheese and a hearty topping of pepperoni.',
             'brand_id' => $brand->id,
-            'style_id' => $style->id,
             'ingredients' => [
                 'Tomatoes', 'Enriched Flour', 'Low Moisture Part Skim Mozzarella Cheese', 'Pepperoni', 'Water', 
                 'Yeast', 'Palm Oil', 'Vegetable Oil', 'Sugar', 'Salt', 'Modified Food Starch', 'Spice', 

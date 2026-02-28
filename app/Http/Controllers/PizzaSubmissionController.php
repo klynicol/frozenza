@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Pizza;
 use App\Models\Brand;
-use App\Models\Style;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Image;
@@ -19,13 +18,11 @@ class PizzaSubmissionController extends Controller
     public function create()
     {
         $brands = Brand::orderBy('name')->get(['id', 'name']);
-        $styles = Style::orderBy('name')->get(['id', 'name']);
         $categories = Category::orderBy('name')->get(['id', 'name']);
         $tags = Tag::orderBy('name')->get(['id', 'name']);
 
         return Inertia::render('PizzaSubmission/Create', [
             'brands' => $brands,
-            'styles' => $styles,
             'categories' => $categories,
             'tags' => $tags,
         ]);
@@ -37,7 +34,6 @@ class PizzaSubmissionController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
             'brand_id' => 'required|exists:brands,id',
-            'style_id' => 'nullable|exists:styles,id',
             'ingredients' => 'nullable|array',
             'ingredients.*' => 'string|max:255',
             'allergens' => 'nullable|string|max:500',
@@ -50,7 +46,7 @@ class PizzaSubmissionController extends Controller
         ]);
 
         $pizzaData = $request->only([
-            'name', 'description', 'brand_id', 'style_id', 
+            'name', 'description', 'brand_id', 
             'ingredients', 'allergens', 'website'
         ]);
 

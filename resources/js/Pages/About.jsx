@@ -24,7 +24,7 @@ export default function About({ auth }) {
                         <li>Detailed nutritional information and ingredient analysis</li>
                         <li>Brand comparisons and recommendations</li>
                         <li>User-generated reviews and feedback</li>
-                        <li>Pizza discovery by style, category, and brand</li>
+                        <li>Pizza discovery by category and brand</li>
                     </ul>
                 </section>
 

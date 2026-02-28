@@ -4,7 +4,6 @@ use App\Http\Controllers\{
     ProfileController,
     PizzaController,
     BrandController,
-    StyleController,
     CategoryController,
     ReviewController,
     MessageController,
@@ -64,10 +63,6 @@ Route::get('/pizzas/list', [PizzaController::class, 'list'])->name('pizzas.list'
 Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');
 Route::get('/brands/{brand:slug}/pizzas', [BrandController::class, 'show'])->name('brands.pizzas.show');
 Route::get('/brands/{brand:slug}', [BrandController::class, 'show'])->name('brands.show');
-
-// Style routes
-Route::get('/styles', [StyleController::class, 'index'])->name('styles.index');
-Route::get('/styles/{style:slug}', [StyleController::class, 'show'])->name('styles.show');
 
 // Category routes
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');

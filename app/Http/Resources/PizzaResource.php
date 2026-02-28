@@ -17,7 +17,6 @@ class PizzaResource extends JsonResource
         return [
             ...parent::toArray($request),
             'brand' => $this->whenLoaded('brand'),
-            'style' => $this->whenLoaded('style'),
             'images' => $this->whenLoaded('images')
         ];
     }

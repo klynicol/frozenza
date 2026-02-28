@@ -38,7 +38,6 @@ export default function CategoryShow({ category, meta, auth }: CategoryShowProps
                         <div className="p-4">
                             <h3 className="text-xl font-bold mb-2">{pizza.name}</h3>
                             <p className="text-gray-600 mb-2">{pizza.brand.name}</p>
-                            <p className="text-sm text-gray-500 mb-4">{pizza.style.name}</p>
                             <div className="flex items-center">
                                 <span className="text-yellow-400">★</span>
                                 <span className="ml-1">{pizza.average_rating.toFixed(1)}</span>

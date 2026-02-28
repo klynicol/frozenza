@@ -72,7 +72,6 @@ class Pizza extends Model implements Sitemapable
         'average_rating',
         'total_reviews',
         'brand_id',
-        'style_id',
         'image_url'
     ];
 
