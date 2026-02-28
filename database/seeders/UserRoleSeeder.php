@@ -22,5 +22,12 @@ class UserRoleSeeder extends Seeder
             'name' => 'Administrator',
             'description' => 'Administrator role',
         ]);
+
+        UserRole::updateOrCreate([
+            'code' => 'pizza-ambassador'
+        ], [
+            'name' => 'Pizza Ambassador',
+            'description' => 'Users who can submit new brands and pizzas to the database',
+        ]);
     }
 }
