@@ -2,7 +2,7 @@
 
 .nutrition-facts {
    width: 300px;
-   border: 1px solid #000;
+   /* border: 1px solid #000; */
    padding: 10px;
    font-family: Arial, sans-serif;
 }
@@ -12,23 +12,24 @@
    margin-bottom: 10px;
 }
 
-.nutrition-facts p {
-   margin: 5px 0;
-}
-
 .nutrition-facts hr {
    border: 0;
-   border-top: 1px solid #000;
+   border-top: 1px solid #e5e7eb;
    margin: 10px 0;
 }
 
 .daily-value {
-   border-top: 2px solid #000;
+   border-top: 2px solid #e5e7eb;
    padding-top: 10px;
 }
 
-.indent {
-   margin-left: 20px;
+/* Sub-nutrients under Total Fat and Total Carbohydrate – stronger indent for hierarchy */
+.nutrition-facts .indent-sub {
+   margin-left: 24px;
+}
+
+.nutrition-facts .vitamins-minerals {
+   margin-top: 4px;
 }
 
 .footnote {

@@ -51,6 +51,7 @@ class PizzaSubmissionController extends Controller
             'nutrition.serving_fraction' => 'nullable|string|max:20',
             'nutrition.serving_weight' => 'nullable|integer|min:0',
             'nutrition.calories' => 'nullable',
+            'nutrition.caloris_from_fat' => 'nullable|integer|min:0',
             'nutrition.total_fat' => 'nullable|string|max:10',
             'nutrition.saturated_fat' => 'nullable|string|max:10',
             'nutrition.trans_fat' => 'nullable|string|max:10',
@@ -108,30 +109,36 @@ class PizzaSubmissionController extends Controller
         }
         $nutritionFilled = collect($nutrition)->filter(fn ($v) => $v !== null && $v !== '')->isNotEmpty();
         if ($nutritionFilled) {
+            $normalize = function ($v) {
+                if ($v === null || $v === '') return null;
+                if (is_numeric($v)) return (float) $v;
+                return (float) preg_replace('/[^0-9.-]/', '', (string) $v);
+            };
             $nutritionData = array_filter([
                 'pizza_id' => $pizza->id,
                 'serving_per_container' => isset($nutrition['serving_per_container']) && $nutrition['serving_per_container'] !== '' ? (int) $nutrition['serving_per_container'] : null,
-                'serving_fraction' => $nutrition['serving_fraction'] ?? null,
-                'serving_weight' => isset($nutrition['serving_weight']) && $nutrition['serving_weight'] !== '' ? (int) $nutrition['serving_weight'] : null,
+                'serving_fraction' => isset($nutrition['serving_fraction']) && $nutrition['serving_fraction'] !== '' ? (string) $nutrition['serving_fraction'] : '1',
+                'serving_weight' => isset($nutrition['serving_weight']) && $nutrition['serving_weight'] !== '' ? (int) $nutrition['serving_weight'] : 0,
                 'calories' => isset($nutrition['calories']) && $nutrition['calories'] !== '' ? (int) $nutrition['calories'] : null,
-                'total_fat' => $nutrition['total_fat'] ?? null,
-                'saturated_fat' => $nutrition['saturated_fat'] ?? null,
-                'trans_fat' => $nutrition['trans_fat'] ?? null,
-                'cholesterol' => $nutrition['cholesterol'] ?? null,
-                'sodium' => $nutrition['sodium'] ?? null,
-                'total_carbohydrate' => $nutrition['total_carbohydrate'] ?? null,
-                'dietary_fiber' => $nutrition['dietary_fiber'] ?? null,
-                'total_sugars' => $nutrition['total_sugars'] ?? null,
-                'added_sugars' => $nutrition['added_sugars'] ?? null,
-                'protein' => $nutrition['protein'] ?? null,
-                'vitamin_d' => $nutrition['vitamin_d'] ?? null,
-                'calcium' => $nutrition['calcium'] ?? null,
-                'iron' => $nutrition['iron'] ?? null,
-                'potassium' => $nutrition['potassium'] ?? null,
-                'monounsaturated_fat' => $nutrition['monounsaturated_fat'] ?? null,
-                'polyunsaturated_fat' => $nutrition['polyunsaturated_fat'] ?? null,
-                'vitamin_a' => $nutrition['vitamin_a'] ?? null,
-                'vitamin_c' => $nutrition['vitamin_c'] ?? null,
+                'caloris_from_fat' => isset($nutrition['caloris_from_fat']) && $nutrition['caloris_from_fat'] !== '' ? (int) $nutrition['caloris_from_fat'] : 0,
+                'total_fat' => $normalize($nutrition['total_fat'] ?? null),
+                'saturated_fat' => $normalize($nutrition['saturated_fat'] ?? null),
+                'trans_fat' => $normalize($nutrition['trans_fat'] ?? null),
+                'cholesterol' => $normalize($nutrition['cholesterol'] ?? null),
+                'sodium' => $normalize($nutrition['sodium'] ?? null),
+                'total_carbohydrate' => $normalize($nutrition['total_carbohydrate'] ?? null),
+                'dietary_fiber' => $normalize($nutrition['dietary_fiber'] ?? null),
+                'total_sugars' => $normalize($nutrition['total_sugars'] ?? null),
+                'added_sugars' => $normalize($nutrition['added_sugars'] ?? null),
+                'protein' => $normalize($nutrition['protein'] ?? null),
+                'vitamin_d' => $normalize($nutrition['vitamin_d'] ?? null),
+                'calcium' => $normalize($nutrition['calcium'] ?? null),
+                'iron' => $normalize($nutrition['iron'] ?? null),
+                'potassium' => $normalize($nutrition['potassium'] ?? null),
+                'monounsaturated_fat' => $normalize($nutrition['monounsaturated_fat'] ?? null),
+                'polyunsaturated_fat' => $normalize($nutrition['polyunsaturated_fat'] ?? null),
+                'vitamin_a' => $normalize($nutrition['vitamin_a'] ?? null),
+                'vitamin_c' => $normalize($nutrition['vitamin_c'] ?? null),
             ], fn ($v) => $v !== null && $v !== '');
             // Only create if we have required fields (serving_per_container, serving_fraction or serving_weight, calories, total_fat, total_carbohydrate, protein)
             $required = ['serving_per_container', 'calories', 'total_fat', 'total_carbohydrate', 'protein'];

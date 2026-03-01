@@ -26,6 +26,7 @@ export default function Create({ brands, tags, auth, meta }) {
             serving_fraction: '',
             serving_weight: '',
             calories: '',
+            caloris_from_fat: '',
             total_fat: '',
             saturated_fat: '',
             trans_fat: '',
@@ -246,6 +247,19 @@ export default function Create({ brands, tags, auth, meta }) {
                                                 placeholder="e.g., 340"
                                             />
                                             <InputError message={errors['nutrition.calories']} className="mt-2" />
+                                        </div>
+                                        <div>
+                                            <InputLabel htmlFor="caloris_from_fat" value="Calories from fat (optional)" />
+                                            <TextInput
+                                                id="caloris_from_fat"
+                                                type="number"
+                                                min="0"
+                                                className="mt-1 block w-full"
+                                                value={data.nutrition.caloris_from_fat === '' ? '' : data.nutrition.caloris_from_fat}
+                                                onChange={(e) => setNutrition('caloris_from_fat', e.target.value === '' ? '' : parseInt(e.target.value, 10) ?? '')}
+                                                placeholder="e.g., 120"
+                                            />
+                                            <InputError message={errors['nutrition.caloris_from_fat']} className="mt-2" />
                                         </div>
                                         <div>
                                             <InputLabel htmlFor="total_fat" value="Total fat" />

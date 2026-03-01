@@ -24,12 +24,6 @@ class PizzaFactory extends Factory
                 'Onions', 'Bell Peppers', 'Sausage', 'Bacon', 'Ham',
                 'Pineapple', 'Olives', 'Chicken', 'Beef', 'Spinach'
             ], $this->faker->numberBetween(4, 8)),
-            'nutritional_info' => [
-                'calories' => $this->faker->numberBetween(200, 400),
-                'protein' => $this->faker->numberBetween(10, 25),
-                'carbs' => $this->faker->numberBetween(25, 45),
-                'fat' => $this->faker->numberBetween(8, 20),
-            ],
             'average_rating' => 0,
             'total_reviews' => 0,
             'tags' => $this->faker->randomElements([
