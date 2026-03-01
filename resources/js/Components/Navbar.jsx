@@ -20,7 +20,8 @@ import { hasRole } from '@/utils/roles';
 export default function Navbar({ auth }) {
     const [isOpen, setIsOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
-    const dropdownRef = useRef(null);
+    const adminDropdownRef = useRef(null);
+    const ambassadorDropdownRef = useRef(null);
 
     const socialLinks = [
         { icon: FacebookIcon, href: 'https://www.facebook.com/profile.php?id=61573217433128', label: 'Facebook' },
@@ -30,10 +31,12 @@ export default function Navbar({ auth }) {
         // { icon: BlueSkyIcon, href: 'https://bsky.app/profile/pizza-kraken.bsky.social', label: 'BlueSky' },
     ];
 
-    // Close dropdown when clicking outside
+    // Close dropdown when clicking outside (check both dropdown containers)
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            const inAdmin = adminDropdownRef.current?.contains(event.target);
+            const inAmbassador = ambassadorDropdownRef.current?.contains(event.target);
+            if (!inAdmin && !inAmbassador) {
                 setActiveDropdown(null);
             }
         };
@@ -171,7 +174,7 @@ export default function Navbar({ auth }) {
 
                             {/* Admin Dropdown */}
                             {hasRole(auth.user, 'admin') && (
-                                <div className="relative" ref={dropdownRef}>
+                                <div className="relative" ref={adminDropdownRef}>
                                     <button
                                         onClick={() => toggleDropdown('admin')}
                                         className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md text-sm font-medium transition-colors flex items-center space-x-1"
@@ -200,7 +203,7 @@ export default function Navbar({ auth }) {
 
                             {/* Pizza Ambassador Dropdown */}
                             {hasRole(auth.user, 'admin,pizza-ambassador') && (
-                                <div className="relative" ref={dropdownRef}>
+                                <div className="relative" ref={ambassadorDropdownRef}>
                                     <button
                                         onClick={() => toggleDropdown('ambassador')}
                                         className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md text-sm font-medium transition-colors flex items-center space-x-1"
