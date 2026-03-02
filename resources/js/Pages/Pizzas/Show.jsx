@@ -66,12 +66,20 @@ export default function PizzaShow({ pizza, meta, auth }) {
                                     </Link>
                                 </div>
                                 {auth.user && hasRole(auth.user, 'admin,pizza-ambassador,brand-ambassador') && (
-                                    <Link
-                                        href={route('pizza-submissions.edit', pizza.id)}
-                                        className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
-                                    >
-                                        Edit pizza
-                                    </Link>
+                                    <>
+                                        <Link
+                                            href={route('pizza-submissions.edit', pizza.id)}
+                                            className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
+                                        >
+                                            Edit pizza
+                                        </Link>
+                                        <Link
+                                            href={route('pizza-submissions.create-copy', pizza.id)}
+                                            className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
+                                        >
+                                            Create copy
+                                        </Link>
+                                    </>
                                 )}
                             </div>
 

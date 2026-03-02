@@ -98,12 +98,20 @@ export default function Edit({ pizza, brands, tags, auth, meta }) {
                         <div className="p-6 bg-white border-b border-gray-200">
                             <div className="flex items-center justify-between mb-6">
                                 <h2 className="text-2xl font-bold text-gray-900">Edit Pizza: {pizza?.name}</h2>
-                                <Link
-                                    href={pizzaShowUrl}
-                                    className="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
-                                >
-                                    ← Back to pizza
-                                </Link>
+                                <div className="flex items-center gap-4">
+                                    <Link
+                                        href={route('pizza-submissions.create-copy', pizza.id)}
+                                        className="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
+                                    >
+                                        Create copy
+                                    </Link>
+                                    <Link
+                                        href={pizzaShowUrl}
+                                        className="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
+                                    >
+                                        ← Back to pizza
+                                    </Link>
+                                </div>
                             </div>
 
                             <form onSubmit={handleSubmit} className="space-y-6">

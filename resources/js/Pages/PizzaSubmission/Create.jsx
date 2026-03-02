@@ -10,43 +10,48 @@ import SecondaryButton from '@/Components/SecondaryButton';
 const MAX_IMAGE_SIZE_MB = 100;
 const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * 1024 * 1024;
 
-export default function Create({ brands, tags, auth, meta }) {
+const emptyForm = {
+    name: '',
+    description: '',
+    brand_id: '',
+    ingredients: '',
+    allergens: '',
+    website: '',
+    tags: [],
+    pizza_image: null,
+    nutrition: {
+        serving_per_container: '',
+        serving_fraction: '',
+        serving_weight: '',
+        calories: '',
+        caloris_from_fat: '',
+        total_fat: '',
+        saturated_fat: '',
+        trans_fat: '',
+        cholesterol: '',
+        sodium: '',
+        total_carbohydrate: '',
+        dietary_fiber: '',
+        total_sugars: '',
+        added_sugars: '',
+        protein: '',
+        vitamin_d: '',
+        calcium: '',
+        iron: '',
+        potassium: '',
+        monounsaturated_fat: '',
+        polyunsaturated_fat: '',
+        vitamin_a: '',
+        vitamin_c: '',
+    },
+};
+
+export default function Create({ brands, tags, auth, meta, copyFrom, copyFromName }) {
     const [imageSizeError, setImageSizeError] = useState(null);
-    const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        description: '',
-        brand_id: '',
-        ingredients: '',
-        allergens: '',
-        website: '',
-        tags: [],
-        pizza_image: null,
-        nutrition: {
-            serving_per_container: '',
-            serving_fraction: '',
-            serving_weight: '',
-            calories: '',
-            caloris_from_fat: '',
-            total_fat: '',
-            saturated_fat: '',
-            trans_fat: '',
-            cholesterol: '',
-            sodium: '',
-            total_carbohydrate: '',
-            dietary_fiber: '',
-            total_sugars: '',
-            added_sugars: '',
-            protein: '',
-            vitamin_d: '',
-            calcium: '',
-            iron: '',
-            potassium: '',
-            monounsaturated_fat: '',
-            polyunsaturated_fat: '',
-            vitamin_a: '',
-            vitamin_c: '',
-        },
-    });
+    const initialData = copyFrom
+        ? { ...emptyForm, ...copyFrom, pizza_image: null, nutrition: { ...emptyForm.nutrition, ...(copyFrom.nutrition || {}) } }
+        : emptyForm;
+    const { data, setData, post, processing, errors, reset } = useForm(initialData);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -89,8 +94,15 @@ export default function Create({ brands, tags, auth, meta }) {
                 <div className="max-w-4xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 bg-white border-b border-gray-200">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Submit a New Pizza</h2>
-                            
+                            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                                {copyFromName ? `Create a copy of "${copyFromName}"` : 'Submit a New Pizza'}
+                            </h2>
+                            {copyFromName && (
+                                <p className="text-sm text-gray-600 mb-6">
+                                    Fields are pre-filled from the original. Change any details you need, then submit to create a new pizza.
+                                </p>
+                            )}
+                            {!copyFromName && <div className="mb-6" />}
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 {/* Basic Information */}
                                 <div className="space-y-4">

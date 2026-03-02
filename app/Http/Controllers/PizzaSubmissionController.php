@@ -34,6 +34,62 @@ class PizzaSubmissionController extends Controller
         ]);
     }
 
+    public function createCopy(Pizza $pizza)
+    {
+        $pizza->load(['brand', 'tags', 'nutritionFact']);
+        $brands = Brand::orderBy('name')->get(['id', 'name']);
+        $tags = Tag::orderBy('slug')->get(['id', 'slug']);
+
+        $n = $pizza->nutritionFact;
+        $copyFrom = [
+            'name' => $pizza->name,
+            'description' => $pizza->description,
+            'brand_id' => $pizza->brand_id,
+            'ingredients' => $pizza->ingredients ?? '',
+            'allergens' => $pizza->allergens ?? '',
+            'website' => $pizza->website ?? '',
+            'tags' => $pizza->tags->pluck('id')->all(),
+            'nutrition' => [
+                'serving_per_container' => $n?->serving_per_container !== null ? (string) $n->serving_per_container : '',
+                'serving_fraction' => $n?->serving_fraction ?? '',
+                'serving_weight' => $n?->serving_weight !== null ? (string) $n->serving_weight : '',
+                'calories' => $n?->calories !== null ? (string) $n->calories : '',
+                'caloris_from_fat' => $n?->caloris_from_fat !== null ? (string) $n->caloris_from_fat : '',
+                'total_fat' => $n?->total_fat ?? '',
+                'saturated_fat' => $n?->saturated_fat ?? '',
+                'trans_fat' => $n?->trans_fat ?? '',
+                'cholesterol' => $n?->cholesterol ?? '',
+                'sodium' => $n?->sodium ?? '',
+                'total_carbohydrate' => $n?->total_carbohydrate ?? '',
+                'dietary_fiber' => $n?->dietary_fiber ?? '',
+                'total_sugars' => $n?->total_sugars ?? '',
+                'added_sugars' => $n?->added_sugars ?? '',
+                'protein' => $n?->protein ?? '',
+                'vitamin_d' => $n?->vitamin_d ?? '',
+                'calcium' => $n?->calcium ?? '',
+                'iron' => $n?->iron ?? '',
+                'potassium' => $n?->potassium ?? '',
+                'monounsaturated_fat' => $n?->monounsaturated_fat ?? '',
+                'polyunsaturated_fat' => $n?->polyunsaturated_fat ?? '',
+                'vitamin_a' => $n?->vitamin_a ?? '',
+                'vitamin_c' => $n?->vitamin_c ?? '',
+            ],
+        ];
+
+        return Inertia::render('PizzaSubmission/Create', [
+            'brands' => $brands,
+            'tags' => $tags,
+            'copyFrom' => $copyFrom,
+            'copyFromName' => $pizza->name,
+            'meta' => [
+                'title' => 'Submit New Pizza (Copy of ' . $pizza->name . ')',
+                'description' => 'Create a new pizza based on ' . $pizza->name . '.',
+                'canonicalUrl' => '/' . request()->path(),
+                'keywords' => 'submit pizza, frozen pizza, add pizza',
+            ],
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
