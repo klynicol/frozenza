@@ -518,7 +518,7 @@ export default function Create({ brands, tags, auth, meta, copyFrom, copyFromNam
                                             }}
                                         />
                                         <p className="mt-1 text-sm text-gray-500">
-                                            Accepted formats: JPEG, PNG, JPG, GIF. Max size: 100MB.
+                                            Accepted formats: JPEG, PNG, JPG, GIF, WebP. Max size: 100MB.
                                         </p>
                                         <InputError message={imageSizeError || errors.pizza_image} className="mt-2" />
                                     </div>

@@ -48,7 +48,7 @@ class PizzaSubmissionController extends Controller
             'ingredients' => $pizza->ingredients ?? '',
             'allergens' => $pizza->allergens ?? '',
             'website' => $pizza->website ?? '',
-            'tags' => $pizza->tags->pluck('id')->all(),
+            'tags' => $pizza->tags()->pluck('id')->all(),
             'nutrition' => [
                 'serving_per_container' => $n?->serving_per_container !== null ? (string) $n->serving_per_container : '',
                 'serving_fraction' => $n?->serving_fraction ?? '',
@@ -101,7 +101,7 @@ class PizzaSubmissionController extends Controller
             'website' => 'nullable|url|max:255',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
-            'pizza_image' => ['nullable', File::types(['jpg', 'jpeg', 'png', 'gif'])->max('100mb')],
+            'pizza_image' => ['nullable', File::types(['jpg', 'jpeg', 'png', 'gif', 'webp'])->max('100mb')],
             'nutrition' => 'nullable|array',
             'nutrition.serving_per_container' => 'nullable|integer|min:1',
             'nutrition.serving_fraction' => 'nullable|string|max:20',
@@ -129,8 +129,8 @@ class PizzaSubmissionController extends Controller
         ], [
             'pizza_image.max' => 'The pizza image must not be larger than 100 MB.',
             'pizza_image.uploaded' => 'The pizza image could not be uploaded. It may be too large (max 100 MB) or the connection was interrupted. Please try a smaller image.',
-            'pizza_image.image' => 'The pizza image must be an image (JPEG, PNG, JPG, or GIF).',
-            'pizza_image.mimes' => 'The pizza image must be a JPEG, PNG, JPG, or GIF.',
+            'pizza_image.image' => 'The pizza image must be an image (JPEG, PNG, JPG, GIF, or WebP).',
+            'pizza_image.mimes' => 'The pizza image must be a JPEG, PNG, JPG, GIF, or WebP.',
         ]);
 
         $pizzaData = $request->only([
@@ -239,7 +239,7 @@ class PizzaSubmissionController extends Controller
             'website' => 'nullable|url|max:255',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
-            'pizza_image' => ['nullable', File::types(['jpg', 'jpeg', 'png', 'gif'])->max('100mb')],
+            'pizza_image' => ['nullable', File::types(['jpg', 'jpeg', 'png', 'gif', 'webp'])->max('100mb')],
             'nutrition' => 'nullable|array',
             'nutrition.serving_per_container' => 'nullable|integer|min:1',
             'nutrition.serving_fraction' => 'nullable|string|max:20',
@@ -267,8 +267,8 @@ class PizzaSubmissionController extends Controller
         ], [
             'pizza_image.max' => 'The pizza image must not be larger than 100 MB.',
             'pizza_image.uploaded' => 'The pizza image could not be uploaded. It may be too large (max 100 MB) or the connection was interrupted. Please try a smaller image.',
-            'pizza_image.image' => 'The pizza image must be an image (JPEG, PNG, JPG, or GIF).',
-            'pizza_image.mimes' => 'The pizza image must be a JPEG, PNG, JPG, or GIF.',
+            'pizza_image.image' => 'The pizza image must be an image (JPEG, PNG, JPG, GIF, or WebP).',
+            'pizza_image.mimes' => 'The pizza image must be a JPEG, PNG, JPG, GIF, or WebP.',
         ]);
 
         $brand = Brand::find($request->brand_id);

@@ -106,7 +106,7 @@ class BrandController extends Controller
             'seo_about_content' => 'nullable|string|max:2000',
             'seo_keywords' => 'nullable|array',
             'seo_keywords.*' => 'string|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $brandData = $request->only([
@@ -179,7 +179,7 @@ class BrandController extends Controller
             'seo_about_content' => 'nullable|string|max:2000',
             'seo_keywords' => 'nullable|array',
             'seo_keywords.*' => 'string|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $brandData = $request->only([
@@ -249,7 +249,7 @@ class BrandController extends Controller
             'unique_selling_points.*' => 'string|max:255',
             'social_media_handles' => 'nullable|array',
             'social_media_handles.*' => 'string|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $brandData = $request->only([

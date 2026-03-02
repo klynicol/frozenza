@@ -60,5 +60,8 @@ php artisan serve
 [ ] Good & Gather
 [ ] Italpizza
 [ ] Mama Cozzis
-
 [ ] Kettle River
+
+[ ] on creating pizza, it's prefixing pizza name with company name
+[ ] cosolidate nutrition facts "structures" all over the place.
+ - Model based validations?

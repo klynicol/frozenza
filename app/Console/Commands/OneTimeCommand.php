@@ -26,6 +26,7 @@ class OneTimeCommand extends Command
      */
     public function handle()
     {
-        \App\Models\NutritionFact::saveBackup();
+        $pizza = \App\Models\Pizza::where('id', '03028799-c1ef-454c-8c1d-65845ee44b30')->with('tags')->first();
+        $this->info($pizza);
     }
 }
