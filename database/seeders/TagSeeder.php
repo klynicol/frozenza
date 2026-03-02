@@ -41,6 +41,11 @@ class TagSeeder extends Seeder
             ['slug' => 'basil'],
             ['slug' => 'meatball'],
             ['slug' => 'steak'],
+            ['slug' => 'smoked'],
+            ['slug' => 'thick-crust'],
+            ['slug' => 'thin-crust'],
+            ['slug' => 'deep-dish'],
+            ['slug' => 'stuffed-crust'],
 
             //sauces
             ['slug' => 'pesto'],
