@@ -97,6 +97,8 @@ Route::middleware(['auth'])->group(function () {
         
         Route::get('/pizza-submissions/create', [PizzaSubmissionController::class, 'create'])->name('pizza-submissions.create');
         Route::post('/pizza-submissions', [PizzaSubmissionController::class, 'store'])->name('pizza-submissions.store');
+        Route::get('/pizza-submissions/{pizza}/edit', [PizzaSubmissionController::class, 'edit'])->name('pizza-submissions.edit');
+        Route::put('/pizza-submissions/{pizza}', [PizzaSubmissionController::class, 'update'])->name('pizza-submissions.update');
         Route::get('/pizza-submissions/{pizza}/success', [PizzaSubmissionController::class, 'success'])->name('pizza-submissions.success');
     });
 

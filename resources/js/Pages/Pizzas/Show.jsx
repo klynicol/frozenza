@@ -9,6 +9,7 @@ import { Link } from '@inertiajs/react';
 import { PlusIcon, MinusIcon } from '@/Components/Icons';
 import { getImageUrl } from '@/utils/image';
 import Modal from '@/Components/Modal';
+import { hasRole } from '@/utils/roles';
 
 export default function PizzaShow({ pizza, meta, auth }) {
     const [isIngredientsOpen, setIngredientsOpen] = useState(false);
@@ -55,13 +56,23 @@ export default function PizzaShow({ pizza, meta, auth }) {
                                 {pizza.name}
                             </h1>
 
-                            <div className="text-sm text-gray-600 mb-4">
-                                <Link
-                                    href={`/brands/${pizza.brand.slug}`}
-                                    className="text-indigo-700 hover:underline text-lg text-bold"
-                                >
-                                    By {pizza.brand.name}
-                                </Link>
+                            <div className="flex flex-wrap items-center gap-3 mb-4">
+                                <div className="text-sm text-gray-600">
+                                    <Link
+                                        href={`/brands/${pizza.brand.slug}`}
+                                        className="text-indigo-700 hover:underline text-lg text-bold"
+                                    >
+                                        By {pizza.brand.name}
+                                    </Link>
+                                </div>
+                                {auth.user && hasRole(auth.user, 'admin,pizza-ambassador,brand-ambassador') && (
+                                    <Link
+                                        href={route('pizza-submissions.edit', pizza.id)}
+                                        className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
+                                    >
+                                        Edit pizza
+                                    </Link>
+                                )}
                             </div>
 
                             {/* Review Statistics */}
