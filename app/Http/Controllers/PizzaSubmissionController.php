@@ -138,9 +138,8 @@ class PizzaSubmissionController extends Controller
             'ingredients', 'allergens', 'website'
         ]);
 
-        // Generate slug from name and brand
         $brand = Brand::find($request->brand_id);
-        $pizzaData['slug'] = Str::slug($brand->slug . '-' . $request->name);
+        $pizzaData['slug'] = Str::slug($request->name);
 
         $pizza = Pizza::create($pizzaData);
         
@@ -274,7 +273,7 @@ class PizzaSubmissionController extends Controller
         $brand = Brand::find($request->brand_id);
         $pizza->update([
             'name' => $request->name,
-            'slug' => Str::slug($brand->slug . '-' . $request->name),
+            'slug' => Str::slug($request->name),
             'description' => $request->description,
             'brand_id' => $request->brand_id,
             'ingredients' => $request->ingredients,
