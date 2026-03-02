@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Head, useForm, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import InputLabel from '@/Components/InputLabel';
@@ -9,32 +9,6 @@ import SecondaryButton from '@/Components/SecondaryButton';
 
 const MAX_IMAGE_SIZE_MB = 100;
 const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * 1024 * 1024;
-
-const emptyNutrition = {
-    serving_per_container: '',
-    serving_fraction: '',
-    serving_weight: '',
-    calories: '',
-    caloris_from_fat: '',
-    total_fat: '',
-    saturated_fat: '',
-    trans_fat: '',
-    cholesterol: '',
-    sodium: '',
-    total_carbohydrate: '',
-    dietary_fiber: '',
-    total_sugars: '',
-    added_sugars: '',
-    protein: '',
-    vitamin_d: '',
-    calcium: '',
-    iron: '',
-    potassium: '',
-    monounsaturated_fat: '',
-    polyunsaturated_fat: '',
-    vitamin_a: '',
-    vitamin_c: '',
-};
 
 function buildInitialData(pizza) {
     const n = pizza?.nutrition_fact ?? {};
@@ -48,30 +22,29 @@ function buildInitialData(pizza) {
         tags: Array.isArray(pizza?.tags) ? pizza.tags.map((t) => t.id) : [],
         pizza_image: null,
         nutrition: {
-            ...emptyNutrition,
-            serving_per_container: n.serving_per_container ?? '',
-            serving_fraction: n.serving_fraction ?? '',
-            serving_weight: n.serving_weight ?? '',
-            calories: n.calories ?? '',
-            caloris_from_fat: n.caloris_from_fat ?? '',
-            total_fat: n.total_fat ?? '',
-            saturated_fat: n.saturated_fat ?? '',
-            trans_fat: n.trans_fat ?? '',
-            cholesterol: n.cholesterol ?? '',
-            sodium: n.sodium ?? '',
-            total_carbohydrate: n.total_carbohydrate ?? '',
-            dietary_fiber: n.dietary_fiber ?? '',
-            total_sugars: n.total_sugars ?? '',
-            added_sugars: n.added_sugars ?? '',
-            protein: n.protein ?? '',
-            vitamin_d: n.vitamin_d ?? '',
-            calcium: n.calcium ?? '',
-            iron: n.iron ?? '',
-            potassium: n.potassium ?? '',
-            monounsaturated_fat: n.monounsaturated_fat ?? '',
-            polyunsaturated_fat: n.polyunsaturated_fat ?? '',
-            vitamin_a: n.vitamin_a ?? '',
-            vitamin_c: n.vitamin_c ?? '',
+            serving_per_container: parseFloat(n.serving_per_container) || '',
+            serving_fraction: n.serving_fraction || '',
+            serving_weight: parseFloat(n.serving_weight) || '',
+            calories: parseFloat(n.calories) || '',
+            caloris_from_fat: parseFloat(n.caloris_from_fat) || '',
+            total_fat: parseFloat(n.total_fat) || '',
+            saturated_fat: parseFloat(n.saturated_fat) || '',
+            trans_fat: parseFloat(n.trans_fat) || '',
+            cholesterol: parseFloat(n.cholesterol) || '',
+            sodium: parseFloat(n.sodium) || '',
+            total_carbohydrate: parseFloat(n.total_carbohydrate) || '',
+            dietary_fiber: parseFloat(n.dietary_fiber) || '',
+            total_sugars: parseFloat(n.total_sugars) || '',
+            added_sugars: parseFloat(n.added_sugars) || '',
+            protein: parseFloat(n.protein) || '',
+            vitamin_d: parseFloat(n.vitamin_d) || '',
+            calcium: parseFloat(n.calcium) || '',
+            iron: parseFloat(n.iron) || '',
+            potassium: parseFloat(n.potassium) || '',
+            monounsaturated_fat: parseFloat(n.monounsaturated_fat) || '',
+            polyunsaturated_fat: parseFloat(n.polyunsaturated_fat) || '',
+            vitamin_a: parseFloat(n.vitamin_a) || '',
+            vitamin_c: parseFloat(n.vitamin_c) || '',
         },
     };
 }
@@ -79,7 +52,7 @@ function buildInitialData(pizza) {
 export default function Edit({ pizza, brands, tags, auth, meta }) {
     const initialData = useMemo(() => buildInitialData(pizza), [pizza]);
     const [imageSizeError, setImageSizeError] = useState(null);
-    const { data, setData, post, processing, errors, reset } = useForm(initialData);
+    const { data, setData, put, processing, errors, reset } = useForm(initialData);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -97,7 +70,7 @@ export default function Edit({ pizza, brands, tags, auth, meta }) {
             formData.append('pizza_image', data.pizza_image);
         }
 
-        post(route('pizza-submissions.update', pizza.id), {
+        put(route('pizza-submissions.update', pizza.id), {
             data: formData,
         });
     };
