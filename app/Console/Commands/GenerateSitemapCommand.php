@@ -60,6 +60,9 @@ class GenerateSitemapCommand extends Command
         // top rated pizzas page
         $sitemap->add(Url::create('https://pizzakraken.com/top-rated'));
 
+        // lowest calorie frozen pizza (SEO page)
+        $sitemap->add(Url::create('https://pizzakraken.com/lowest-calorie-frozen-pizza'));
+
         // Save the sitemap to a file
         $sitemap->writeToFile(public_path('sitemap.xml'));
     }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -104,6 +105,14 @@ class Pizza extends Model implements Sitemapable
     }
 
     /**
+     * Flags for this pizza (table_name = 'pizzas', flagable_id = id).
+     */
+    public function flags(): HasMany
+    {
+        return $this->hasMany(Flag::class, 'flagable_id', 'id')->where('table_name', 'pizzas');
+    }
+
+    /**
      * Get the affiliate links for the pizza.
      */
     public function affiliateLinks(): HasMany
@@ -117,6 +126,18 @@ class Pizza extends Model implements Sitemapable
             ->setLastModificationDate(Carbon::parse($this->updated_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
             ->setPriority(0.7);
+    }
+
+    /**
+     * Scope: only pizzas that have a flag with the given value.
+     * Defaults to f_value_1; pass column as second argument for f_value_2.
+     *
+     * @param  string  $value   e.g. 'needs_attention', 'process'
+     * @param  string  $column  'f_value_1' or 'f_value_2'
+     */
+    public function scopeWhereFlag(Builder $query, string $value, string $column = 'f_value_1'): Builder
+    {
+        return $query->whereHas('flags', fn (Builder $q) => $q->where($column, $value));
     }
 
     public function updateAverageRating(): void

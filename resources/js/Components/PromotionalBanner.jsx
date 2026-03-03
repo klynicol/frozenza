@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
 
 export default function PromotionalBanner({ auth }) {
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(
+        // load from localStorage
+        localStorage.getItem('promotionalBanner') === 'false' ? false : true
+    );
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
         hours: 0,
@@ -34,6 +37,11 @@ export default function PromotionalBanner({ auth }) {
 
         return () => clearInterval(timer);
     }, []);
+
+    function handleSetIsVisible(value) {
+        localStorage.setItem('promotionalBanner', value);
+        setIsVisible(value);
+    }
 
     if (!isVisible) return null;
 
@@ -112,7 +120,7 @@ export default function PromotionalBanner({ auth }) {
 
                 {/* Close button */}
                 <button
-                    onClick={() => setIsVisible(false)}
+                    onClick={() => handleSetIsVisible(false)}
                     className="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors"
                     aria-label="Close promotional banner"
                 >

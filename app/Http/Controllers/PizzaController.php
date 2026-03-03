@@ -12,6 +12,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\PizzaResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Models\StaffPick;
+use Illuminate\Support\Facades\Log;
 
 class PizzaController extends Controller
 {
@@ -26,7 +28,7 @@ class PizzaController extends Controller
     public function index(): InertiaResponse
     {
         Inertia::share('meta', [
-            'title' => "Best Frozen Pizzas - Ratings, Brands, canonicalUrlReviews, and Where to Buy",
+            'title' => "Best Frozen Pizzas - Ratings, Brand Index, Reviews, and Where to Buy",
             'description' => 'Pizza Kraken: Discover and review the best frozen pizzas with honest ratings, ingredient details, and expert guidance to make informed choices today!',
             'keywords' => "frozen pizza, pizza reviews, pizza ratings, best frozen pizzas, frozen pizza brands, frozen pizza guide, frozen pizza ingredients, pizza comparison",
             'canonicalUrl' => "/pizzas",
@@ -119,6 +121,34 @@ class PizzaController extends Controller
 
         return Inertia::render('Pizzas/TopRated', [
             'pizzas' => $pizzas,
+        ]);
+    }
+
+    /**
+     * Lowest calorie frozen pizzas — SEO page for "lowest calorie frozen pizza".
+     */
+    public function lowestCalorie(): InertiaResponse
+    {
+        $staffPick = StaffPick::where('slug', 'lowest-calorie-frozen-pizza')->first();
+        $pizzas = $staffPick->pizzas()->with(['brand.image', 'tags', 'nutritionFact', 'images'  => function ($query) {
+            $query->withPivot('type', 'created_at');
+        }])->get();
+
+
+        // order by calories per gram (values() resets keys so JSON becomes an array, not object)
+        $pizzas = $pizzas->sortBy(function ($pizza) {
+            return $pizza->nutritionFact->calories / $pizza->nutritionFact->serving_weight;
+        })->values();
+
+        Inertia::share('meta', [
+            'title' => 'Lowest Calorie Frozen Pizza – Top Picks by Calories | Pizza Kraken',
+            'description' => 'Find the lowest calorie frozen pizza options. We compare nutrition facts and rank the top low-calorie frozen pizzas so you can choose wisely.',
+            'keywords' => 'lowest calorie frozen pizza, low calorie frozen pizza, low calorie pizza, frozen pizza calories, healthy frozen pizza',
+            'canonicalUrl' => '/lowest-calorie-frozen-pizza',
+        ]);
+
+        return Inertia::render('Pizzas/LowestCalorie', [
+            'pizzas' => $pizzas->toArray(),
         ]);
     }
 }
