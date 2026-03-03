@@ -61,7 +61,11 @@ php artisan serve
 [ ] Italpizza
 [ ] Mama Cozzis
 [ ] Kettle River
+[ ] massa pizza company
 
-[ ] on creating pizza, it's prefixing pizza name with company name
+
+[x] on creating pizza, it's prefixing pizza name with company name
 [ ] cosolidate nutrition facts "structures" all over the place.
  - Model based validations?
+[ ] paragraphs from the database are not being respected.
+[ ] continue scrolling through pizzas on home page and /pizzas page

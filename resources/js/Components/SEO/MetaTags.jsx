@@ -9,6 +9,8 @@ export default function MetaTags({ title, description, canonicalUrl, keywords })
     return (
         <Head>
             <title>{title}</title>
+            {/* flexoffers.com verification */}
+            <meta name="fo-verify" content="2ca802a6-3183-4cdc-b8b5-1540534e5ddc" />
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords} />
             <meta property="og:title" content={title} />
