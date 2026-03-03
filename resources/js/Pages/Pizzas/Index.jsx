@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import PizzaListItem from '@/Components/Common/PizzaListItem';
+import PizzaGridWithPromo from '@/Components/Common/PizzaGridWithPromo';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 
 export default function PizzasIndex({ pizzasFirstPage, meta, auth }) {
@@ -27,7 +27,7 @@ export default function PizzasIndex({ pizzasFirstPage, meta, auth }) {
 
     return (
         <MainLayout meta={meta} auth={auth}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="max-w-[1880px] mx-auto px-4 sm:px-5 lg:px-6 py-8">
                 <div className="text-center mb-12">
                     <div className="flex justify-center mb-6">
                         <ApplicationLogo className="w-[260px] h-[260px]" />
@@ -97,11 +97,7 @@ export default function PizzasIndex({ pizzasFirstPage, meta, auth }) {
                 </div>
 
                 <h2 className="text-2xl font-bold mb-6">Featured Pizzas</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {pizzas.data.map((pizza) => (
-                        <PizzaListItem key={pizza.id} pizza={pizza} />
-                    ))}
-                </div>
+                <PizzaGridWithPromo pizzas={pizzas} />
             </div>
         </MainLayout>
     );

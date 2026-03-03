@@ -121,4 +121,35 @@ class PizzaController extends Controller
             'pizzas' => $pizzas,
         ]);
     }
+
+    /**
+     * Lowest calorie frozen pizzas — SEO page for "lowest calorie frozen pizza".
+     */
+    public function lowestCalorie(): InertiaResponse
+    {
+        $pizzas = Pizza::query()
+            ->whereHas('nutritionFact')
+            ->with([
+                'brand.image',
+                'tags',
+                'images' => fn ($q) => $q->withPivot('type', 'created_at'),
+                'nutritionFact',
+            ])
+            ->join('nutrition_facts', 'pizzas.id', '=', 'nutrition_facts.pizza_id')
+            ->orderBy('nutrition_facts.calories', 'asc')
+            ->select('pizzas.*')
+            ->take(3)
+            ->get();
+
+        Inertia::share('meta', [
+            'title' => 'Lowest Calorie Frozen Pizza – Top Picks by Calories | Pizza Kraken',
+            'description' => 'Find the lowest calorie frozen pizza options. We compare nutrition facts and rank the top low-calorie frozen pizzas so you can choose wisely.',
+            'keywords' => 'lowest calorie frozen pizza, low calorie frozen pizza, low calorie pizza, frozen pizza calories, healthy frozen pizza',
+            'canonicalUrl' => '/lowest-calorie-frozen-pizza',
+        ]);
+
+        return Inertia::render('Pizzas/LowestCalorie', [
+            'pizzas' => $pizzas->toArray(),
+        ]);
+    }
 }

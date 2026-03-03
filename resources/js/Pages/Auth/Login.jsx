@@ -35,7 +35,7 @@ export default function Login({ status, canResetPassword }) {
 
             {import.meta.env.VITE_APP_ENV === 'local' && (
                 <div className="mb-4 underline">
-                    <Link href={`/local-login/superadmin@frozenza.com`}>Login as Super Admin</Link>
+                    <Link href={`/local-login/admin@example.com`}>Login as Admin</Link>
                 </div>
             )}
 

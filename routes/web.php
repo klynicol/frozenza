@@ -55,6 +55,7 @@ Route::get('/users/delete-data-instructions', function () {
 
 // Pizza routes
 Route::get('/pizzas', [PizzaController::class, 'index'])->name('pizzas.index');
+Route::get('/lowest-calorie-frozen-pizza', [PizzaController::class, 'lowestCalorie'])->name('pizzas.lowest-calorie');
 Route::get('/pizzas/{brand:slug}/{pizza:slug}', [PizzaController::class, 'show'])->name('pizzas.show');
 Route::get('/pizzas/list', [PizzaController::class, 'list'])->name('pizzas.list');
 

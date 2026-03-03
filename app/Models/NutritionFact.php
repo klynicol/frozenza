@@ -103,6 +103,9 @@ class NutritionFact extends BaseModel
         'serving_weight' => 'integer',
     ];
 
+    /**
+     * Get the pizza that this nutrition fact belongs to.
+     */
     public function pizza(): BelongsTo
     {
         return $this->belongsTo(Pizza::class);
