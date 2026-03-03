@@ -25,12 +25,15 @@ export default function PizzasIndex({ pizzasFirstPage, meta, auth }) {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [pizzas]);
 
+    // Are we on  "/pizzas"?
+    const isPizzasIndex = window.location.pathname === '/pizzas';
+
     return (
         <MainLayout meta={meta} auth={auth}>
             <div className="max-w-[1880px] mx-auto px-4 sm:px-5 lg:px-6 py-8">
-                <div className="text-center mb-12">
+                <div className={`text-center mb-12 ${isPizzasIndex ? 'hidden' : ''}`}>
                     <div className="flex justify-center mb-6">
-                        <ApplicationLogo className="w-[260px] h-[260px]" />
+                        <ApplicationLogo className="w-[60px] h-[60px]" />
                     </div>
                     <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Welcome to Pizza Kraken</h1>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -51,49 +54,6 @@ export default function PizzasIndex({ pizzasFirstPage, meta, auth }) {
                             <span>Join our Discord</span>
                         </div>
                     </a>
-                </div>
-
-                {/* Giveaway Promotional Banner */}
-                <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl p-8 mb-8 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-black bg-opacity-10"></div>
-                    <div className="relative z-10 text-center">
-                        <div className="flex items-center justify-center space-x-3 mb-4">
-                            <span className="text-4xl">🎉</span>
-                            <h3 className="text-3xl font-bold">Monthly $50 Gift Card Giveaway!</h3>
-                            <span className="text-4xl">🎉</span>
-                        </div>
-                        <p className="text-xl opacity-90 mb-6 max-w-3xl mx-auto">
-                            Review any pizza this month and get entered to win! The more reviews you write, 
-                            the more chances you have to win. New month, new opportunity!
-                        </p>
-                        <div className="flex flex-wrap justify-center gap-4">
-                            <a
-                                href="/giveaway"
-                                className="bg-white text-purple-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
-                            >
-                                Learn More
-                            </a>
-                            {auth.user ? (
-                                <a
-                                    href="/pizzas"
-                                    className="bg-yellow-400 text-purple-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
-                                >
-                                    Start Reviewing
-                                </a>
-                            ) : (
-                                <a
-                                    href="/login"
-                                    className="bg-yellow-400 text-purple-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
-                                >
-                                    Sign In to Participate
-                                </a>
-                            )}
-                        </div>
-                    </div>
-                    
-                    {/* Floating elements */}
-                    <div className="absolute top-8 right-8 w-24 h-24 bg-white bg-opacity-10 rounded-full animate-bounce"></div>
-                    <div className="absolute bottom-8 left-8 w-20 h-20 bg-white bg-opacity-10 rounded-full animate-pulse delay-1000"></div>
                 </div>
 
                 <h2 className="text-2xl font-bold mb-6">Featured Pizzas</h2>

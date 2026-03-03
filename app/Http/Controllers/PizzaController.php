@@ -28,7 +28,7 @@ class PizzaController extends Controller
     public function index(): InertiaResponse
     {
         Inertia::share('meta', [
-            'title' => "Best Frozen Pizzas - Ratings, Brands, canonicalUrlReviews, and Where to Buy",
+            'title' => "Best Frozen Pizzas - Ratings, Brand Index, Reviews, and Where to Buy",
             'description' => 'Pizza Kraken: Discover and review the best frozen pizzas with honest ratings, ingredient details, and expert guidance to make informed choices today!',
             'keywords' => "frozen pizza, pizza reviews, pizza ratings, best frozen pizzas, frozen pizza brands, frozen pizza guide, frozen pizza ingredients, pizza comparison",
             'canonicalUrl' => "/pizzas",
