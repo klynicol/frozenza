@@ -27,6 +27,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+
+        $schedule->command('pizza:low-cal')->dailyAt('00:00');
     }
 
     /**
