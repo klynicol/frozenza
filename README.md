@@ -62,7 +62,7 @@ php artisan serve
 [ ] Mama Cozzis
 [ ] Kettle River
 [ ] massa pizza company
-
+[ ] Lou Malnatis
 
 [x] on creating pizza, it's prefixing pizza name with company name
 [ ] cosolidate nutrition facts "structures" all over the place.
