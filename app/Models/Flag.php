@@ -10,9 +10,9 @@ class Flag extends Model
     use HasUuid;
 
     protected $fillable = [
-        'row_id',
         'table_name',
         'f_value_1',
         'f_value_2',
+        'flagable_id',
     ];
 }

@@ -21,7 +21,7 @@ return new class extends Migration
          */
         Schema::create('flags', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('row_id');
+            $table->uuid('flagable_id');
             $table->string('table_name', 64);
             $table->string('f_value_1', 255);
             $table->string('f_value_2', 255)->nullable();
@@ -30,7 +30,7 @@ return new class extends Migration
             // Find flags by table + value (e.g. "pizzas with flag X")
             $table->index(['table_name', 'f_value_1']);
             // Load all flags for a row (e.g. $pizza->flags)
-            $table->index(['table_name', 'row_id']);
+            $table->index(['table_name', 'flagable_id']);
         });
     }
 

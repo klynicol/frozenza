@@ -12,6 +12,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\PizzaResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Models\StaffPick;
+use Illuminate\Support\Facades\Log;
 
 class PizzaController extends Controller
 {
@@ -127,19 +129,16 @@ class PizzaController extends Controller
      */
     public function lowestCalorie(): InertiaResponse
     {
-        $pizzas = Pizza::query()
-            ->whereHas('nutritionFact')
-            ->with([
-                'brand.image',
-                'tags',
-                'images' => fn ($q) => $q->withPivot('type', 'created_at'),
-                'nutritionFact',
-            ])
-            ->join('nutrition_facts', 'pizzas.id', '=', 'nutrition_facts.pizza_id')
-            ->orderBy('nutrition_facts.calories', 'asc')
-            ->select('pizzas.*')
-            ->take(3)
-            ->get();
+        $staffPick = StaffPick::where('slug', 'lowest-calorie-frozen-pizza')->first();
+        $pizzas = $staffPick->pizzas()->with(['brand.image', 'tags', 'nutritionFact', 'images'  => function ($query) {
+            $query->withPivot('type', 'created_at');
+        }])->get();
+
+
+        // order by calories per gram (values() resets keys so JSON becomes an array, not object)
+        $pizzas = $pizzas->sortBy(function ($pizza) {
+            return $pizza->nutritionFact->calories / $pizza->nutritionFact->serving_weight;
+        })->values();
 
         Inertia::share('meta', [
             'title' => 'Lowest Calorie Frozen Pizza – Top Picks by Calories | Pizza Kraken',

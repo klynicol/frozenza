@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\StaffPick;
 
 return new class extends Migration
 {
@@ -24,6 +25,7 @@ return new class extends Migration
          */
         Schema::create('staff_picks', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('slug')->unique();
             $table->string('name');
             $table->text('description');
             $table->timestamps();
@@ -33,6 +35,12 @@ return new class extends Migration
         Schema::table('pizzas', function (Blueprint $table) {
             $table->foreignUuid('staff_pick_id')->nullable()->references('id')->on('staff_picks')->onDelete('cascade');
         });
+
+        StaffPick::create([
+            'slug' => 'lowest-calorie-frozen-pizza',
+            'name' => 'Lowest Calorie Frozen Pizza',
+            'description' => 'The 3 lowest calorie frozen pizzas',
+        ]);
     }
 
     /**
@@ -42,6 +50,7 @@ return new class extends Migration
     {
         Schema::table('pizzas', function (Blueprint $table) {
             $table->dropForeign(['staff_pick_id']);
+            $table->dropColumn('staff_pick_id');
         });
 
         Schema::dropIfExists('staff_picks');

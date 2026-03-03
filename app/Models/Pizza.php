@@ -105,11 +105,11 @@ class Pizza extends Model implements Sitemapable
     }
 
     /**
-     * Flags for this pizza (table_name = 'pizzas', row_id = id).
+     * Flags for this pizza (table_name = 'pizzas', flagable_id = id).
      */
     public function flags(): HasMany
     {
-        return $this->hasMany(Flag::class, 'row_id', 'id')->where('table_name', 'pizzas');
+        return $this->hasMany(Flag::class, 'flagable_id', 'id')->where('table_name', 'pizzas');
     }
 
     /**

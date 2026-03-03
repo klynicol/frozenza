@@ -11,6 +11,7 @@ class StaffPick extends Model
     use HasUuid;
 
     protected $fillable = [
+        'slug',
         'name',
         'description',
     ];
