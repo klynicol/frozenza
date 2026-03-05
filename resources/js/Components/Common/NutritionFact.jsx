@@ -40,6 +40,8 @@ const DAILY_VALUES = {
    CALCIUM: 1300,
    IRON: 18,
    POTASSIUM: 4700,
+   VITAMIN_A: 900,
+   VITAMIN_C: 90,
 };
 
 export default function NutritionFact({ nutritionFact }) {
@@ -121,6 +123,8 @@ export default function NutritionFact({ nutritionFact }) {
             {renderRow(nutritionFact.potassium, 'Potassium', 'POTASSIUM')}
             {renderRow(nutritionFact.iron, 'Iron', 'IRON')}
             {renderRow(nutritionFact.calcium, 'Calcium', 'CALCIUM')}
+            {renderRow(nutritionFact.vitamin_a, 'Vitamin A', 'VITAMIN_A')}
+            {renderRow(nutritionFact.vitamin_c, 'Vitamin C', 'VITAMIN_C')}
          </div>
          <p className="border-t border-gray-800 footnote text-xs mt-2">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</p>
       </div>

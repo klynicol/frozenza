@@ -63,6 +63,7 @@ php artisan serve
 [ ] Kettle River
 [ ] massa pizza company
 [ ] Lou Malnatis
+[ ] Vonnys pizza
 
 [x] on creating pizza, it's prefixing pizza name with company name
 [ ] cosolidate nutrition facts "structures" all over the place.
