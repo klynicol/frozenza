@@ -10,6 +10,7 @@ use App\Http\Controllers\{
     ContactController,
     Auth\SocialAuthController,
     Admin\AffiliateLinkController,
+    Admin\BlogPostController as AdminBlogPostController,
     Admin\DashboardController,
     Admin\UserRoleController,
     BrandSubmissionController,
@@ -113,6 +114,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:admin'])->group(function () {
         Route::name('admin.')->prefix('admin')->group(function () {
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+            Route::get('blogs', [AdminBlogPostController::class, 'index'])->name('blogs.index');
             Route::resource('affiliate-links', AffiliateLinkController::class);
             Route::post('affiliate-links/update-order', [AffiliateLinkController::class, 'updateOrder'])->name('affiliate-links.update-order');
             Route::resource('user-roles', UserRoleController::class);

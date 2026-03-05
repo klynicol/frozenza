@@ -10,9 +10,10 @@ import SecondaryButton from '@/Components/SecondaryButton';
 export default function BlogCreate() {
     const { data, setData, post, processing, errors } = useForm({
         title: '',
-        content: '',
-        featured_image: '',
         meta_description: '',
+        keywords: '',
+        content: '',
+        feature_image: '',
         tags: [],
         published_at: '',
         is_published: false,
@@ -73,9 +74,9 @@ export default function BlogCreate() {
                                     <InputError message={errors.title} className="mt-2" />
                                 </div>
 
-                                {/* Meta Description */}
+                                {/* Meta Description (required for SEO) */}
                                 <div>
-                                    <InputLabel htmlFor="meta_description" value="Meta Description" />
+                                    <InputLabel htmlFor="meta_description" value="Meta Description (required)" />
                                     <textarea
                                         id="meta_description"
                                         className="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
@@ -83,25 +84,40 @@ export default function BlogCreate() {
                                         value={data.meta_description}
                                         onChange={(e) => setData('meta_description', e.target.value)}
                                         placeholder="Brief description for SEO (150-160 characters recommended)"
+                                        required
                                     />
                                     <InputError message={errors.meta_description} className="mt-2" />
                                     <p className="mt-1 text-sm text-gray-500">
-                                        {data.meta_description.length}/160 characters
+                                        {(data.meta_description ?? '').length}/160 characters
                                     </p>
                                 </div>
 
-                                {/* Featured Image URL */}
+                                {/* Keywords (SEO) */}
                                 <div>
-                                    <InputLabel htmlFor="featured_image" value="Featured Image URL" />
-                                    <TextInput
-                                        id="featured_image"
-                                        type="url"
-                                        className="mt-1 block w-full"
-                                        value={data.featured_image}
-                                        onChange={(e) => setData('featured_image', e.target.value)}
-                                        placeholder="https://example.com/image.jpg"
+                                    <InputLabel htmlFor="keywords" value="Keywords" />
+                                    <textarea
+                                        id="keywords"
+                                        className="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        rows="2"
+                                        value={data.keywords}
+                                        onChange={(e) => setData('keywords', e.target.value)}
+                                        placeholder="Comma-separated SEO keywords (optional)"
                                     />
-                                    <InputError message={errors.featured_image} className="mt-2" />
+                                    <InputError message={errors.keywords} className="mt-2" />
+                                </div>
+
+                                {/* Feature Image (URL or path) */}
+                                <div>
+                                    <InputLabel htmlFor="feature_image" value="Feature Image (URL or path)" />
+                                    <TextInput
+                                        id="feature_image"
+                                        type="text"
+                                        className="mt-1 block w-full"
+                                        value={data.feature_image}
+                                        onChange={(e) => setData('feature_image', e.target.value)}
+                                        placeholder="https://example.com/image.jpg or blogs/image.png"
+                                    />
+                                    <InputError message={errors.feature_image} className="mt-2" />
                                 </div>
 
                                 {/* Tags */}
@@ -176,7 +192,7 @@ export default function BlogCreate() {
                                     )}
                                 </div>
 
-                                {/* Content */}
+                                {/* Content (optional for drafts) */}
                                 <div>
                                     <InputLabel htmlFor="content" value="Content" />
                                     <textarea
@@ -185,12 +201,11 @@ export default function BlogCreate() {
                                         rows="20"
                                         value={data.content}
                                         onChange={(e) => setData('content', e.target.value)}
-                                        placeholder="Write your blog post content here... You can use HTML tags for formatting."
-                                        required
+                                        placeholder="Write your blog post content here. HTML is supported."
                                     />
                                     <InputError message={errors.content} className="mt-2" />
                                     <p className="mt-1 text-sm text-gray-500">
-                                        HTML tags are supported for formatting
+                                        HTML tags are supported. Optional when saving as draft.
                                     </p>
                                 </div>
 

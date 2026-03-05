@@ -50,7 +50,7 @@ class BlogPostController extends Controller
 
         return Inertia::render('Blog/Show', [
             'post' => $post,
-            'content' => view("blogs.{$post->slug}")->render(),
+            'content' => $post->content,
             'pizzas' => PizzaHelper::getPizzasPaginated(1),
         ]);
     }
@@ -69,9 +69,10 @@ class BlogPostController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'meta_description' => 'nullable|string|max:160',
-            'featured_image' => 'nullable|string|url',
+            'meta_description' => 'required|string|max:65535',
+            'content' => 'nullable|string',
+            'feature_image' => 'nullable|string|max:255',
+            'keywords' => 'nullable|string|max:65535',
             'tags' => 'nullable|array',
             'tags.*' => 'string',
             'published_at' => 'nullable|date',
@@ -88,9 +89,15 @@ class BlogPostController extends Controller
         }
 
         $post = BlogPost::create([
-            ...$validated,
-            'user_id' => Auth::id(),
+            // 'user_id' => Auth::id(),
+            'title' => $validated['title'],
             'slug' => Str::slug($validated['title']),
+            'meta_description' => $validated['meta_description'],
+            'content' => $validated['content'] ?? null,
+            'feature_image' => $validated['feature_image'] ?? null,
+            'keywords' => $validated['keywords'] ?? null,
+            'tags' => $validated['tags'] ?? null,
+            'published_at' => $validated['published_at'],
         ]);
 
         return redirect()->route('blogs.show', $post)
@@ -117,19 +124,27 @@ class BlogPostController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'featured_image' => 'nullable|string',
+            'meta_description' => 'required|string|max:65535',
+            'content' => 'nullable|string',
+            'feature_image' => 'nullable|string|max:255',
+            'keywords' => 'nullable|string|max:65535',
             'tags' => 'nullable|array',
             'tags.*' => 'string',
             'published_at' => 'nullable|date',
         ]);
 
         $post->update([
-            ...$validated,
+            'title' => $validated['title'],
             'slug' => Str::slug($validated['title']),
+            'meta_description' => $validated['meta_description'],
+            'content' => $validated['content'] ?? null,
+            'feature_image' => $validated['feature_image'] ?? null,
+            'keywords' => $validated['keywords'] ?? null,
+            'tags' => $validated['tags'] ?? null,
+            'published_at' => $validated['published_at'],
         ]);
 
-        return redirect()->route('blog.show', $post)
+        return redirect()->route('blogs.show', $post)
             ->with('success', 'Blog post updated successfully!');
     }
 
@@ -139,7 +154,7 @@ class BlogPostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('blog.index')
+        return redirect()->route('blogs.index')
             ->with('success', 'Blog post deleted successfully!');
     }
 } 

@@ -53,6 +53,7 @@ class BlogPost extends Model implements Sitemapable
         'content',
         'feature_image',
         'tags',
+        'keywords',
         'published_at',
     ];
 
