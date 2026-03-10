@@ -69,4 +69,6 @@ php artisan serve
 [ ] cosolidate nutrition facts "structures" all over the place.
  - Model based validations?
 [ ] paragraphs from the database are not being respected.
-[ ] continue scrolling through pizzas on home page and /pizzas page
+[ ] continue scrolling through pizzas on home page and /pizzas page (load more)
+[ ] duplicate photos on review upload
+[ ] more photos on pizza pages.
