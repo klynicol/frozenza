@@ -34,7 +34,7 @@ chmod 755 database_dumps
 if ! [ -f "database_dumps/$YESTERDAY.sql" ]; then
     echo "Downloading database dump from remote server, please be patient..."
     # Use scp to download the file from the remote server to the local machine
-    scp mark@173.22.163.66:$REMOTE_FILE_PATH database_dumps/$YESTERDAY.sql
+    scp mark@68.46.84.167:$REMOTE_FILE_PATH database_dumps/$YESTERDAY.sql
 fi
 
 echo "Creating new $DB_NAME database from $YESTERDAY.sql"
