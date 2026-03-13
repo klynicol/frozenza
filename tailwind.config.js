@@ -15,6 +15,13 @@ export default {
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                primary: '#006699',
+                secondary: '#663399',
+                accent: '#ffa500',
+                facebook: '#1877F2',
+                discord: '#7289da',
+            },
         },
     },
 
