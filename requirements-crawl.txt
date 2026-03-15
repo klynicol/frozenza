@@ -1,3 +1,5 @@
 # Crawl4AI - LLM-friendly web crawler for frozen pizza data
 # Install: pip install -r requirements-crawl.txt && crawl4ai-setup
 crawl4ai>=0.8.0
+ddgs>=8.0.0
+litellm>=1.0.0
