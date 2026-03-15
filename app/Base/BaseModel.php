@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Storage;
 use App\Traits\HasUuid;
 
+/**
+ * 
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BaseModel newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BaseModel newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BaseModel query()
+ * @mixin \Eloquent
+ */
 class BaseModel extends Model
 {
     /**

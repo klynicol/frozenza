@@ -92,11 +92,11 @@ class BrandController extends Controller
         $request->validate([
             'name' => 'required|string|max:255|unique:brands,name',
             'slug' => 'nullable|string|max:255|unique:brands,slug',
-            'description' => 'required|string|max:1000',
+            'description' => 'required|string',
             'website' => 'nullable|url|max:255',
             'store_locator_url' => 'nullable|url|max:255',
             'founded_year' => 'nullable|integer|min:1800|max:' . (date('Y') + 1),
-            'brand_story' => 'nullable|string|max:2000',
+            'brand_story' => 'nullable|string',
             'unique_selling_points' => 'nullable|array',
             'unique_selling_points.*' => 'string|max:255',
             'social_media_handles' => 'nullable|array',
@@ -240,15 +240,15 @@ class BrandController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:brands,name',
-            'description' => 'required|string|max:1000',
+            'description' => 'required|string',
             'website' => 'nullable|url|max:255',
             'store_locator_url' => 'nullable|url|max:255',
             'founded_year' => 'nullable|integer|min:1800|max:' . (date('Y') + 1),
-            'brand_story' => 'nullable|string|max:2000',
+            'brand_story' => 'nullable|string',
             'unique_selling_points' => 'nullable|array',
-            'unique_selling_points.*' => 'string|max:255',
+            'unique_selling_points.*' => 'nullable|string|max:255',
             'social_media_handles' => 'nullable|array',
-            'social_media_handles.*' => 'string|max:255',
+            'social_media_handles.*' => 'nullable|string|max:255',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 

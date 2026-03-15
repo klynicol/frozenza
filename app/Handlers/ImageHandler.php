@@ -50,6 +50,9 @@ class ImageHandler
       if (empty($details)) {
          $fileContent = Storage::disk($disk)->get($filePath);
          $details = self::getDetailsFromBinaryImage($fileContent);
+         if ($details === null) {
+            return null;
+         }
       }
 
       $imageUpload = new Image();
@@ -84,7 +87,11 @@ class ImageHandler
       }
 
       $details = self::getDetailsFromBinaryImage($image);
-      
+      if ($details === null) {
+         Log::warning('URL did not return valid image data: ' . $url);
+         return null;
+      }
+
       if ($newFileName) {
          $filename = $newFileName . '.' . $details['extension'];
       } else {
@@ -101,9 +108,14 @@ class ImageHandler
    /**
     * Get the file details from a binary image
     * This allows us to not need a local path to the image
+    * Returns null if the data is not valid image content (e.g. HTTP body "OK", HTML, etc.)
     */
-   private static function getDetailsFromBinaryImage(string $binaryImage): array
+   private static function getDetailsFromBinaryImage(string $binaryImage): ?array
    {
+      if (strlen($binaryImage) < 12) {
+         return null;
+      }
+
       // Get the MIME type
       $finfo = new \finfo(FILEINFO_MIME_TYPE);
       $mimeType = $finfo->buffer($binaryImage);
@@ -117,19 +129,21 @@ class ImageHandler
          'image/bmp' => 'bmp',
       ];
 
-      $fileExtension = isset($mimeToExtensionMap[$mimeType]) ? $mimeToExtensionMap[$mimeType] : 'unknown';
-
-      // Get image dimensions
-      $imageInfo = getimagesizefromstring($binaryImage);
-      if ($imageInfo) {
-         $width = $imageInfo[0]; // Width
-         $height = $imageInfo[1]; // Height
-      } else {
-         $width = $height = 'unknown';
+      if (!isset($mimeToExtensionMap[$mimeType])) {
+         return null;
       }
 
-      // Get file size
-      $fileSize = strlen($binaryImage); // File size in bytes
+      $fileExtension = $mimeToExtensionMap[$mimeType];
+
+      // Get image dimensions (suppress warning when data is not a valid image)
+      $imageInfo = @getimagesizefromstring($binaryImage);
+      if (!$imageInfo) {
+         return null;
+      }
+
+      $width = $imageInfo[0];
+      $height = $imageInfo[1];
+      $fileSize = strlen($binaryImage);
 
       return [
          'mime_type' => $mimeType,

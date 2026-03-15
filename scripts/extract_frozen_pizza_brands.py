@@ -22,6 +22,13 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
+# Load .env so OPENAI_API_KEY / LLM_API_KEY are available
+try:
+    from dotenv import load_dotenv
+    load_dotenv(PROJECT_ROOT / ".env")
+except ImportError:
+    pass  # python-dotenv not installed; rely on environment
+
 # Search (no API key)
 try:
     from ddgs import DDGS
@@ -36,24 +43,33 @@ def _have_llm():
 SEARCH_QUERIES = [
     "frozen pizza brands",
     "frozen pizza brands USA",
+    "frozen pizza brands list",
+    "frozen pizza companies USA",
+    "best frozen pizza brands",
+    "store brand frozen pizza",
+    "regional frozen pizza brands",
+    "frozen pizza brand names",
 ]
 
 # Prompt for filtering search results: keep only official brand sites, output brand_name + website_url
-FILTER_INSTRUCTION = """You are given a list of web search results for "frozen pizza brands".
+FILTER_INSTRUCTION = """You are given a list of web search results about frozen pizza brands.
 
 For each result, decide: Is this an official frozen pizza brand (or brand product) website sold in the USA?
-- Include: official brand sites, product pages for a frozen pizza brand.
-- Exclude: listicles ("10 best frozen pizza brands"), Wikipedia, retailers (Walmart, Target, Amazon), review sites, news.
+- Include: official brand sites, product pages for a frozen pizza brand, regional brands, store brands (e.g. store.publisher.com), and any specific brand's site. When in doubt, include the result.
+- Exclude only: generic listicles ("10 best frozen pizza brands" with no single brand), Wikipedia, big retailers' main site (Walmart, Target, Amazon), general review sites, and news articles.
 
 Return a JSON object with one key "brands": an array of objects. Each object has exactly:
-- brand_name (string): the frozen pizza brand name
+- brand_name (string): the frozen pizza brand name (from the title or URL)
 - website_url (string): the URL
 
-Include only results that are official frozen pizza brand websites. If none qualify, return {"brands": []}.
+Include every result that is or clearly represents one specific frozen pizza brand. We want a large list; err on the side of including. If none qualify, return {"brands": []}.
 
 Search results to classify:
 """
 # (we append the list of title / url / snippet here)
+
+# Process search results in chunks to avoid token limits and get more brands
+FILTER_CHUNK_SIZE = 35
 
 
 def search_frozen_pizza_brands(max_results_per_query: int = 25) -> list[dict]:
@@ -80,40 +96,8 @@ def search_frozen_pizza_brands(max_results_per_query: int = 25) -> list[dict]:
     return out
 
 
-def filter_results_with_llm(
-    search_results: list[dict],
-    provider: str = "openai/gpt-4o-mini",
-    api_key: str | None = None,
-) -> list[dict]:
-    """Use LLM to keep only official brand sites; return list of {brand_name, website_url}."""
-    api_key = api_key or os.getenv("OPENAI_API_KEY") or os.getenv("LLM_API_KEY")
-    if not api_key:
-        return []
-    try:
-        import litellm
-    except ImportError:
-        print("Optional: pip install litellm for --filter.", file=sys.stderr)
-        return []
-
-    # Build prompt: list each result as title / url / snippet
-    lines = []
-    for i, r in enumerate(search_results, 1):
-        lines.append(f"{i}. Title: {r.get('title', '')}\n   URL: {r.get('url', '')}\n   Snippet: {r.get('snippet', '')}")
-    prompt = FILTER_INSTRUCTION + "\n".join(lines)
-
-    try:
-        response = litellm.completion(
-            model=provider,
-            messages=[{"role": "user", "content": prompt}],
-            api_key=api_key,
-            temperature=0.1,
-        )
-        content = (response.choices[0].message.content or "").strip()
-    except Exception as e:
-        print(f"LLM filter failed: {e}", file=sys.stderr)
-        return []
-
-    # Parse JSON from response (allow markdown code block)
+def _parse_llm_brands(content: str) -> list[dict]:
+    """Parse JSON brands from LLM response; return list of {brand_name, website_url}."""
     if "```" in content:
         content = re.sub(r"^```(?:json)?\s*", "", content)
         content = re.sub(r"\s*```\s*$", "", content)
@@ -133,6 +117,43 @@ def filter_results_with_llm(
         if name and url:
             out.append({"brand_name": name, "website_url": url})
     return out
+
+
+def filter_results_with_llm(
+    search_results: list[dict],
+    provider: str = "openai/gpt-4o-mini",
+    api_key: str | None = None,
+) -> list[dict]:
+    """Use LLM to keep only official brand sites; return list of {brand_name, website_url}."""
+    api_key = api_key or os.getenv("OPENAI_API_KEY") or os.getenv("LLM_API_KEY")
+    if not api_key:
+        return []
+    try:
+        import litellm
+    except ImportError:
+        print("Optional: pip install litellm for --filter.", file=sys.stderr)
+        return []
+
+    all_brands: list[dict] = []
+    for start in range(0, len(search_results), FILTER_CHUNK_SIZE):
+        chunk = search_results[start : start + FILTER_CHUNK_SIZE]
+        lines = []
+        for i, r in enumerate(chunk, 1):
+            lines.append(f"{i}. Title: {r.get('title', '')}\n   URL: {r.get('url', '')}\n   Snippet: {r.get('snippet', '')}")
+        prompt = FILTER_INSTRUCTION + "\n".join(lines)
+        try:
+            response = litellm.completion(
+                model=provider,
+                messages=[{"role": "user", "content": prompt}],
+                api_key=api_key,
+                temperature=0.1,
+            )
+            content = (response.choices[0].message.content or "").strip()
+        except Exception as e:
+            print(f"LLM filter chunk failed: {e}", file=sys.stderr)
+            continue
+        all_brands.extend(_parse_llm_brands(content))
+    return all_brands
 
 
 def load_seed_urls(path: Path | None) -> list[dict]:
@@ -206,8 +227,8 @@ def main() -> None:
     parser.add_argument(
         "--max-results",
         type=int,
-        default=25,
-        help="Max search results per query (default 25)",
+        default=50,
+        help="Max search results per query (default 50)",
     )
     parser.add_argument(
         "--provider",

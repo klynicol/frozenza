@@ -50,6 +50,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereUniqueSellingPoints($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereWebsite($value)
+ * @property string|null $store_locator_url
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereStoreLocatorUrl($value)
+ * @property string|null $headquarter_address
+ * @property string|null $parent_company
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereHeadquarterAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereParentCompany($value)
  * @mixin \Eloquent
  */
 class Brand extends Model implements Sitemapable

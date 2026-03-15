@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ContactFeedback whereSubject($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ContactFeedback whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ContactFeedback whereUserId($value)
+ * @property-read \App\Models\TFactory|null $use_factory
  * @mixin \Eloquent
  */
 class ContactFeedback extends Model
