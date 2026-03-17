@@ -8,7 +8,7 @@ export default function BrandListItem({ brand }) {
       <>
          <SchemaMarkup type="Brand" data={brand} />
          <Link
-            href={`/brands/${brand.slug}/pizzas`}
+            href={`/brands/${brand.slug}`}
             className="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all hover:translate-y-[-2px] h-full"
          >
             <div className="p-4 flex flex-col items-center justify-between h-full">

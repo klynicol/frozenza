@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BrandValidationRules;
 use App\Models\Brand;
 use App\Models\Image;
 use App\Handlers\ImageHandler;
@@ -85,49 +86,34 @@ class BrandController extends Controller
     }
 
     /**
-     * Store a newly created brand (admin)
+     * Store a newly created brand (admin or submission flow).
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:brands,name',
-            'slug' => 'nullable|string|max:255|unique:brands,slug',
-            'description' => 'required|string',
-            'website' => 'nullable|url|max:255',
-            'store_locator_url' => 'nullable|url|max:255',
-            'founded_year' => 'nullable|integer|min:1800|max:' . (date('Y') + 1),
-            'brand_story' => 'nullable|string',
-            'unique_selling_points' => 'nullable|array',
-            'unique_selling_points.*' => 'string|max:255',
-            'social_media_handles' => 'nullable|array',
-            'social_media_handles.*' => 'string|max:255',
-            'seo_title' => 'nullable|string|max:255',
-            'seo_description' => 'nullable|string|max:500',
-            'seo_about_content' => 'nullable|string|max:2000',
-            'seo_keywords' => 'nullable|array',
-            'seo_keywords.*' => 'string|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-        ]);
+        $isSubmission = $request->routeIs('brand-submissions.store');
 
-        $brandData = $request->only([
-            'name', 'slug', 'description', 'website', 'store_locator_url', 
-            'founded_year', 'brand_story', 'unique_selling_points', 
-            'social_media_handles', 'seo_title', 'seo_description', 
-            'seo_about_content', 'seo_keywords'
-        ]);
+        $request->validate(
+            $isSubmission ? BrandValidationRules::submission() : BrandValidationRules::store()
+        );
 
-        // Generate slug from name if not provided
-        if (empty($brandData['slug'])) {
-            $brandData['slug'] = Str::slug($request->name);
-        }
-        
-        // Handle logo upload if provided
+        $allowed = $isSubmission
+            ? ['name', 'description', 'website', 'store_locator_url', 'founded_year', 'brand_story', 'unique_selling_points', 'social_media_handles']
+            : ['name', 'slug', 'description', 'website', 'store_locator_url', 'founded_year', 'brand_story', 'unique_selling_points', 'social_media_handles', 'seo_title', 'seo_description', 'seo_about_content', 'seo_keywords'];
+
+        $brandData = $request->only($allowed);
+        $brandData['slug'] = ! empty($brandData['slug'] ?? null) ? $brandData['slug'] : Str::slug($request->name);
+
         if ($request->hasFile('logo')) {
             $image = ImageHandler::upload($request->file('logo'));
             $brandData['image_id'] = $image->id;
         }
 
         $brand = Brand::create($brandData);
+
+        if ($isSubmission) {
+            return redirect()->route('brand-submissions.success', $brand)
+                ->with('success', 'Brand submitted successfully! It will be reviewed by our team.');
+        }
 
         return redirect()->route('admin.brands.index')
             ->with('success', 'Brand created successfully!');
@@ -152,7 +138,9 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        return Inertia::render('Admin/Brands/Edit', [
+        $brand->load('image');
+
+        return Inertia::render('Brands/Edit', [
             'brand' => $brand
         ]);
     }
@@ -162,25 +150,7 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:brands,name,' . $brand->id,
-            'slug' => 'nullable|string|max:255|unique:brands,slug,' . $brand->id,
-            'description' => 'required|string|max:1000',
-            'website' => 'nullable|url|max:255',
-            'store_locator_url' => 'nullable|url|max:255',
-            'founded_year' => 'nullable|integer|min:1800|max:' . (date('Y') + 1),
-            'brand_story' => 'nullable|string|max:2000',
-            'unique_selling_points' => 'nullable|array',
-            'unique_selling_points.*' => 'string|max:255',
-            'social_media_handles' => 'nullable|array',
-            'social_media_handles.*' => 'string|max:255',
-            'seo_title' => 'nullable|string|max:255',
-            'seo_description' => 'nullable|string|max:500',
-            'seo_about_content' => 'nullable|string|max:2000',
-            'seo_keywords' => 'nullable|array',
-            'seo_keywords.*' => 'string|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-        ]);
+        $request->validate(BrandValidationRules::update($brand));
 
         $brandData = $request->only([
             'name', 'slug', 'description', 'website', 'store_locator_url', 
@@ -221,64 +191,5 @@ class BrandController extends Controller
 
         return redirect()->route('admin.brands.index')
             ->with('success', 'Brand deleted successfully!');
-    }
-
-    // ===== BRAND SUBMISSION FUNCTIONALITY =====
-
-    /**
-     * Show the form for brand submission
-     */
-    public function submissionCreate()
-    {
-        return Inertia::render('BrandSubmission/Create');
-    }
-
-    /**
-     * Store a brand submission
-     */
-    public function submissionStore(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:brands,name',
-            'description' => 'required|string',
-            'website' => 'nullable|url|max:255',
-            'store_locator_url' => 'nullable|url|max:255',
-            'founded_year' => 'nullable|integer|min:1800|max:' . (date('Y') + 1),
-            'brand_story' => 'nullable|string',
-            'unique_selling_points' => 'nullable|array',
-            'unique_selling_points.*' => 'nullable|string|max:255',
-            'social_media_handles' => 'nullable|array',
-            'social_media_handles.*' => 'nullable|string|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-        ]);
-
-        $brandData = $request->only([
-            'name', 'description', 'website', 'store_locator_url', 'founded_year', 
-            'brand_story', 'unique_selling_points', 'social_media_handles'
-        ]);
-
-        // Generate slug from name
-        $brandData['slug'] = Str::slug($request->name);
-        
-        // Handle logo upload if provided
-        if ($request->hasFile('logo')) {
-            $image = ImageHandler::upload($request->file('logo'));
-            $brandData['image_id'] = $image->id;
-        }
-
-        $brand = Brand::create($brandData);
-
-        return redirect()->route('brand-submissions.success', $brand)
-            ->with('success', 'Brand submitted successfully! It will be reviewed by our team.');
-    }
-
-    /**
-     * Show brand submission success page
-     */
-    public function submissionSuccess(Brand $brand)
-    {
-        return Inertia::render('BrandSubmission/Success', [
-            'brand' => $brand
-        ]);
     }
 }

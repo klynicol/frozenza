@@ -92,17 +92,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/pizza-ambassador/dashboard', function () {
             return Inertia::render('PizzaAmbassador/Dashboard');
         })->name('pizza-ambassador.dashboard');
-        
-        Route::get('/brand-submissions/create', [BrandController::class, 'submissionCreate'])->name('brand-submissions.create');
-        Route::post('/brand-submissions', [BrandController::class, 'submissionStore'])->name('brand-submissions.store');
-        Route::get('/brand-submissions/{brand}/success', [BrandController::class, 'submissionSuccess'])->name('brand-submissions.success');
-        
-        Route::get('/pizza-submissions/create', [PizzaSubmissionController::class, 'create'])->name('pizza-submissions.create');
-        Route::get('/pizza-submissions/create-copy/{pizza}', [PizzaSubmissionController::class, 'createCopy'])->name('pizza-submissions.create-copy');
-        Route::post('/pizza-submissions', [PizzaSubmissionController::class, 'store'])->name('pizza-submissions.store');
-        Route::get('/pizza-submissions/{pizza}/edit', [PizzaSubmissionController::class, 'edit'])->name('pizza-submissions.edit');
-        Route::put('/pizza-submissions/{pizza}', [PizzaSubmissionController::class, 'update'])->name('pizza-submissions.update');
-        Route::get('/pizza-submissions/{pizza}/success', [PizzaSubmissionController::class, 'success'])->name('pizza-submissions.success');
     });
 
     // Profile
