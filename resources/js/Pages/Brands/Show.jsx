@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import PizzaListItem from '@/Components/Common/PizzaListItem';
 import { getImageUrl } from '@/utils/image';
 import SchemaMarkup from '@/Components/SEO/SchemaMarkup';
 import BreadcrumbSchema from '@/Components/SEO/BreadcrumbSchema';
 import { ExternalLinkIcon } from '@/Components/Icons';
+import { hasRole } from '@/utils/roles';
 
 export default function BrandShow({ brand, meta, auth }) {
     return (
@@ -38,7 +40,17 @@ export default function BrandShow({ brand, meta, auth }) {
                             </div>
                         )}
                         <div className="text-center sm:text-left flex-1">
-                            <h1 className="text-3xl font-bold mb-2">{`${brand.name} - Frozen Pizza`}</h1>
+                            <div className="flex flex-wrap items-center gap-3 mb-2">
+                                <h1 className="text-3xl font-bold">{`${brand.name} - Frozen Pizza`}</h1>
+                                {auth?.user && hasRole(auth.user, 'admin,pizza-ambassador,brand-ambassador') && (
+                                    <Link
+                                        href={route('admin.brands.edit', brand.id)}
+                                        className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
+                                    >
+                                        Edit brand
+                                    </Link>
+                                )}
+                            </div>
                             <div className="prose prose-sm sm:prose lg:prose-lg max-w-none">
                                 <div className="text-gray-600 mb-4 whitespace-pre-wrap">
                                     {brand.description}

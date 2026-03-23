@@ -27,6 +27,6 @@ class OneTimeCommand extends Command
      */
     public function handle()
     {
-
+        $excel = \Maatwebsite\Excel\Facades\Excel::import(new \App\Imports\BrandsImport(), 'data/brands_elaborated.csv');
     }
 }

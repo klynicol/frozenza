@@ -34,6 +34,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Image whereSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Image whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Image whereWidth($value)
+ * @property-read \App\Models\TFactory|null $use_factory
  * @mixin \Eloquent
  */
 class Image extends Model

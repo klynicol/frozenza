@@ -12,6 +12,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/socialite": "^5.18",
         "laravel/tinker": "^2.9",
+        "maatwebsite/excel": "^3.1",
         "orhanerday/open-ai": "^5.3",
         "spatie/laravel-sitemap": "^7.2",
         "tightenco/ziggy": "^2.0"

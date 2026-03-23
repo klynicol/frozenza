@@ -39,6 +39,10 @@ use Carbon\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost whereUserId($value)
+ * @property string|null $feature_image
+ * @property string|null $keywords
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost whereFeatureImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost whereKeywords($value)
  * @mixin \Eloquent
  */
 class BlogPost extends Model implements Sitemapable

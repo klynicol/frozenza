@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 /**
+ * 
+ *
  * @property string $id
  * @property string $pizza_id
  * @property int|null $serving_per_container
@@ -64,6 +66,9 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereVitaminA($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereVitaminC($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereVitaminD($value)
+ * @property int $caloris_from_fat
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NutritionFact whereCalorisFromFat($value)
  * @mixin \Eloquent
  */
 class NutritionFact extends BaseModel

@@ -6,6 +6,37 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Traits\HasUuid;
 
+/**
+ * 
+ *
+ * @property string $id
+ * @property string $pizza_id
+ * @property string|null $affiliate_id
+ * @property string $url
+ * @property float|null $commission_rate
+ * @property string|null $description
+ * @property bool $is_active
+ * @property int $display_order
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Affiliate|null $affiliate
+ * @property-read string|null $vendor_name
+ * @property-read \App\Models\Pizza $pizza
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink whereAffiliateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink whereCommissionRate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink whereDisplayOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink wherePizzaId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AffiliateLink whereUrl($value)
+ * @mixin \Eloquent
+ */
 class AffiliateLink extends Model
 {
     use HasUuid;

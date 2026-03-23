@@ -57,6 +57,13 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereTotalReviews($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Pizza whereWebsite($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\AffiliateLink> $affiliateLinks
+ * @property-read int|null $affiliate_links_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Flag> $flags
+ * @property-read int|null $flags_count
+ * @method static Builder<static>|Pizza whereFlag(string $value, string $column = 'f_value_1')
+ * @property string|null $staff_pick_id
+ * @method static Builder<static>|Pizza whereStaffPickId($value)
  * @mixin \Eloquent
  */
 class Pizza extends Model implements Sitemapable
