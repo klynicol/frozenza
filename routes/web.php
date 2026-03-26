@@ -14,7 +14,6 @@ use App\Http\Controllers\{
     Admin\DashboardController,
     Admin\UserRoleController,
     BrandSubmissionController,
-    PizzaSubmissionController
 };
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -87,7 +86,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/blogs/{post:slug}', [BlogPostController::class, 'destroy'])->name('blogs.destroy');
     });
 
-    // Pizza Ambassador submissions
+    // Pizza Ambassador
     Route::middleware(['role:admin,pizza-ambassador, brand-ambassador'])->group(function () {
         Route::get('/pizza-ambassador/dashboard', function () {
             return Inertia::render('PizzaAmbassador/Dashboard');

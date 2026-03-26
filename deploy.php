@@ -33,6 +33,15 @@ task('sitemap:generate', function () {
 });
 after('composer:install', 'sitemap:generate');
 
+// Inertia SSR (start Node SSR server)
+task('inertia:ssr:restart', function () {
+    // Restart so the SSR server picks up the newly built Vite SSR bundle.
+    run('cd {{release_path}} && php artisan inertia:stop-ssr || true');
+    run('cd {{release_path}} && php artisan inertia:start-ssr');
+    run('cd {{release_path}} && for i in 1 2 3 4 5 6 7 8 9 10; do php artisan inertia:check-ssr && break; sleep 1; done');
+});
+after('deploy:symlink', 'inertia:ssr:restart');
+
 add('shared_files', []);
 add('shared_dirs', []);
 add('writable_dirs', []);
