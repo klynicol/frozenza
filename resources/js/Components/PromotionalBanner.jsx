@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
 
 export default function PromotionalBanner({ auth }) {
-    const [isVisible, setIsVisible] = useState(
-        // load from localStorage
-        localStorage.getItem('promotionalBanner') === 'false' ? false : true
-    );
+    const [isVisible, setIsVisible] = useState(true);
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
         hours: 0,
@@ -14,6 +11,14 @@ export default function PromotionalBanner({ auth }) {
     });
 
     useEffect(() => {
+        // Load visibility preference on the client only (SSR has no localStorage).
+        try {
+            const stored = window?.localStorage?.getItem('promotionalBanner');
+            if (stored === 'false') setIsVisible(false);
+        } catch {
+            // Ignore storage access errors (privacy mode, blocked storage, etc).
+        }
+
         // Calculate time until end of current month
         const now = new Date();
         const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
@@ -39,7 +44,11 @@ export default function PromotionalBanner({ auth }) {
     }, []);
 
     function handleSetIsVisible(value) {
-        localStorage.setItem('promotionalBanner', value);
+        try {
+            window?.localStorage?.setItem('promotionalBanner', value);
+        } catch {
+            // Ignore storage access errors.
+        }
         setIsVisible(value);
     }
 

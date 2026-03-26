@@ -38,9 +38,10 @@ task('inertia:ssr:restart', function () {
     // Restart so the SSR server picks up the newly built Vite SSR bundle.
     run('cd {{release_path}} && php artisan inertia:stop-ssr || true');
 
-    // Start SSR server detached so Deployer doesn't try to manage/kill it.
-    // `nohup` prevents SIGHUP, `setsid` detaches from the deploy session.
-    run('cd {{release_path}} && mkdir -p storage/logs && nohup setsid php artisan inertia:start-ssr --runtime=node > storage/logs/inertia-ssr-start.log 2>&1 < /dev/null &');
+    // Start SSR server detached. Avoid `php artisan inertia:start-ssr` here since it is a long-running
+    // foreground command and Deployer may try (and fail) to kill it.
+    run('cd {{release_path}} && mkdir -p storage/logs && pkill -f "bootstrap/ssr/ssr\\.(js|mjs)" || true');
+    run('cd {{release_path}} && nohup node bootstrap/ssr/ssr.js > storage/logs/inertia-ssr-start.log 2>&1 < /dev/null &');
 
     // Small pause so the SSR server can bind the port.
     run('cd {{release_path}} && sleep 1');
