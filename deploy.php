@@ -37,14 +37,6 @@ after('composer:install', 'sitemap:generate');
 task('inertia:ssr:restart', function () {
     // Restart so the SSR server picks up the newly built Vite SSR bundle.
     run('cd {{release_path}} && php artisan inertia:stop-ssr || true');
-
-    // Start SSR server detached. Avoid `php artisan inertia:start-ssr` here since it is a long-running
-    // foreground command and Deployer may try (and fail) to kill it.
-    run('cd {{release_path}} && mkdir -p storage/logs && pkill -f "bootstrap/ssr/ssr\\.(js|mjs)" || true');
-    run('cd {{release_path}} && nohup node bootstrap/ssr/ssr.js > storage/logs/inertia-ssr-start.log 2>&1 < /dev/null &');
-
-    // Small pause so the SSR server can bind the port.
-    run('cd {{release_path}} && sleep 1');
 });
 after('deploy:symlink', 'inertia:ssr:restart');
 

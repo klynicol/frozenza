@@ -25,13 +25,15 @@ class PizzaController extends Controller
      * 
      *@api {get} /pizzas Get all pizzas
      */
-    public function index(): InertiaResponse
+    public function index(Request $request): InertiaResponse
     {
+        $canonicalUrl = $request->routeIs('home') ? '/' : '/pizzas';
+
         Inertia::share('meta', [
             'title' => "Best Frozen Pizzas - Ratings, Brand Index, Reviews, and Where to Buy",
             'description' => 'Pizza Kraken: Discover and review the best frozen pizzas with honest ratings, ingredient details, and expert guidance to make informed choices today!',
             'keywords' => "frozen pizza, pizza reviews, pizza ratings, best frozen pizzas, frozen pizza brands, frozen pizza guide, frozen pizza ingredients, pizza comparison",
-            'canonicalUrl' => "/pizzas",
+            'canonicalUrl' => $canonicalUrl,
         ]);
 
         return Inertia::render('Pizzas/Index', [
@@ -116,7 +118,7 @@ class PizzaController extends Controller
             'title' => 'Top 10 Best Rated Frozen Pizzas',
             'description' => 'Discover the highest-rated frozen pizzas according to our community. See reviews, ratings, and where to buy these top-rated frozen pizzas.',
             'keywords' => "frozen pizza, pizza reviews, pizza ratings, best frozen pizzas, frozen pizza brands, frozen pizza guide, frozen pizza ingredients, pizza comparison",
-            'canonicalUrl' => "/pizzas/top-rated",
+            'canonicalUrl' => "/top-rated",
         ]);
 
         return Inertia::render('Pizzas/TopRated', [

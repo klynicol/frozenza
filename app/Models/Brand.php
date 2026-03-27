@@ -98,7 +98,7 @@ class Brand extends Model implements Sitemapable
 
     public function toSitemapTag(): Url
     {
-        return Url::create("/brands/{$this->slug}/pizzas")
+        return Url::create("/brands/{$this->slug}")
             ->setLastModificationDate(Carbon::parse($this->updated_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
             ->setPriority(0.8);
