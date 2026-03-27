@@ -2,10 +2,12 @@ import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { usePage } from '@inertiajs/react';
 import PizzaGridWithPromo from '@/Components/Common/PizzaGridWithPromo';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 
 export default function PizzasIndex({ pizzasFirstPage, meta, auth }) {
+    const { url } = usePage();
     const [pizzas, setPizzas] = useState(pizzasFirstPage);
 
     const fetchPizzas = async () => {
@@ -16,17 +18,18 @@ export default function PizzasIndex({ pizzasFirstPage, meta, auth }) {
 
     // if the user scrolls to the bottom of the page, fetch the next page
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-                fetchPizzas();
-            }
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        // const handleScroll = () => {
+        //     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        //         fetchPizzas();
+        //     }
+        // };
+        // window.addEventListener('scroll', handleScroll);
+        // return () => window.removeEventListener('scroll', handleScroll);
     }, [pizzas]);
 
-    // Are we on  "/pizzas"?
-    const isPizzasIndex = window.location.pathname === '/pizzas';
+    // Are we on "/pizzas"? (usePage url works on SSR; window does not)
+    const pathname = url.split('?')[0];
+    const isPizzasIndex = pathname === '/pizzas';
 
     return (
         <MainLayout meta={meta} auth={auth}>
