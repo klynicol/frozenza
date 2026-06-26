@@ -1,0 +1,1 @@
+ssh -o ServerAliveInterval=30 mark@75.73.154.72

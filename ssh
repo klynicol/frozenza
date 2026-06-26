@@ -1,1 +1,1 @@
-ssh -o ServerAliveInterval=30 mark@68.46.84.167
+ssh -o ServerAliveInterval=30 ubuntu@15.204.137.142
