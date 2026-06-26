@@ -2,6 +2,7 @@ import React from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import BreadcrumbSchema from '@/Components/SEO/BreadcrumbSchema';
 import BrandListItem from '@/Components/Common/BrandListItem';
+import ItemListSchema from '@/Components/SEO/ItemListSchema';
 
 export default function BrandsIndex({ brands, meta, auth }) {
     return (
@@ -12,9 +13,14 @@ export default function BrandsIndex({ brands, meta, auth }) {
                     { name: 'Frozen Pizza Brands', url: '/brands' }
                 ]}
             />
+            <ItemListSchema
+                name="Frozen Pizza Brands"
+                items={brands}
+                itemUrl={(brand) => `/brands/${brand.slug}`}
+            />
 
             <div className="max-w-7xl mx-auto">
-                <h1 className="text-4xl font-bold mb-6">The Worlds Frozen Pizza Brands</h1>
+                <h1 className="text-4xl font-bold mb-6">The World's Frozen Pizza Brands</h1>
                 <div className="prose max-w-none mb-8">
                     <p className="text-lg">
                         Discover the best frozen pizza brands, from artisanal wood-fired pizzas to classic favorites.

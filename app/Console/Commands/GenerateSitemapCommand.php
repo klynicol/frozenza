@@ -29,6 +29,10 @@ class GenerateSitemapCommand extends Command
     public function handle()
     {
         $sitemap = Sitemap::create();
+        $baseUrl = rtrim(config('app.url'), '/');
+
+        $sitemap->add(Url::create("{$baseUrl}/"));
+        $sitemap->add(Url::create("{$baseUrl}/pizzas"));
 
         // Add BlogPost URLs
         $blogPosts = \App\Models\BlogPost::published()->get();
@@ -49,19 +53,19 @@ class GenerateSitemapCommand extends Command
         }
 
         // contact us page
-        $sitemap->add(Url::create('https://pizzakraken.com/contact'));
+        $sitemap->add(Url::create("{$baseUrl}/contact"));
 
         // brands page
-        $sitemap->add(Url::create('https://pizzakraken.com/brands'));
+        $sitemap->add(Url::create("{$baseUrl}/brands"));
 
         // blogs page
-        $sitemap->add(Url::create('https://pizzakraken.com/blogs'));
+        $sitemap->add(Url::create("{$baseUrl}/blogs"));
 
         // top rated pizzas page
-        $sitemap->add(Url::create('https://pizzakraken.com/top-rated'));
+        $sitemap->add(Url::create("{$baseUrl}/top-rated"));
 
         // lowest calorie frozen pizza (SEO page)
-        $sitemap->add(Url::create('https://pizzakraken.com/lowest-calorie-frozen-pizza'));
+        $sitemap->add(Url::create("{$baseUrl}/lowest-calorie-frozen-pizza"));
 
         // Save the sitemap to a file
         $sitemap->writeToFile(public_path('sitemap.xml'));

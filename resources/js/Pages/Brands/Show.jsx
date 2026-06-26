@@ -5,6 +5,7 @@ import PizzaListItem from '@/Components/Common/PizzaListItem';
 import { getImageUrl } from '@/utils/image';
 import SchemaMarkup from '@/Components/SEO/SchemaMarkup';
 import BreadcrumbSchema from '@/Components/SEO/BreadcrumbSchema';
+import ItemListSchema from '@/Components/SEO/ItemListSchema';
 import { ExternalLinkIcon } from '@/Components/Icons';
 import { hasRole } from '@/utils/roles';
 
@@ -21,6 +22,11 @@ export default function BrandShow({ brand, meta, auth }) {
                     { name: 'Brands', url: '/brands' },
                     { name: brand.name, url: `/brands/${brand.slug}` }
                 ]}
+            />
+            <ItemListSchema
+                name={`${brand.name} Frozen Pizza Selection`}
+                items={brand.pizzas}
+                itemUrl={(pizza) => `/pizzas/${brand.slug}/${pizza.slug}`}
             />
             
             <div className="bg-white shadow-lg rounded-lg overflow-hidden mb-8">

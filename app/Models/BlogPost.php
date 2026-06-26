@@ -73,7 +73,7 @@ class BlogPost extends Model implements Sitemapable
 
     public function toSitemapTag(): Url
     {
-        return Url::create("/blogs/{$this->slug}")
+        return Url::create(url("/blogs/{$this->slug}"))
             ->setLastModificationDate(Carbon::parse($this->updated_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
             ->setPriority(0.7);

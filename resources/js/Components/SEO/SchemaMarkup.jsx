@@ -1,19 +1,25 @@
 import React from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import { getImageUrl } from '@/utils/image';
+import { absoluteUrl } from '@/utils/seo';
 
 export default function SchemaMarkup({ type, data }) {
+    const { site = {} } = usePage().props;
+
     const generatePizzaSchema = (pizza) => {
         const productUrl =
-            typeof window !== 'undefined' && pizza.brand?.slug && pizza.slug
-                ? `${window.location.origin}/pizzas/${pizza.brand.slug}/${pizza.slug}`
+            pizza.brand?.slug && pizza.slug
+                ? absoluteUrl(`/pizzas/${pizza.brand.slug}/${pizza.slug}`, site.url)
                 : undefined;
+        const purchaseUrl = pizza.affiliate_links?.find((link) => link.url)?.url;
+
         return {
             '@context': 'https://schema.org',
             '@type': 'Product',
             name: pizza.name,
             description: pizza.description,
-            image: pizza.image_url,
+            image: pizza.image_url ? absoluteUrl(pizza.image_url, site.url) : undefined,
+            url: productUrl,
             brand: {
                 '@type': 'Brand',
                 name: pizza.brand.name,
@@ -23,11 +29,11 @@ export default function SchemaMarkup({ type, data }) {
                 ratingValue: pizza.average_rating,
                 reviewCount: pizza.total_reviews,
             } : undefined,
-            offers: {
+            offers: purchaseUrl ? {
                 '@type': 'Offer',
                 availability: 'https://schema.org/InStock',
-                ...(productUrl && { url: productUrl }),
-            },
+                url: purchaseUrl,
+            } : undefined,
             nutrition: pizza?.nutrition_fact ? {
             '@type': 'NutritionInformation',
             calories: pizza.nutrition_fact.calories != null ? `${pizza.nutrition_fact.calories} calories` : undefined,
@@ -59,7 +65,7 @@ export default function SchemaMarkup({ type, data }) {
         name: brand.name,
         description: brand.description,
         url: brand.website,
-        image: brand?.image ? getImageUrl(brand.image) : undefined,
+        image: brand?.image ? absoluteUrl(getImageUrl(brand.image), site.url) : undefined,
     });
 
     const generateReviewSchema = (review) => ({

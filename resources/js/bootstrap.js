@@ -11,7 +11,6 @@ if (!isServer) {
 
 // For server-side
 export const ssrAxios = axios.create({
-    baseURL: import.meta.env.VITE_APP_URL,
     headers: {
         'X-Requested-With': 'XMLHttpRequest'
     }

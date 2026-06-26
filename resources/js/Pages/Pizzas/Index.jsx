@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import PizzaGridWithPromo from '@/Components/Common/PizzaGridWithPromo';
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import ItemListSchema from '@/Components/SEO/ItemListSchema';
 
 export default function PizzasIndex({ pizzasFirstPage, meta, auth }) {
     const { url } = usePage();
@@ -33,6 +34,11 @@ export default function PizzasIndex({ pizzasFirstPage, meta, auth }) {
 
     return (
         <MainLayout meta={meta} auth={auth}>
+            <ItemListSchema
+                name={isPizzasIndex ? 'Frozen Pizza Database' : 'Featured Frozen Pizzas'}
+                items={pizzas?.data ?? []}
+                itemUrl={(pizza) => `/pizzas/${pizza.brand.slug}/${pizza.slug}`}
+            />
             <div className="max-w-[1880px] mx-auto px-4 sm:px-5 lg:px-6 py-8">
                 <div className={`text-center mb-12 ${isPizzasIndex ? 'hidden' : ''}`}>
                     <div className="flex justify-center mb-6">
@@ -59,7 +65,11 @@ export default function PizzasIndex({ pizzasFirstPage, meta, auth }) {
                     </a>
                 </div>
 
-                <h2 className="text-2xl font-bold mb-6">Featured Pizzas</h2>
+                {isPizzasIndex ? (
+                    <h1 className="text-2xl font-bold mb-6">Frozen Pizza Database</h1>
+                ) : (
+                    <h2 className="text-2xl font-bold mb-6">Featured Pizzas</h2>
+                )}
                 <PizzaGridWithPromo pizzas={pizzas} />
             </div>
         </MainLayout>

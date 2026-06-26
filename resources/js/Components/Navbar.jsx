@@ -22,6 +22,7 @@ export default function Navbar({ auth }) {
     const [activeDropdown, setActiveDropdown] = useState(null);
     const adminDropdownRef = useRef(null);
     const ambassadorDropdownRef = useRef(null);
+    const routeExists = (name) => typeof route === 'function' && route().has(name);
 
     const socialLinks = [
         { icon: FacebookIcon, href: 'https://www.facebook.com/profile.php?id=61573217433128', label: 'Facebook' },
@@ -134,17 +135,17 @@ export default function Navbar({ auth }) {
             href: '/pizza-ambassador/dashboard',
             icon: <AmbassadorDashboardIcon />
         },
-        {
+        routeExists('brand-submissions.create') ? {
             name: 'Submit Brand',
             href: '/brand-submissions/create',
             icon: <SubmitBrandIcon />
-        },
-        {
+        } : null,
+        routeExists('pizza-submissions.create') ? {
             name: 'Submit Pizza',
             href: '/pizza-submissions/create',
             icon: <SubmitPizzaIcon />
-        }
-    ];
+        } : null
+    ].filter(Boolean);
 
     return (
         <nav className="bg-white shadow relative">

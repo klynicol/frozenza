@@ -1,2 +1,11 @@
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /profile
+Disallow: /messages
+Disallow: /pizzas/list
+
+Sitemap: https://pizzakraken.com/sitemap.xml
