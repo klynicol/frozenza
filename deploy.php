@@ -21,17 +21,11 @@ task('npm:build', function () {
 after('deploy:update_code', 'npm:install');
 after('npm:install', 'npm:build');
 
-// composer
-task('composer:install', function () {
-    run('cd {{release_path}} && composer install');
-});
-after('artisan:migrate', 'composer:install');
-
 //sitemap
 task('sitemap:generate', function () {
     run('cd {{release_path}} && php artisan app:generate-sitemap');
 });
-after('composer:install', 'sitemap:generate');
+after('artisan:migrate', 'sitemap:generate');
 
 // Inertia SSR (start Node SSR server)
 task('inertia:ssr:restart', function () {
@@ -46,9 +40,9 @@ add('writable_dirs', []);
 
 // Hosts
 
-host('68.46.84.167')
-    ->set('remote_user', 'mark')
-    ->set('deploy_path', '/var/www/www.pizzakraken.com')
+host('15.204.137.142')
+    ->set('remote_user', 'github')
+    ->set('deploy_path', '/var/www/www.pizzakraken')
     ->set('branch', 'main');
 
 // Hooks
