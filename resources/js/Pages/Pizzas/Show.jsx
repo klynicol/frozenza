@@ -15,6 +15,8 @@ export default function PizzaShow({ pizza, meta, auth }) {
     const [isIngredientsOpen, setIngredientsOpen] = useState(false);
     const [isNutritionOpen, setNutritionOpen] = useState(false);
     const [isReviewModalOpen, setReviewModalOpen] = useState(false);
+    const canEditPizza = typeof route === 'function' && route().has('pizza-submissions.edit');
+    const canCopyPizza = typeof route === 'function' && route().has('pizza-submissions.create-copy');
 
     const toggleAccordion = (setOpen) => {
         setOpen(prevState => !prevState);
@@ -65,20 +67,24 @@ export default function PizzaShow({ pizza, meta, auth }) {
                                         By {pizza.brand.name}
                                     </Link>
                                 </div>
-                                {auth.user && hasRole(auth.user, 'admin,pizza-ambassador,brand-ambassador') && (
+                                {auth.user && hasRole(auth.user, 'admin,pizza-ambassador,brand-ambassador') && (canEditPizza || canCopyPizza) && (
                                     <>
-                                        <Link
-                                            href={route('pizza-submissions.edit', pizza.id)}
-                                            className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
-                                        >
-                                            Edit pizza
-                                        </Link>
-                                        <Link
-                                            href={route('pizza-submissions.create-copy', pizza.id)}
-                                            className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
-                                        >
-                                            Create copy
-                                        </Link>
+                                        {canEditPizza && (
+                                            <Link
+                                                href={route('pizza-submissions.edit', pizza.id)}
+                                                className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
+                                            >
+                                                Edit pizza
+                                            </Link>
+                                        )}
+                                        {canCopyPizza && (
+                                            <Link
+                                                href={route('pizza-submissions.create-copy', pizza.id)}
+                                                className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
+                                            >
+                                                Create copy
+                                            </Link>
+                                        )}
                                     </>
                                 )}
                             </div>

@@ -1,30 +1,33 @@
 import React from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
+import { absoluteUrl } from '@/utils/seo';
 
-export default function MetaTags({ title, description, canonicalUrl, keywords }) {
-    const baseUrl = import.meta.env.VITE_APP_URL || '';
-    const fullCanonicalUrl = canonicalUrl ? `${baseUrl}${canonicalUrl}` : '';
+export default function MetaTags({ title, description, canonicalUrl, keywords, robots = 'index,follow' }) {
+    const { site = {} } = usePage().props;
+    const fullCanonicalUrl = canonicalUrl ? absoluteUrl(canonicalUrl, site.url) : undefined;
+    const socialImageUrl = absoluteUrl('/storage/assets/social_image.png', site.url);
 
     // Render the same output on server and client to avoid hydration mismatches (e.g. when using Inertia SSR).
     return (
         <Head>
-            <title>{title}</title>
+            {title && <title>{title}</title>}
             {/* flexoffers.com verification */}
             <meta name="fo-verify" content="2ca802a6-3183-4cdc-b8b5-1540534e5ddc" />
-            <meta name="description" content={description} />
-            <meta name="keywords" content={keywords} />
-            <meta property="og:title" content={title} />
-            <meta property="og:description" content={description} />
-            <meta property="og:image" content={`${baseUrl}/storage/assets/social_image.png`} />
+            <meta name="robots" content={robots} />
+            {description && <meta name="description" content={description} />}
+            {keywords && <meta name="keywords" content={keywords} />}
+            {title && <meta property="og:title" content={title} />}
+            {description && <meta property="og:description" content={description} />}
+            <meta property="og:image" content={socialImageUrl} />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content={fullCanonicalUrl} />
+            {fullCanonicalUrl && <meta property="og:url" content={fullCanonicalUrl} />}
 
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content={title} />
-            <meta name="twitter:description" content={description} />
-            <meta name="twitter:image" content={`${baseUrl}/storage/assets/social_image.png`} />
+            {title && <meta name="twitter:title" content={title} />}
+            {description && <meta name="twitter:description" content={description} />}
+            <meta name="twitter:image" content={socialImageUrl} />
 
-            <link rel="canonical" href={fullCanonicalUrl} />
+            {fullCanonicalUrl && <link rel="canonical" href={fullCanonicalUrl} />}
         </Head>
     );
 } 

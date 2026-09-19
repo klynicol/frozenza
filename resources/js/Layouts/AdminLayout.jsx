@@ -40,7 +40,7 @@ export default function AdminLayout({ children, header, title }) {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <MetaTags title={title || 'Admin Panel'} />
+      <MetaTags title={title || 'Admin Panel'} robots="noindex,nofollow" />
       
       {/* Mobile sidebar */}
       <div

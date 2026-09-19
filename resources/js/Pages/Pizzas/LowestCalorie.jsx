@@ -3,11 +3,16 @@ import MainLayout from '@/Layouts/MainLayout';
 import { Link } from '@inertiajs/react';
 import NutritionFact from '@/Components/Common/NutritionFact';
 import { getImageUrl } from '@/utils/image';
+import ItemListSchema from '@/Components/SEO/ItemListSchema';
 
 export default function LowestCalorie({ pizzas, meta, auth }) {
-    console.log(pizzas);
     return (
         <MainLayout meta={meta} auth={auth}>
+            <ItemListSchema
+                name="Lowest Calorie Frozen Pizzas"
+                items={pizzas}
+                itemUrl={(pizza) => `/pizzas/${pizza.brand?.slug}/${pizza.slug}`}
+            />
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <article>
                     <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

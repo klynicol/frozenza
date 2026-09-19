@@ -7,12 +7,6 @@ Initiated as the new pizza chronicle late 2024.
 php artisan inertia:start-ssr
 ```
 
-then run  ??
-
-```
-php artisan serve
-```
-
 
 [x] blog: fda recalls frozen pizzas due to risk of contamination.
 

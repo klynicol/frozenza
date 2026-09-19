@@ -5,6 +5,9 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 
 export default function Dashboard({ auth }) {
+    const canSubmitBrands = typeof route === 'function' && route().has('brand-submissions.create');
+    const canSubmitPizzas = typeof route === 'function' && route().has('pizza-submissions.create');
+
     return (
         <MainLayout auth={auth} showPromotionalBanner={false}>
             <Head title="Pizza Ambassador Dashboard" />
@@ -23,9 +26,10 @@ export default function Dashboard({ auth }) {
                             </div>
 
                             {/* Submission Options */}
+                            {(canSubmitBrands || canSubmitPizzas) && (
                             <div className="grid md:grid-cols-2 gap-8 mb-8">
                                 {/* Brand Submission Card */}
-                                <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-6 border border-blue-200">
+                                {canSubmitBrands && <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-6 border border-blue-200">
                                     <div className="text-center">
                                         <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 mb-4">
                                             <svg className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,10 +46,10 @@ export default function Dashboard({ auth }) {
                                             </PrimaryButton>
                                         </Link>
                                     </div>
-                                </div>
+                                </div>}
 
                                 {/* Pizza Submission Card */}
-                                <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-lg p-6 border border-green-200">
+                                {canSubmitPizzas && <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-lg p-6 border border-green-200">
                                     <div className="text-center">
                                         <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
                                             <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -62,8 +66,9 @@ export default function Dashboard({ auth }) {
                                             </PrimaryButton>
                                         </Link>
                                     </div>
-                                </div>
+                                </div>}
                             </div>
+                            )}
 
                             {/* Guidelines */}
                             <div className="bg-gray-50 rounded-lg p-6">

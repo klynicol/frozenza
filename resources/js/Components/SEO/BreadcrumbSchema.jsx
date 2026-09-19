@@ -1,7 +1,9 @@
 import React from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
+import { absoluteUrl } from '@/utils/seo';
 
 export default function BreadcrumbSchema({ items }) {
+    const { site = {} } = usePage().props;
     const schema = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -9,7 +11,7 @@ export default function BreadcrumbSchema({ items }) {
             '@type': 'ListItem',
             'position': index + 1,
             'item': {
-                '@id': `${import.meta.env.VITE_APP_URL}${item.url}`,
+                '@id': absoluteUrl(item.url, site.url),
                 'name': item.name,
             },
         })),

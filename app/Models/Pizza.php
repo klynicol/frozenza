@@ -129,7 +129,7 @@ class Pizza extends Model implements Sitemapable
 
     public function toSitemapTag(): Url
     {
-        return Url::create("/pizzas/{$this->brand->slug}/{$this->slug}")
+        return Url::create(url("/pizzas/{$this->brand->slug}/{$this->slug}"))
             ->setLastModificationDate(Carbon::parse($this->updated_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
             ->setPriority(0.7);

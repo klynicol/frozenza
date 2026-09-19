@@ -65,6 +65,7 @@ Route::get('/giveaway', function () {
         'description' => 'Enter the Pizza Kraken frozen pizza giveaway and check official rules and eligibility details.',
         'keywords' => 'frozen pizza giveaway, pizza kraken giveaway, pizza contest',
         'canonicalUrl' => '/giveaway',
+        'robots' => 'noindex,follow',
     ]);
 
     return Inertia::render('Giveaway');
@@ -76,6 +77,7 @@ Route::get('/users/delete-data-instructions', function () {
         'description' => 'Follow these instructions to request deletion of your account data from Pizza Kraken.',
         'keywords' => 'delete account data, privacy request, pizza kraken data deletion',
         'canonicalUrl' => '/users/delete-data-instructions',
+        'robots' => 'noindex,follow',
     ]);
 
     return Inertia::render('Auth/DeleteDataInstructions');
